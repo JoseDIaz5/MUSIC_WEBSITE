@@ -1,0 +1,1248 @@
+@charset "utf-8";
+
+body{
+	
+	margin:0;
+}
+.background{
+	
+	background-color: white;
+	
+	width:100%;
+	
+	height:100%;
+	
+	background-position:center;
+	
+	background-size:cover;
+}
+.background .secondnav{
+	
+	background-color: #d40000;
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	align-items:center;
+	
+	padding: 15px 7px;
+	
+	position:fixed;
+	
+	top:0;
+	
+	width:100%;
+	
+}
+.nav-left{
+	
+	display:flex;
+	
+	align-items:center;
+	
+	width:5%;
+}
+.nav-right{
+	
+	display:flex;
+	
+	align-items:center;
+	
+	width:auto;
+}
+.nav-center{
+	
+	width:345px;
+	
+	margin-right:8px;
+}
+.nav-center form{
+	
+	display:flex;
+	
+	align-items:center;
+	
+	width:100%;
+}
+.loader{
+	
+	height:35px;
+	
+	display:flex;
+	
+	align-items:center;
+}
+.loader .stroke{
+	
+	display:block;
+	
+	position:relative;
+	
+	background:white;
+	
+	height:100%;
+	
+	width:7px;
+	
+	border-radius: 50px;
+	
+	margin: 0 5px;
+	
+	animation: animate 1.2s linear infinite;
+}
+@keyframes animate{
+	50%{
+	
+		height:20%;
+	}
+}
+.stroke:nth-child(1){
+	
+	animation-delay:0.3s;
+}
+.stroke:nth-child(2){
+	
+	animation-delay:0.2s;
+}
+.stroke:nth-child(3){
+	
+	animation-delay:0.1s;
+}
+.stroke:nth-child(4){
+	
+	animation-delay:0.2s;
+}
+.stroke:nth-child(5){
+	
+	animation-delay:0.3s;
+}
+.logo{
+	
+	display:flex;
+	
+	align-items:center;
+}
+.logo a{
+	
+	text-decoration:none;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+	
+	font-size: 28px;
+	
+	color:white;
+	
+	margin-left:8px;
+}
+#check{
+	
+	display:none;
+}
+.search-box{
+	
+	width:100%;
+	
+	display:flex;
+	
+	align-items:center;
+	
+	background-color:white;
+	
+	padding:5px 10px;
+	
+	border-radius:10px;
+}
+.search-box .buscador{
+	
+	width:100%;
+	
+	height:30px;
+	
+	outline:none;
+	
+	border:none;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-size:1em;
+	
+	font-weight:bolder;
+}
+.searchicon{
+	
+	cursor:pointer;
+	
+	color:darkblue;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+.searchicon:hover{
+	
+	color:#d40000;
+}
+
+.nav-right .imagediv{
+	
+	margin-right:20px;
+	
+	width: 30px;
+	
+	height: 30px;
+	
+	background-color:white;
+	
+	border-radius:50%;
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	cursor:pointer;
+	
+	transition-property:color,background-color;
+	
+	transition-duration:.5s;
+}
+.nav-right .imagediv:hover{
+	
+	background-color:black;
+	
+	color:white;
+}
+.nav-right .imagediv .imguser{
+	
+	width: 30px;
+	
+	height: 30px;
+	
+	border-radius:50%;
+}
+.profileoptions{
+	
+	display:inline-block;
+		
+	transform: scale(1,0);
+		
+	transform-origin:top;
+		
+	top:100%;
+		
+	transition:all .5s;
+		
+	position:absolute;
+		
+	text-align:center;
+		
+	margin:0;
+		
+	padding:0;
+		
+	background-color:#d40000;
+		
+	right:0;
+		
+	width:25%;
+	
+	border-radius:0 0 9px 9px;
+}
+.profileoptions ul{
+	
+	list-style:none;	
+}
+.profileoptions ul li{
+	
+	margin-bottom:1em;
+		
+	opacity:0;
+		
+	transition:opacity 190ms ease-in-out;
+}
+.checkb:checked ~ .profileoptions{
+	
+	display:inline-block;
+		
+	top:100%;
+		
+	transform:scale(1,1);
+}
+.checkb:checked ~ .profileoptions li{
+	
+	opacity: 1;
+		
+	transition:opacity 250ms ease-in-out 250ms;
+}
+.profileoptions .list-profile li{
+	
+	margin:8px 0;
+}
+.list-profile li a{
+	
+	color:white;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	text-decoration:none;
+	
+	font-weight:bolder;
+}
+.list-profile li a:hover{
+	
+	color:black;
+}
+.list-profile li i{
+	
+	margin-right:5px;
+}
+
+@media screen and (max-width:890px){
+	
+	.background{
+	
+		background-color: white;
+	
+		width:100%;
+	
+		height:100%;
+	}
+	.background .secondnav{
+	
+		background-color:#d40000;
+		
+		display:block;
+	
+		padding:15px 7px;
+		
+		display:flex;
+		
+		justify-content:space-between;
+	}
+	.nav-left{
+	
+		display:flex;
+		
+		justify-content:center;
+	}
+	.logo{
+	
+		display:none;
+	}
+	
+	.profileoptions{
+	
+		display:inline-block;
+		
+		transform: scale(1,0);
+		
+		transform-origin:top;
+		
+		top:100%;
+		
+		transition:all .5s;
+		
+		position:absolute;
+		
+		text-align:center;
+		
+		margin:0;
+		
+		padding:0;
+		
+		background-color:#d40000;
+		
+		right:0;
+		
+		width:100%;
+		
+		border-radius:0;
+	}
+	.profileoptions ul li{
+	
+		margin-bottom:1em;
+		
+		opacity:0;
+		
+		transition:opacity 190ms ease-in-out;
+	}
+	.checkb:checked ~ .profileoptions{
+	
+		display:inline-block;
+		
+		top:100%;
+		
+		transform:scale(1,1);
+	}
+	.checkb:checked ~ .profileoptions li{
+	
+		opacity: 1;
+		
+		transition:opacity 250ms ease-in-out 250ms;
+	}
+}
+.sectionone{
+	
+	margin-top:90px;
+	
+	display:flex;
+	
+	flex-direction:column;
+}
+section .songtwocontainer{
+	
+	height:auto;
+	
+	width:70%;
+	
+	display:inline-flex;
+	
+	margin:auto;
+	
+	border-bottom:1px solid gray;
+}
+section .songtwocontainer .imagecontainer{
+	
+	display:flex;
+	
+	height:auto;
+	
+	width:auto;
+	
+	margin:7px;
+}
+section .songtwocontainer .imagecontainer img{
+	
+	width:200px;
+	
+	border-radius:10px;
+}
+section .songtwocontainer .titleplayercontainer{
+	
+	display:flex;
+	
+	width:100%;
+	
+	height:auto;
+	
+	margin:7px;
+	
+	flex-direction:column;
+}
+section .songtwocontainer .titleplayercontainer .titlecontainer{
+	
+	width:auto;
+	
+	max-height:50px;
+	
+	overflow:hidden;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+	
+	font-size:40px;
+	
+	color:black;
+}
+section .songcontainer .titleplayercontainer .titlecontainer .link{
+	
+	text-decoration:none;
+	
+	color:black;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songcontainer .titleplayercontainer .titlecontainer .link:hover{
+	
+	color:#d40000;
+}
+section .songtwocontainer .titleplayercontainer .usercontainer{
+	
+	display:flex;
+	
+	align-items:center;
+	
+	width:auto;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+}
+section .songtwocontainer .titleplayercontainer .usercontainer img{
+	
+	width:40px;
+	
+	height:40px;
+	
+	border-radius:50%;
+}
+section .songtwocontainer .titleplayercontainer .usercontainer span{
+	
+	margin-left:6px;
+}
+section .songtwocontainer .titleplayercontainer .usercontainer span a{
+	
+	text-decoration:none;
+	
+	color:#A9A9A9;
+	
+	font-size:35px;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songtwocontainer .titleplayercontainer .usercontainer span a:hover{
+	
+	color:black;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer{
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	margin:10px 0 10px 0;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .playicon .play{
+	
+	margin-right:8px;
+	
+	font-size:40px;
+	
+	cursor:pointer;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .playicon .play:hover{
+	
+	color:#d40000;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .playicon .pause{
+	
+	margin-right:8px;
+	
+	display:none;
+	
+	font-size:40px;
+	
+	cursor:pointer;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .playicon .pause:hover{
+	
+	color:#d40000;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .bar{
+	
+	background-color:gray;
+	
+	width:100%;
+	
+	height:15px;
+	
+	border-radius:10px;
+	
+	cursor:pointer;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .bar .progress{
+	
+	position:absolute;
+	
+	width:0px;
+	
+	height:15px;
+	
+	background-color:#d40000;
+	
+	border-radius:10px;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer{
+	
+	margin:0 10px 0 10px;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer a{
+	
+	text-decoration:none;
+	
+	color:black;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer i{
+	
+	font-size:40px;
+	
+	cursor:pointer;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer i:hover{
+	
+	color:#d40000;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer{
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	align-items:center;
+	
+	margin-top:10px;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer span{
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+	
+	font-size:35px;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer span:nth-child(2){
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	cursor:pointer;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer span:nth-child(3){
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	cursor:pointer;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer span:nth-child(2):hover{
+	
+	color:#d40000;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer span:nth-child(3):hover{
+	
+	color:#d40000;
+}
+section .songtwocontainer .titleplayercontainer .likescontainer i{
+	
+	margin-right:6px;
+}
+/*__________________________________________________________________________________________________________________________*/
+section .songcontainer{
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	height:auto;
+	
+	width:600px;
+	
+	margin:15px auto;
+	
+	border: 1px solid gray;
+	
+	border-radius:10px;
+}
+section .songcontainer .imagecontainer{
+	
+	display:flex;
+	
+	height:auto;
+	
+	width:auto;
+	
+	margin:7px;
+}
+section .songcontainer .imagecontainer img{
+	
+	width:130px;
+	
+	border-radius:10px;
+}
+section .songcontainer .titleplayercontainer{
+	
+	display:flex;
+	
+	width:100%;
+	
+	height:auto;
+	
+	margin:7px;
+	
+	flex-direction:column;
+}
+section .songcontainer .titleplayercontainer .titlecontainer{
+	
+	width:auto;
+	
+	max-height:50px;
+	
+	overflow:hidden;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+	
+	font-size:20px;
+	
+	color:black;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	cursor:pointer;
+}
+section .songcontainer .titleplayercontainer .titlecontainer:hover{
+	
+	color:#d40000;
+}
+section .songcontainer .titleplayercontainer .usercontainer{
+	
+	display:flex;
+	
+	align-items:center;
+	
+	width:auto;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+}
+section .songcontainer .titleplayercontainer .usercontainer img{
+	
+	width:20px;
+	
+	height:20px;
+	
+	border-radius:50%;
+}
+section .songcontainer .titleplayercontainer .usercontainer span{
+	
+	margin-left:6px;
+}
+section .songcontainer .titleplayercontainer .usercontainer span a{
+	
+	text-decoration:none;
+	
+	color:#A9A9A9;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songcontainer .titleplayercontainer .usercontainer span a:hover{
+	
+	color:black;
+}
+section .songcontainer .titleplayercontainer .playercontainer{
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	margin:10px 0 10px 0;
+}
+section .songcontainer .titleplayercontainer .playercontainer .playicon .play{
+	
+	margin-right:8px;
+	
+	font-size:20px;
+	
+	cursor:pointer;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songcontainer .titleplayercontainer .playercontainer .playicon .play:hover{
+	
+	color:#d40000;
+}
+section .songcontainer .titleplayercontainer .playercontainer .playicon .pause{
+	
+	margin-right:8px;
+	
+	display:none;
+	
+	font-size:20px;
+	
+	cursor:pointer;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+section .songcontainer .titleplayercontainer .playercontainer .playicon .pause:hover{
+	
+	color:#d40000;
+}
+section .songcontainer .titleplayercontainer .playercontainer .bar{
+	
+	background-color:gray;
+	
+	width:100%;
+	
+	height:5px;
+	
+	border-radius:5px;
+	
+	cursor:pointer;
+}
+section .songcontainer .titleplayercontainer .playercontainer .bar .progress{
+	
+	position:absolute;
+	
+	width:0px;
+	
+	height:5px;
+	
+	background-color:#d40000;
+	
+	border-radius:5px;
+}
+section .songcontainer .titleplayercontainer .viewscontainer{
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	align-items:center;
+}
+section .songcontainer .titleplayercontainer .viewscontainer span{
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+	
+	font-size:20px;
+}
+section .songcontainer .titleplayercontainer .viewscontainer i{
+	
+	margin-right:6px;
+}
+section .songcontainer .titleplayercontainer .likescontainer{
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	align-items:center;
+}
+section .songcontainer .titleplayercontainer .likescontainer span{
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	font-weight:bolder;
+	
+	font-size:20px;
+}
+section .songcontainer .titleplayercontainer .likescontainer span:nth-child(2){
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	cursor:pointer;
+}
+section .songcontainer .titleplayercontainer .likescontainer span:nth-child(3){
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	cursor:pointer;
+}
+section .songcontainer .titleplayercontainer .likescontainer span:nth-child(2):hover{
+	
+	color:#d40000;
+}
+section .songcontainer .titleplayercontainer .likescontainer span:nth-child(3):hover{
+	
+	color:#d40000;
+}
+section .songcontainer .titleplayercontainer .likescontainer i{
+	
+	margin-right:6px;
+}
+section .descriptioncontainer{
+	
+	display:flex;
+	
+	width:70%;
+	
+	margin:auto;
+	
+	flex-direction:column;
+	
+	text-align:center;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	border-bottom:1px solid gray;
+}
+section .description{
+	
+	font-size:25px;
+	
+	width:80%;
+	
+	margin:auto;
+}
+section .commentscontainer{
+	
+	display:flex;
+	
+	flex-direction:column;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+section .commentscontainer h2{
+	
+	text-align:center;
+}
+section .divcomment{
+	
+	display:flex;
+	
+	flex-direction:column;
+
+	width:70%;
+	
+	height:300px;
+	
+	margin:10px auto;
+	
+	padding:8px 8px 8px 8px;
+	
+	overflow:hidden;
+	
+	overflow-y:scroll;
+}
+section .divcomment::-webkit-scrollbar{
+	
+	width:10px;
+}
+section .divcomment::-webkit-scrollbar-thumb{
+	
+	background-color:black;
+	
+	border-radius:12px;
+}
+section .divcomment .comment{
+	
+	width:auto;
+	
+	border:1px solid gray;
+	
+	border-radius:10px;
+	
+	padding:8px 8px 8px 8px;
+	
+	margin-bottom:10px;
+}
+section .divcomment .comment .profilecomment{
+	
+	width:auto;
+	
+	display:flex;
+	
+	align-items:center;
+	
+	font-weight:bolder;
+}
+section .divcomment .comment .profilecomment img{
+	
+	width:20px;
+	
+	height:20px;
+	
+	border-radius:50%;
+}
+section .commentscontainer .formcomments{
+	
+	width:60%;
+	
+	margin:auto;
+}
+.formcommentstwo{
+	
+	display:none;
+}
+section .commentscontainer .formcomments .mainform .areacontainer{
+	
+	position:relative;
+	
+	display:flex;
+	
+	align-items:center;
+	
+	background-color:white;
+	
+	padding:5px 10px;
+	
+	border-radius:0;
+	
+	border: 1px solid #dddddd;
+	
+	margin:auto;
+	
+	transition:0.4s;
+}
+:focus{
+	
+	outline:none;
+}
+#textarea ~ .focus-border:before,
+#textarea ~ .focus-border:after{
+	
+	content:'';
+	
+	position:absolute;
+	
+	top:0;
+	
+	right:0;
+	
+	width:0;
+	
+	height:2px;
+	
+	background-color:#DC143C;
+	
+	transition:0.2s;
+	
+	transition:0.2s;
+}
+#textarea ~ .focus-border:after{
+	
+	top: auto;
+	
+	bottom:0;
+	
+	right:auto;
+	
+	left:0;
+	
+	transition-delay:0.6s;
+}
+#textarea ~ .focus-border i:before,
+#textarea ~ .focus-border i:after{
+	
+	content:'';
+	
+	position:absolute;
+	
+	top:0;
+	
+	left:0;
+	
+	width:2px;
+	
+	height:0;
+	
+	background-color:#DC143C;
+	
+	transition:0.2s;
+}
+#textarea ~ .focus-border i:after{
+	
+	left:auto;
+	
+	right:0;
+	
+	top:auto;
+	
+	bottom:0;
+	
+	transition-delay:0.4s;
+}
+#textarea:focus ~ .focus-border:before,
+#textarea:focus ~ .focus-border:after{
+	
+	width:100%;
+	
+	transition:0.2s;
+	
+	transition-delay:0.6s;
+}
+#textarea:focus ~ .focus-border:after{
+	
+	transition-delay:0.2s;
+}
+#textarea:focus ~ .focus-border i:before,
+#textarea:focus ~ .focus-border i:after{
+	
+	height:100%;
+	
+	transition:0.2s;
+}
+#textarea:focus ~ .focus-border i:after{
+	
+	transition-delay:0.4s;
+}
+section .commentscontainer .formcomments .mainform .areacontainer #textarea{
+	
+	width:100%;
+	
+	box-sizing:border-box;
+	
+	font-size:18px;
+	
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	border: none;
+	
+	outline:none;
+	
+	resize: none;
+}
+section .commentscontainer .formcomments .mainform #botoncomentar{
+	
+	display:none;
+}
+section .commentscontainer .formcomments .mainform #botoncomenta{
+	
+	max-width:20%;
+	
+	text-align:center;
+	
+	margin:5px auto;
+    
+    border: none;
+    
+    border-radius: 8px;
+    
+    outline: none;
+    
+    background:#d40000;
+	
+	color:white;
+	
+	cursor:pointer;
+	
+	padding:10px 25px;
+	
+	position:relative;
+	
+	z-index:1;
+	
+	overflow:hidden;
+}
+section .commentscontainer .formcomments .mainform #botoncomenta::before{
+	
+	content:'';
+	
+	position:absolute;
+	
+	top:0;
+	
+	left:0;
+	
+	right:0;
+	
+	bottom:0;
+	
+	background-color:black;
+	
+	z-index:-1;
+	
+	border-radius:50%;
+	
+	transform: scale(1.5);
+	
+	transition: transform 500ms ease-in-out;
+}
+section .commentscontainer .formcomments .mainform #botoncomenta:hover::before,
+section .commentscontainer .formcomments .mainform #botoncomenta:focus::before{
+	
+	transform:scale(0);
+}
+.sectionsongs{
+	
+	margin-top:90px;
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	flex-wrap:wrap;
+}
+@media screen and (max-width:890px){
+	
+	section .songtwocontainer{
+		
+		width:100%;
+		
+		margin:auto;
+	}
+	section .descriptioncontainer{
+		
+		width:100%;
+		
+		margin:auto;
+	}
+}
+.contenedor_paginacion{
+	
+	display:flex;
+	
+	overflow-x:auto;
+	
+	justify-content:center;
+	
+	width:450px;
+	
+	margin:auto;
+}
+.contenedor_paginacion::-webkit-scrollbar{
+	
+	width:0;
+}
+.contenedor_paginacion a{
+	
+	min-width:25px;
+	
+	line-height:30px;
+	
+	font-size:25px;
+	
+	text-decoration:none;
+	
+	color:black;
+	
+	font-family:Arial, Helvetica, sans-serif;
+	
+	text-align:center;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	margin-right:10px;
+}
+.contenedor_paginacion a:hover{
+	
+	color:#d40000;
+}
