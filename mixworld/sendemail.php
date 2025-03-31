@@ -35,23 +35,23 @@ if ($mailfound>0) {
     
     try {
         //Server settings
-        $mail->SMTPDebug = 0;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = '-------';                     //SMTP username
-        $mail->Password   = '------';                               //SMTP password
-        $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
-        $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        $mail->SMTPDebug = 0;                      
+        $mail->isSMTP();                                            
+        $mail->Host       = 'smtp.gmail.com';                     
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'josediazjose9@gmail.com';                     
+        $mail->Password   = 'kiptscqpxenkowtd';                               
+        $mail->SMTPSecure = 'tls';            
+        $mail->Port       = 587;
         $mail->isHTML(true);
         
         //Recipients
-        $mail->setFrom('-------', 'Jose');
-        $mail->addAddress($correo, 'MIXWORLD User');     //Add a recipient
+        $mail->setFrom('josediazjose9@gmail.com', 'Jose');
+        $mail->addAddress($correo, 'MIXWORLD User'); 
         
         
         //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->isHTML(true);
         $mail->Subject = 'Reestablecimiento de contraseña';
         $mail->Body    = <<<END
         
@@ -61,7 +61,9 @@ if ($mailfound>0) {
         END;
         
         $mail->send();
-        echo 'El mensaje se envió correctamente';
+        
+        header("location:sendemailconfirmation.php");
+        
     } catch (Exception $e) {
         echo "El mensaje no se envió. Error: {$mail->ErrorInfo}";
     }

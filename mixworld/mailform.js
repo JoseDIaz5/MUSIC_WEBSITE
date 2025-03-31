@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	document.getElementById("botoncorreo").addEventListener("click",enviacorreo,false);
+	
 	$("#mail").focus(function(){
 		
 		$("#mailicon").css("color","#DC143C");
@@ -12,4 +14,8 @@ $(document).ready(function(){
 		
 		$("#mailicon").css("transition","0.4s");
 	});
+	function enviacorreo(){
+		
+		$("#enviacorreo").click();
+	}
 });

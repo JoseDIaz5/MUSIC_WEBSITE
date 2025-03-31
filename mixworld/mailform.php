@@ -12,7 +12,7 @@
 	
 	<script src="mailform.js?v=<?php echo time(); ?>"></script>
 	
-    <title>olvidó la contraseña</title>
+    <title>Cambio de contraseña</title>
 </head>
 <body>
     <section>
@@ -37,7 +37,7 @@
     			
     			</div>
     			
-    			<h2 id="tituloform">Olvidó la contraseña</h2>
+    			<h2 id="tituloform">Cambiar la contraseña</h2>
     			
     			<div class="wrapper">
     			

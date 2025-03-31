@@ -54,7 +54,10 @@ if ($contrasena==$contrasenados && preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?]
     
     if ($rows>0) {
         
-        echo "Password updated";
+        header("location:iniciosesion.php");
+    }else {
+        
+        header("processresetpasswordresult.php");
     }
     
 }else {
