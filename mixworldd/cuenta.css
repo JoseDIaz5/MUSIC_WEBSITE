@@ -343,7 +343,21 @@ a{
 	
 	flex-direction:column;
 }
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .titlecontainer{
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo{
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser{
+	
+	display:flex;
+	
+	flex-direction:column;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .titlecontainer{
 	
 	display:flex;
 	
@@ -359,77 +373,7 @@ a{
 	
 	justify-content:space-between;
 }
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions{
-	
-	position:absolute;
-	
-	text-align:center;
-	
-	padding:0;
-	
-	right:165px;
-	
-	margin-top:30px;
-	
-	display:none;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul{
-	
-	display:inline-block;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul li{
-	
-	margin-bottom:8px;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul li a{
-	
-	color:black;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul li .deleteicon{
-	
-	transition-property:color;
-	
-	transition-duration:.5s;
-	
-	cursor:pointer;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul li .deleteicon:hover{
-	
-	color:red;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul li .editicon{
-	
-	transition-property:color;
-	
-	transition-duration:.5s;
-	
-	cursor:pointer;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions ul li .editicon:hover{
-	
-	color:#1E90FF;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .titlecontainer .divoptions{
-	
-	margin-right:10px;
-	
-	color:#8E8E8E;
-	
-	cursor:pointer;
-	
-	transition-property:color;
-	
-	transition-duration:.5s;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .titlecontainer .divoptions:hover{
-	
-	color:black;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .titlecontainer .divoptionstwo{
-	
-	display:none;
-}
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .usercontainer{
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .usercontainer{
 	
 	display:flex;
 	
@@ -439,18 +383,90 @@ a{
 	
 	font-weight:bolder;
 }
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .usercontainer img{
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .usercontainer img{
 	
 	width:20px;
 	
 	border-radius:50%;
 }
-.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .usercontainer span{
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .usercontainer span{
 	
 	margin-left:5px;
 	
 	color:#A9A9A9;
 }
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions{
+	
+	width:30px;
+	
+	text-align:center;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .divoptions{
+	
+	margin-top:0;
+	
+	margin-bottom:5px;
+	
+	color:#A9A9A9;
+	
+	cursor:pointer;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	font-size:23px;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .divoptions:hover{
+	
+	color:black;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .divoptionstwo{
+	
+	display:none;
+}
+
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo{
+	
+	display:flex;
+	
+	flex-direction:column;
+	
+	
+	
+	display:none;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo div a{
+	
+	color:black;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo div a .deleteicon{
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo div a .deleteicon:hover{
+	
+	color:red;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo div a .editicon{
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo div a .editicon:hover{
+	
+	color:#1E90FF;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .dropdownoptions .dropdownoptionstwo div:nth-child(1){
+	
+	margin-top:0;
+	
+	margin-bottom:5px;
+}
+
 .header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .playercontainer{
 	
 	display:flex;
@@ -986,12 +1002,6 @@ a{
 }
 @media (max-width: 750px){
 	
-	.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .dropdownoptions{
-	
-		position:absolute;
-		
-		right:12px;
-	}
 	.header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .titlecontainer{
 	
 		max-height:50px;

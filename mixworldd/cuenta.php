@@ -492,134 +492,153 @@
 					        	</div>
 					        	<div class="titleplayercontainer">
 					        	
-					        		<div class="titlecontainer">
+					        		<div class="songinfo">
 					        		
-					        			<div><?php echo $filas["TITULO"]; ?></div>
-					        			
-					        			<div class='divoptionstwo'><i class="fa-solid fa-ellipsis-v"></i></div>
-					        			
-					        			<?php 
-					        			
-					        			if ($validaid || !isset($iduser)) {
-					        			
-					        			?>
-					        			
-					        			<div class='divoptions'><i class="fa-solid fa-ellipsis-v optionlink" id="<?php echo $filas["ID"]; ?>"></i></div>
-					        			
-					        			<?php 
-					        			
-					        			}
-					        			
-					        			?>
-					        			
-					        		
-					        		</div>
-					        		
-					        		
-				        			<div class="dropdownoptions options<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>">
-					        		
-					        			<ul>
-				        			
-    				        				<li><a href="eliminacancion.php?id=<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-trash deleteicon"></i></a></li>
+    					        		<div class="songtitleuser">
+    					        		
+    					        			<div class="titlecontainer">
+    					        		
+        					        			<div><?php echo $filas["TITULO"]; ?></div>
+        					        			
+        					        		
+        					        		</div>
+        					        		
+        					        		<div class="usercontainer">
+    					        		
+        					        		<?php 
+        					        		
+        					        		if ($filas["IMAGEN_PERFIL"]=='') {
+        					        		
+        					        		?>
+        					        		
+        					        			<img src="../intranet/songsimages/defaultuser.png">
+        					        			
+        					        		<?php 
+        					        		
+        					        		}else {
+        					        		
+        					        		?>
+        					        		
+        					        			<img src="../intranet/perfiles/<?php echo $filas["IMAGEN_PERFIL"]; ?>">
+        					        		
+        					        		<?php 
+        					        		
+        					        		}
+        					        		
+        					        		?>
+        					        			
+        					        			<span><?php echo $filas["USUARIO"]; ?></span>
+        					        		
+        					        		</div>
+    					        		
+    					        		</div>
+    					        		
+    					        		<div class="dropdownoptions options<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>">
+    					        			
+    					        			<div class='divoptionstwo'><i class="fa-solid fa-ellipsis-v"></i></div>
+        					        			
+    					        			<?php 
+    					        			
+    					        			if ($validaid || !isset($iduser)) {
+    					        			
+    					        			?>
+    					        			
+    					        			<div class='divoptions'><i class="fa-solid fa-ellipsis-v optionlink" id="<?php echo $filas["ID"]; ?>"></i></div>
+    					        			
+    					        			<?php 
+    					        			
+    					        			}
+    					        			
+    					        			?>
+    					        		
+    					        			<div class="dropdownoptionstwo dropoptions<?php echo $filas["ID"]; ?>">
+    				        			
+        				        				<div>
+        				        				
+        				        					<a href="eliminacancion.php?id=<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-trash deleteicon"></i></a>
+        				        				
+        				        				</div>
+        				        				
+        				        				<div>
+        				        				
+        				        					<a href="updatesong.php?idsong=<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-pen editicon"></i></a>
+        				        				
+        				        				</div>
+    			        			
+    			        					</div>
+    					        		
+    					        		</div>
+    					        	
+    					        	</div>
+    					        		
+    				        		<div class="playercontainer">
+    				        		
+    				        			<div class="playicon">
+    				        			
+    				        				<i class="fa-solid fa-play play inicio<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>" ></i>
     				        				
-    				        				<li><a href="updatesong.php?idsong=<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-pen editicon"></i></a></li>
-			        			
-			        					</ul>
-					        		
-					        		</div>
-					        		
-					        		<div class="usercontainer">
-					        		
-					        		<?php 
-					        		
-					        		if ($filas["IMAGEN_PERFIL"]=='') {
-					        		
-					        		?>
-					        		
-					        			<img src="../intranet/songsimages/defaultuser.png">
-					        			
-					        		<?php 
-					        		
-					        		}else {
-					        		
-					        		?>
-					        		
-					        			<img src="../intranet/perfiles/<?php echo $filas["IMAGEN_PERFIL"]; ?>">
-					        		
-					        		<?php 
-					        		
-					        		}
-					        		
-					        		?>
-					        			
-					        			<span><?php echo $filas["USUARIO"]; ?></span>
-					        		
-					        		</div>
-					        		<div class="playercontainer">
-					        		
-					        			<div class="playicon">
-					        			
-					        				<i class="fa-solid fa-play play inicio<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>" ></i>
-					        				
-					        				<i class="fa-solid fa-pause pause detener<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"></i>
-					        			
-					        			</div>
-					        			
-					        			<audio src="../intranet/songs/<?php echo $filas["CANCION"]; ?>" class="audio" id="audios<?php echo $filas["ID"]; ?>"></audio>
-					        			
-					        			<div class="bar barra<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>">
-					        			
-					        				<div id="<?php echo $filas["ID"]; ?>" class="progress progreso<?php echo $filas["ID"]; ?>"></div>
-					        			
-					        			</div>
-					        		
-					        		</div>
-					        		<div class="viewscontainer">
-					        		
-					        			<span class="rep<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-ear-listen"></i><?php echo $filas["REPRODUCCIONES"]; ?></span>
-					        			
-					        			<?php 
-					        			
-					        			if ($cantidadlikescancion<1) {
-					        			  
-					        			?>
-					        			
-					        			<span class="likesong spanlike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-regular fa-face-smile-wink"></i><?php echo $filas["LIKES"]; ?></span>
-					        			
-					        			<?php 
-					        			
-					        			}else {
-					        			
-					        			?>
-					        			
-					        			<span class="likesong spanlike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-face-smile-wink"></i><?php echo $filas["LIKES"]; ?></span>
-					        			
-					        			<?php 
-					        			
-					        			}
-					        			if ($cantidaddislikescancion<1) {
-					        			    
-					        			?>
-					        			
-					        			<span class="dislikesong spandislike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-regular fa-face-sad-tear"></i><?php echo $filas["DISLIKES"]; ?></span>
-					        			
-					        			<?php
-					        			
-					        			}else {
-					        			
-					        			?>
-					        			
-					        			<span class="dislikesong spandislike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-face-sad-tear"></i><?php echo $filas["DISLIKES"]; ?></span>
-					        			
-					        			<?php 
-					        			
-					        			}
-					        			
-					        			?>
-					        		
-					        		</div>
+    				        				<i class="fa-solid fa-pause pause detener<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"></i>
+    				        			
+    				        			</div>
+    				        			
+    				        			<audio src="../intranet/songs/<?php echo $filas["CANCION"]; ?>" class="audio" id="audios<?php echo $filas["ID"]; ?>"></audio>
+    				        			
+    				        			<div class="bar barra<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>">
+    				        			
+    				        				<div id="<?php echo $filas["ID"]; ?>" class="progress progreso<?php echo $filas["ID"]; ?>"></div>
+    				        			
+    				        			</div>
+    				        		
+    				        		</div>
+    				        		<div class="viewscontainer">
+    				        		
+    				        			<span class="rep<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-ear-listen"></i><?php echo $filas["REPRODUCCIONES"]; ?></span>
+    				        			
+    				        			<?php 
+    				        			
+    				        			if ($cantidadlikescancion<1) {
+    				        			  
+    				        			?>
+    				        			
+    				        			<span class="likesong spanlike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-regular fa-face-smile-wink"></i><?php echo $filas["LIKES"]; ?></span>
+    				        			
+    				        			<?php 
+    				        			
+    				        			}else {
+    				        			
+    				        			?>
+    				        			
+    				        			<span class="likesong spanlike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-face-smile-wink"></i><?php echo $filas["LIKES"]; ?></span>
+    				        			
+    				        			<?php 
+    				        			
+    				        			}
+    				        			if ($cantidaddislikescancion<1) {
+    				        			    
+    				        			?>
+    				        			
+    				        			<span class="dislikesong spandislike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-regular fa-face-sad-tear"></i><?php echo $filas["DISLIKES"]; ?></span>
+    				        			
+    				        			<?php
+    				        			
+    				        			}else {
+    				        			
+    				        			?>
+    				        			
+    				        			<span class="dislikesong spandislike<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-face-sad-tear"></i><?php echo $filas["DISLIKES"]; ?></span>
+    				        			
+    				        			<?php 
+    				        			
+    				        			}
+    				        			
+    				        			?>
+    				        		
+    				        		</div>
 					        	
 					        	</div>
+					        	
+					        	
+					        	
 					        
 					        </div>
 					        

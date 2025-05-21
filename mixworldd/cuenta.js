@@ -227,7 +227,7 @@ $(document).ready(function(){
 		
 		var id=this.id;
 		
-		$(".options"+id).fadeToggle(350);
+		$(".dropoptions"+id).animate({height:'toggle'},350);
 		
 	});
 	$(".seguir").click(function(){
