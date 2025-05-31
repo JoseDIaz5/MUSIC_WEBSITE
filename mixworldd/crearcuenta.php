@@ -23,7 +23,7 @@
 	
 		<section>
 		
-			<form action="creacioncuenta.php" enctype="multipart/form-data" method="post">
+			<form action="creacioncuenta.php" enctype="multipart/form-data" method="post" id="iform">
 			
 				<div id="formulariodos">
 				

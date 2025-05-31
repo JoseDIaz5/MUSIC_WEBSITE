@@ -13,7 +13,11 @@ $token=bin2hex(random_bytes(16));
 
 $token_hash=hash("sha256", $token);
 
-$expiry=date("Y-m-d H:i:s",time() + 60 * 30);
+$currenttime=new DateTime('now');
+
+$currenttime->modify('+30 minutes');
+
+$expiry=$currenttime->format("Y-m-d H:i:s");
 
 $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
 
@@ -55,7 +59,7 @@ if ($mailfound>0) {
         $mail->Subject = 'Reestablecimiento de contraseña';
         $mail->Body    = <<<END
         
-        Click <a href="http://localhost/MIXWORLD/mixworld/resetpassword.php?token=$token">AQUÍ</a>
+        Click <a href="http://localhost/mixworld/mixworldd/resetpassword.php?token=$token">AQUÍ</a>
         para cambiar la contraseña
         
         END;

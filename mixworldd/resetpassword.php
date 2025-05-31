@@ -54,7 +54,7 @@ if (strtotime($usertoken)<=time()) {
 <body>
     <section>
     
-    	<form action="processresetpassword.php" method="post">
+    	<form action="processresetpassword.php" method="post" id="iform">
     
     		<div id="formulario">
     		
@@ -90,6 +90,36 @@ if (strtotime($usertoken)<=time()) {
     				
     				</div>
     				
+    				<div>
+               			
+           				<span class="passmessage" id="pmessage"></span>
+           			
+           			</div>
+           			
+           			<div>
+           			
+           				<span class="passmessage" id="pmessagee"></span>
+           			
+           			</div>
+           			
+           			<div>
+           			
+           				<span class="passmessage" id="pmessageee"></span>
+           			
+           			</div>
+           			
+           			<div>
+           			
+           				<span class="passmessage" id="pmessageeee"></span>
+           			
+           			</div>
+           			
+           			<div>
+           			
+           				<span class="passmessage" id="pmessageeeee"></span>
+           			
+           			</div>
+    				
     				<br>
     				
     				<div class="inputWithIcon" id="divconfirmacioncontrasena">
@@ -101,6 +131,12 @@ if (strtotime($usertoken)<=time()) {
     					<span class="focus-border"><i></i></span>
     				
     				</div>
+    				
+    				<div>
+               			
+           				<span class="passmessagetwo" id="ptmessage"></span>
+           			
+           			</div>
     			
     				<br>
     				

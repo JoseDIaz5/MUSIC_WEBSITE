@@ -10,6 +10,8 @@ $(document).ready(function(){
 	
 	document.getElementById("botonregistra").addEventListener("click",creacuenta,false);
 	
+	document.getElementById("iform").addEventListener("submit",validaform,false);
+	
 	$("#usuario").focus(function(){
 		
 		$("#usericon").css("color","#DC143C");
@@ -269,4 +271,39 @@ $(document).ready(function(){
 			document.getElementById("ptmessage").innerHTML="";
 		}
 	});
+	function validaform(e){
+		
+		var pa=$("#contrasena").val();
+		
+		var ca=$("#confirmar").val();
+		
+		if(pa.length<9){
+			
+			e.preventDefault();
+		}
+		if(!pa.match(/[a-zÀ-ÿ\u00f1\u00d1]/g)){
+			
+			e.preventDefault();
+		}
+		if(!pa.match(/[A-ZÀ-ÿ\u00f1\u00d1]/g)){
+			
+			e.preventDefault();
+		}
+		if(!pa.match(/[0-9]/g)){
+			
+			e.preventDefault();
+		}
+		if(!pa.match(/[!@#$%^~&*_-]/g)){
+			
+			e.preventDefault();
+		}
+		if(ca!=$("#contrasena").val()){
+			
+			e.preventDefault();
+		}
+		if($("#confirmar").val()==""){
+			
+			e.preventDefault();
+		}
+	}
 });
