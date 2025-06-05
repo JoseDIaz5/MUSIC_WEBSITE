@@ -484,6 +484,8 @@ section .songcontainer .titleplayercontainer .usercontainer{
 	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	
 	font-weight:bolder;
+	
+	color:#A9A9A9;
 }
 section .songcontainer .titleplayercontainer .usercontainer img{
 	
@@ -493,10 +495,7 @@ section .songcontainer .titleplayercontainer .usercontainer img{
 	
 	border-radius:50%;
 }
-section .songcontainer .titleplayercontainer .usercontainer .user{
-	
-	color:#A9A9A9;
-}
+
 section .songcontainer .titleplayercontainer .usercontainer span{
 	
 	margin-left:6px;

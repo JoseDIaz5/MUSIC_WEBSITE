@@ -13,11 +13,7 @@ $token=bin2hex(random_bytes(16));
 
 $token_hash=hash("sha256", $token);
 
-$currenttime=new DateTime('now');
 
-$currenttime->modify('+30 minutes');
-
-$expiry=$currenttime->format("Y-m-d H:i:s");
 
 $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
 
@@ -25,11 +21,11 @@ $conexion->exec("SET CHARACTER SET utf8");
 
 $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql="CALL RESET_TOKEN(:rth,:rte,:email)";
+$sql="CALL RESET_TOKEN(:rth,:email)";
 
 $resultado=$conexion->prepare($sql);
 
-$resultado->execute(array(":rth"=>$token_hash,":rte"=>$expiry,":email"=>$correo));
+$resultado->execute(array(":rth"=>$token_hash,":email"=>$correo));
 
 $mailfound=$resultado->rowCount();
 

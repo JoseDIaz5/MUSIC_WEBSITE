@@ -327,6 +327,10 @@
     						?>
     					
     						<span class="user"><?php echo $fila["USUARIO"]; ?></span>
+    						
+    						<span>|</span>
+    						
+    						<span class="datesong"><?php echo $fila["FECHA_HORA_DE_SUBIDA"]; ?></span>
     					
     					</div>
 
@@ -545,6 +549,10 @@
 			         			?>
 			         			
 			         			<span><a href="cuenta.php?iduser=<?php echo $fila["IDU"]; ?>"><?php echo $fila["USUARIO"]; ?></a></span>
+			         			
+			         			<span>|</span>
+			         			
+			         			<span><?php echo $fila["FECHA_HORA_DE_SUBIDA"]; ?></span>
 			         		
 			         		</div>
 							

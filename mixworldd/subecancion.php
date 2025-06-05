@@ -35,11 +35,7 @@
         
         move_uploaded_file($_FILES['imagesong']['tmp_name'], $carpeta.$imagencan);
         
-        date_default_timezone_set("America/Costa_Rica");
-        
-        $fecha=date("l j/m/Y g:i a");
-        
-        $consulta="CALL INSERT_SONG(:id_usu,:title,:cancion,:desc,:imgcan,:fecha)";
+        $consulta="CALL INSERT_SONG(:id_usu,:title,:cancion,:desc,:imgcan)";
         
         $consultados="CALL SEARCH_ID_PROFILE(:idusuario)";
         
@@ -60,7 +56,7 @@
                 
                 $resultado=$conexion->prepare($consulta);
                 
-                $resultado->execute(array(":id_usu"=>$idusu,":title"=>$title,":cancion"=>$nombrec,":desc"=>$desc,":imgcan"=>$imagencan,":fecha"=>$fecha));
+                $resultado->execute(array(":id_usu"=>$idusu,":title"=>$title,":cancion"=>$nombrec,":desc"=>$desc,":imgcan"=>$imagencan));
                 
                 $registro=$resultado->rowCount();
                 

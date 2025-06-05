@@ -251,6 +251,10 @@
 		         		?>
 		         			
 		         			<span><a href="cuenta.php?iduser=<?php echo $fila["IDUSER"]; ?>"><?php echo $fila["USUARIO"]; ?></a></span>
+		         			
+		         			<span>|</span>
+		         			
+		         			<span><?php echo $fila["FECHA_HORA_DE_SUBIDA"]; ?></span>
 		         		
 		         		</div>
 		         		<div class="playercontainer">

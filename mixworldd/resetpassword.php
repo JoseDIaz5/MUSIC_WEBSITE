@@ -26,9 +26,11 @@ if ($recordfound<1) {
 while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
     
     $usertoken=$fila["reset_token_expires_at"];
+    
+    $ctime=$fila["CURRENTTIME"];
 }
 
-if (strtotime($usertoken)<=time()) {
+if (strtotime($usertoken)<=strtotime($ctime)) {
     
     die("Token has expired");
 }

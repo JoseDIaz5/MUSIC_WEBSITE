@@ -478,6 +478,10 @@ section .songtwocontainer .titleplayercontainer .usercontainer{
 	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	
 	font-weight:bolder;
+	
+	color:#A9A9A9;
+	
+	font-size:35px;
 }
 section .songtwocontainer .titleplayercontainer .usercontainer img{
 	
@@ -496,8 +500,6 @@ section .songtwocontainer .titleplayercontainer .usercontainer span a{
 	text-decoration:none;
 	
 	color:#A9A9A9;
-	
-	font-size:35px;
 	
 	transition-property:color;
 	
@@ -952,7 +954,7 @@ section .divcomment::-webkit-scrollbar-thumb{
 }
 section .divcomment .commentmain{
 	
-	margin:auto;
+	
 	
 	width:95%;
 	

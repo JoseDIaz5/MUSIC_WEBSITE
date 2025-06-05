@@ -528,6 +528,10 @@
         					        		?>
         					        			
         					        			<span><?php echo $filas["USUARIO"]; ?></span>
+        					        			
+        					        			<span>|</span>
+        					        			
+        					        			<span><?php echo $filas["FECHA_HORA_DE_SUBIDA"]; ?></span>
         					        		
         					        		</div>
     					        		
