@@ -75,9 +75,7 @@
 	
 	?>
 	
-	<body>
-	
-		
+	<body>	
 	
 		<header class="background">
 		
@@ -299,7 +297,7 @@
     				
     					<div class="titlecontainer">
     					
-    						<span><?php echo $fila["TITULO"]; ?></span>
+    						<span><?php echo htmlspecialchars($fila["TITULO"]); ?></span>
     					
     					</div>
     					<div class="usercontainer">
@@ -326,14 +324,13 @@
     						
     						?>
     					
-    						<span class="user"><?php echo $fila["USUARIO"]; ?></span>
+    						<span class="user"><?php echo htmlspecialchars($fila["USUARIO"]); ?></span>
     						
     						<span>|</span>
     						
     						<span class="datesong"><?php echo $fila["FECHA_HORA_DE_SUBIDA"]; ?></span>
     					
     					</div>
-
 						
     					<div class="playercontainer">
     					
@@ -484,6 +481,8 @@
 			         
 			         $id=$fila["ID"];
 			         
+			         $idh=$fila["IDHASH"];
+			         
 			         $cantidadlikescancion=$fila["CANTIDAD_LIKES"];
 			         
 			         $cantidaddislikescancion=$fila["CANTIDAD_DISLIKES"];
@@ -521,7 +520,7 @@
 			         	
 			         		<div class="titlecontainer">
 			         		
-			         			<a href='cancion.php?id=<?php echo $id;?>' class='link'><span><?php echo $fila["TITULO"]; ?></span></a>
+			         			<a href='cancion.php?song=<?php echo $idh;?>' class='link'><span><?php echo htmlspecialchars($fila["TITULO"]); ?></span></a>
 			         		
 			         		</div>
 			         		<div class="usercontainer">
@@ -548,7 +547,7 @@
 			         			
 			         			?>
 			         			
-			         			<span><a href="cuenta.php?iduser=<?php echo $fila["IDU"]; ?>"><?php echo $fila["USUARIO"]; ?></a></span>
+			         			<span><a href="cuenta.php?user=<?php echo $fila["IDH"]; ?>"><?php echo htmlspecialchars($fila["USUARIO"]); ?></a></span>
 			         			
 			         			<span>|</span>
 			         			

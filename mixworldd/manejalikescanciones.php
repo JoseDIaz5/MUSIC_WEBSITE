@@ -17,7 +17,7 @@ try {
     
     $idcancion=$_POST["id"];
     
-    $idusuario=$_SESSION["idusu"];
+    $idusuario=$_SESSION["iduser"];
     
     $consultadislikescanciones="CALL SEARCH_ID_DISLIKES(:idsong,:iduser)";
     

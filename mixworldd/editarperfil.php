@@ -53,6 +53,8 @@
 		        
 		        while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
 		            
+		            $uid=$fila["ID"];
+		            
 		            $user=$fila["USUARIO"];
 		            
 		            if ($fila["IMAGEN_PERFIL"]=='') {
@@ -103,7 +105,7 @@
 		
 			<form action="edicionperfil.php" enctype="multipart/form-data" method='post'>
 			
-				<input type="text" value="<?php echo $id; ?>" name="id" hidden="hidden">
+				<input type="text" value="<?php echo $uid; ?>" name="id" hidden="hidden">
 				
 				<input type="text" value="<?php echo $perfil; ?>" name="profileimg" hidden="hidden">
 				

@@ -30,7 +30,9 @@
                     
                     if (password_verify($contra, $fila["CONTRASENA"])) {
                         
-                        $_SESSION["idusu"]=$fila["ID"];
+                        $_SESSION["iduser"]=$fila["ID"];
+                        
+                        $_SESSION["idusu"]=$fila["IDHASH"];
                         
                         $_SESSION["usuario"]=$fila["USUARIO"];
                         

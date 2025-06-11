@@ -26,9 +26,9 @@
 		
 		  if (isset($_SESSION["idusu"])) {
 		      
-		      if (isset($_GET["idsong"])) {
+		      if (isset($_GET["song"])) {
 		
-    		  $id=$_GET["idsong"];
+    		  $id=$_GET["song"];
     		  
     		  try {
     		      
@@ -45,6 +45,8 @@
     		      $resultado->execute(array(":idsong"=>$id));
     		      
     		      while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
+    		          
+    		          $idsong=$fila["ID"];
     		          
     		          $titulo=$fila["TITULO"];
     		          
@@ -64,7 +66,7 @@
     		
     			<form action="updatingsong.php" enctype="multipart/form-data" method="post">
     			
-    				<input type=text value="<?php echo $id; ?>" name="id" hidden="hidden">
+    				<input type=text value="<?php echo $idsong; ?>" name="id" hidden="hidden">
     				
     				<input type=text value="<?php echo $imagen; ?>" name="imagesong" hidden="hidden">
     			

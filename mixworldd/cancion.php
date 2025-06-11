@@ -175,15 +175,17 @@
 		
 			try{
 		    
-		    $idcancion=$_GET["id"];
+		    $idcancion=$_GET["song"];
 		    
 		    $consulta="CALL GET_SONG(:idsong,:iduser)";
 		    
 		    $resultado=$conexion->prepare($consulta);
 		    
-		    $resultado->execute(array(':idsong'=>$idcancion,":iduser"=>$_SESSION["idusu"]));
+		    $resultado->execute(array(':idsong'=>$idcancion,":iduser"=>$_SESSION["iduser"]));
 		    
 		    while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
+		        
+		        $idsong=$fila["ID"];
 		        
 		        $cantidadlikescancion=$fila["CANTIDAD_LIKES"];
 		        
@@ -223,7 +225,7 @@
         			
         				<div class="titlecontainer">
         				
-        					<span><?php echo $fila["TITULO"]; ?></span>	
+        					<span><?php echo htmlspecialchars($fila["TITULO"]); ?></span>	
         				
         				</div>
         				<div class="usercontainer">
@@ -250,7 +252,7 @@
 		         		
 		         		?>
 		         			
-		         			<span><a href="cuenta.php?iduser=<?php echo $fila["IDUSER"]; ?>"><?php echo $fila["USUARIO"]; ?></a></span>
+		         			<span><a href="cuenta.php?user=<?php echo $fila["IDHASH"]; ?>"><?php echo htmlspecialchars($fila["USUARIO"]); ?></a></span>
 		         			
 		         			<span>|</span>
 		         			
@@ -334,7 +336,7 @@
     			
     				<h2>DESCRIPCIÓN</h2>
     				
-    				<div class="description"><?php echo $fila["DESCRIPCION"]; ?></div>
+    				<div class="description"><?php echo htmlspecialchars($fila["DESCRIPCION"]); ?></div>
     			
     			</div>
     			
@@ -367,13 +369,15 @@
 		        <?php 
 		        
 		        $_SESSION["idcancion"]=$fila["ID"];
+		        
+		        $_SESSION["idsong"]=$_GET["song"];
 		    }
 		    
 		    $consultacomentarios="CALL GET_COMMENTS(:idsong)";
 		    
 		    $resultado=$conexion->prepare($consultacomentarios);
 		    
-		    $resultado->execute(array(":idsong"=>$idcancion));
+		    $resultado->execute(array(":idsong"=>$idsong));
 		    ?>
                 <div class='divcomment'>
             <?php
@@ -413,7 +417,7 @@
                 		        	
                 		        	?>
             		        	
-            		        		<div><?php echo $fila["USUARIO"]; ?></div>
+            		        		<div><?php echo htmlspecialchars($fila["USUARIO"]); ?></div>
         		        
             		        	</div>
             		        	<div class="date">
@@ -423,7 +427,7 @@
             		        	</div>
             		        	<div class="commentcontent">
             		        	
-            		        		<span class="spancomment scomment<?php echo $fila["ID"]; ?>"><?php echo $fila["COMENTARIO"]; ?></span>
+            		        		<span class="spancomment scomment<?php echo $fila["ID"]; ?>"><?php echo htmlspecialchars($fila["COMENTARIO"]); ?></span>
             		        	
             		        	</div>
         		        	
@@ -431,7 +435,7 @@
         		        
         		        <?php 
         		        
-        		        if ($idusuario==$_SESSION["idusu"]) {
+        		        if ($idusuario==$_SESSION["iduser"]) {
         		        
         		        ?>
         		        
@@ -497,7 +501,7 @@
         		        			
         		        				<div class="textareaeditdiv">
         		        				
-        		        					<textarea class="tarea" maxlength="900"><?php echo $fila["COMENTARIO"]; ?></textarea>
+        		        					<textarea class="tarea" maxlength="900"><?php echo htmlspecialchars($fila["COMENTARIO"]); ?></textarea>
         		        				
         		        					<span class="focus-border"><i></i></span>
         		        				
@@ -638,14 +642,14 @@
 			         	
 			         		<div class="titlecontainer">
 			         		
-			         			<a href='cancion.php?id=<?php echo $id;?>' class='link'><span><?php echo $fila["TITULO"]; ?></span></a>
+			         			<a href='cancion.php?song=<?php echo $fila["IDHASH"];?>' class='link'><span><?php echo htmlspecialchars($fila["TITULO"]); ?></span></a>
 			         		
 			         		</div>
 			         		<div class="usercontainer">
 			         		
 			         			<img src="../intranet/perfiles/<?php echo $fila["IMAGEN_PERFIL"]; ?>">
 			         			
-			         			<span><a href="cuenta.php?iduser=<?php echo $fila["IDU"]; ?>"><?php echo $fila["USUARIO"]; ?></a></span>
+			         			<span><a href="cuenta.php?user=<?php echo $fila["IDH"]; ?>"><?php echo htmlspecialchars($fila["USUARIO"]); ?></a></span>
 			         		
 			         		</div>
 			         		<div class="playercontainer">

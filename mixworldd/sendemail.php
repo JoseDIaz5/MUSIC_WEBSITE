@@ -13,8 +13,6 @@ $token=bin2hex(random_bytes(16));
 
 $token_hash=hash("sha256", $token);
 
-
-
 $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
 
 $conexion->exec("SET CHARACTER SET utf8");

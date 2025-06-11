@@ -27,6 +27,10 @@
         
         $tipoimg=$_FILES['imagesong']['type'];
         
+        $token=bin2hex(random_bytes(16));
+        
+        $token_hash=hash("sha256", $token);
+        
         $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/songs/";
         
         move_uploaded_file($_FILES['song']['tmp_name'], $carpeta.$nombrec);
@@ -35,7 +39,7 @@
         
         move_uploaded_file($_FILES['imagesong']['tmp_name'], $carpeta.$imagencan);
         
-        $consulta="CALL INSERT_SONG(:id_usu,:title,:cancion,:desc,:imgcan)";
+        $consulta="CALL INSERT_SONG(:id_usu,:h,:title,:cancion,:desc,:imgcan)";
         
         $consultados="CALL SEARCH_ID_PROFILE(:idusuario)";
         
@@ -47,7 +51,7 @@
                 
                 $resultado=$conexion->prepare($consultados);
                 
-                $resultado->execute(array(":idusuario"=>$_SESSION["idusu"]));
+                $resultado->execute(array(":idusuario"=>$_SESSION["iduser"]));
                 
                 while($fila=$resultado->fetch(PDO::FETCH_ASSOC)){
                     
@@ -56,13 +60,13 @@
                 
                 $resultado=$conexion->prepare($consulta);
                 
-                $resultado->execute(array(":id_usu"=>$idusu,":title"=>$title,":cancion"=>$nombrec,":desc"=>$desc,":imgcan"=>$imagencan));
+                $resultado->execute(array(":id_usu"=>$idusu,":h"=>$token_hash,":title"=>$title,":cancion"=>$nombrec,":desc"=>$desc,":imgcan"=>$imagencan));
                 
                 $registro=$resultado->rowCount();
                 
                 $resultado=$conexion->prepare($consultatres);
                 
-                $resultado->execute(array(":iduser"=>$_SESSION["idusu"]));
+                $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
                 
                 if($registro!=0){
                     

@@ -66,16 +66,20 @@
                     $instagram=NULL;
                 }
                 
+                $token=bin2hex(random_bytes(16));
+                
+                $token_hash=hash("sha256", $token);
+                
                 move_uploaded_file($_FILES["imagenperfil"]["tmp_name"], $carpeta.$imgperfil);
                 
                 move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpeta.$imgportada);
                 
                     
-                $consulta="CALL CREATE_USER(:usuario,:correo,:contra,:perfil,:portada,:fuser,:iuser,:xuser)";
+                $consulta="CALL CREATE_USER(:h,:usuario,:correo,:contra,:perfil,:portada,:fuser,:iuser,:xuser)";
                 
                 $resultado=$conexion->prepare($consulta);
                 
-                $resultado->execute(array(":usuario"=>$usuario, ":correo"=>$correo, ":contra"=>$pass_c, ":perfil"=>$imgperfil, ":portada"=>$imgportada,":fuser"=>$facebook,":iuser"=>$instagram,":xuser"=>$twitter));
+                $resultado->execute(array("h"=>$token_hash,":usuario"=>$usuario, ":correo"=>$correo, ":contra"=>$pass_c, ":perfil"=>$imgperfil, ":portada"=>$imgportada,":fuser"=>$facebook,":iuser"=>$instagram,":xuser"=>$twitter));
                 
                 $consultados="CALL GET_ID_USER()";
                 
@@ -94,7 +98,9 @@
                     
                     session_start();
 
-                    $_SESSION["idusu"]=$idusu;
+                    $_SESSION["idusu"]=$token_hash;
+                    
+                    $_SESSION["iduser"]=$idusu;
                     
                     $_SESSION["usuario"]=$_POST["usuario"];
                     

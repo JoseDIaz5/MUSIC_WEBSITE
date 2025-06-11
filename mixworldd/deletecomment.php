@@ -26,7 +26,7 @@ if (isset($_SESSION["idusu"])) {
         
         if ($cantidad!=0) {
             
-            header("location:cancion.php?id=$idsong");
+            header("location:cancion.php?song=".$_SESSION['idsong']);
         }
         
     } catch (Exception $e) {

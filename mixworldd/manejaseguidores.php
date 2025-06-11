@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION["idusu"])) {
+if (!isset($_SESSION["iduser"])) {
     
     header("location:index.php");
 }
@@ -17,7 +17,7 @@ try {
     
     $idusuarioseguido=$_POST["id"];
     
-    $idusuarioseguidor=$_SESSION["idusu"];
+    $idusuarioseguidor=$_SESSION["iduser"];
     
     $consultaseguidores="CALL SEARCH_ID_FOLLOWERS(:follower,:followed)";
     

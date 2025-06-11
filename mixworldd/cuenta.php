@@ -54,9 +54,9 @@
 		      
 		      $validaid=false;
 		      
-		      if (isset($_GET["iduser"])) {
+		      if (isset($_GET["user"])) {
 		          
-		          $iduser=$_GET["iduser"];
+		          $iduser=$_GET["user"];
 		          
 		          if($iduser==$_SESSION["idusu"]){
 		              
@@ -76,7 +76,9 @@
 		          
 		          while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
 		              
-		              $idusuario=$fila["ID"];
+		              $idu=$fila["ID"];
+		              
+		              $idusuario=$fila["IDHASH"];
 		              
 		              $portada=$fila["IMAGEN_PORTADA"];
 		              
@@ -101,7 +103,7 @@
 		          
 		          $resultadof=$conexion->prepare($consultaseguidores);
 		          
-		          $resultadof->execute(array(":iduserfollower"=>$_SESSION["idusu"],":iduserfollowed"=>$iduser));
+		          $resultadof->execute(array(":iduserfollower"=>$_SESSION["iduser"],":iduserfollowed"=>$idu));
 		          
 		          $row=$resultadof->rowCount();
 		          
@@ -119,7 +121,9 @@
 		          
 		          while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
 		              
-		              $idusuario=$fila["ID"];
+		              $idu=$fila["ID"];
+		              
+		              $idusuario=$fila["IDHASH"];
 		              
 		              $usuario=$fila["USUARIO"];
 		              
@@ -275,7 +279,7 @@
 							
 							?>
 							
-							<li class="enlacered"><a href="https://www.x.com/<?php echo $xuser ?>/"><i class="fa-brands fa-x-twitter"></i></a></li>
+							<li class="enlacered"><a href="https://www.x.com/<?php echo htmlspecialchars($xuser); ?>/"><i class="fa-brands fa-x-twitter"></i></a></li>
 							
 							<?php 
 							
@@ -294,7 +298,7 @@
 							}else {
 							    ?>
 							    
-							    <li class="enlacered"><a href="https://www.facebook.com/<?php echo $facebookuser ?>/"><i class="fab fa-facebook"></i></a></li>
+							    <li class="enlacered"><a href="https://www.facebook.com/<?php echo htmlspecialchars($facebookuser); ?>/"><i class="fab fa-facebook"></i></a></li>
 							    
 							    <?php
 							}
@@ -315,7 +319,7 @@
 							
 							?>
 							
-							<li class="enlacered"><a href="https://www.instagram.com/<?php echo $instagramuser ?>/"><i class="fab fa-instagram"></i></a></li>
+							<li class="enlacered"><a href="https://www.instagram.com/<?php echo htmlspecialchars($instagramuser); ?>/"><i class="fab fa-instagram"></i></a></li>
 							
 							<?php 
 							
@@ -374,7 +378,7 @@
 						
 						?>
 						
-						<div class="seguir divseguir<?php echo $iduser; ?>" id="<?php echo $iduser; ?>">Seguir</div>
+						<div class="seguir divseguir<?php echo $idu; ?>" id="<?php echo $idu; ?>">Seguir</div>
 						
 						<?php 
 						
@@ -382,7 +386,7 @@
 						     
 						        ?>
 						        
-						        <div class="seguir divseguir<?php echo $iduser; ?>" id="<?php echo $iduser; ?>">Siguiendo</div>
+						        <div class="seguir divseguir<?php echo $idu; ?>" id="<?php echo $idu; ?>">Siguiendo</div>
 						        
 						        <?php
 						        
@@ -427,11 +431,11 @@
 					    
 					    if (isset($iduser)) {
 					        
-					        $resultado->execute(array(":iduser"=>$iduser));
+					        $resultado->execute(array(":iduser"=>$idu));
 					    }
 					    else {
 					        
-					        $resultado->execute(array(":iduser"=>$_SESSION["idusu"]));
+					        $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
 					    }
 					    
 					    $totalresultados=$resultado->rowCount();
@@ -446,11 +450,11 @@
 					    
 					    if (isset($iduser)) {
 					        
-					        $resultado->execute(array(":iduser"=>$_SESSION["idusu"],":idusertwo"=>$iduser,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
+					        $resultado->execute(array(":iduser"=>$_SESSION["iduser"],":idusertwo"=>$idu,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
 					    }
 					    else {
 					        
-					        $resultado->execute(array(":iduser"=>$_SESSION["idusu"],":idusertwo"=>$_SESSION["idusu"],":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
+					        $resultado->execute(array(":iduser"=>$_SESSION["iduser"],":idusertwo"=>$_SESSION["iduser"],":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
 					    }
 					    
 					    $rows=$resultado->rowCount();
@@ -498,7 +502,7 @@
     					        		
     					        			<div class="titlecontainer">
     					        		
-        					        			<div><?php echo $filas["TITULO"]; ?></div>
+        					        			<div><?php echo htmlspecialchars($filas["TITULO"]); ?></div>
         					        			
         					        		
         					        		</div>
@@ -527,7 +531,7 @@
         					        		
         					        		?>
         					        			
-        					        			<span><?php echo $filas["USUARIO"]; ?></span>
+        					        			<span><?php echo htmlspecialchars($filas["USUARIO"]); ?></span>
         					        			
         					        			<span>|</span>
         					        			
@@ -565,7 +569,7 @@
         				        				
         				        				<div>
         				        				
-        				        					<a href="updatesong.php?idsong=<?php echo $filas["ID"]; ?>"><i class="fa-solid fa-pen editicon"></i></a>
+        				        					<a href="updatesong.php?song=<?php echo $filas["IDHASH"]; ?>"><i class="fa-solid fa-pen editicon"></i></a>
         				        				
         				        				</div>
     			        			
@@ -667,7 +671,7 @@
 					    	    
 					    	    for ($i = 1; $i <= $limitepaginas; $i++) {
 					    	        
-					    	        echo "<a href='?iduser=". $iduser ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	        echo "<a href='?user=". $iduser ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
 					    	    }
 					    	}else {
 					    	 

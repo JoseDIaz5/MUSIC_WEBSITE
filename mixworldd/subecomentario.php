@@ -19,7 +19,9 @@ try{
     
     $idcancion=$_SESSION["idcancion"];
     
-    $idusuario=$_SESSION["idusu"];
+    $idsong=$_SESSION["idsong"];
+    
+    $idusuario=$_SESSION["iduser"];
     
     date_default_timezone_set("America/Costa Rica");
     
@@ -31,7 +33,7 @@ try{
     
     $resultado->execute(array(":idsong"=>$idcancion,":iduser"=>$idusuario,":comment"=>$comenta,":date"=>$fechacomentario));
     
-    header("location:cancion.php?id=" . $idcancion);
+    header("location:cancion.php?song=" . $idsong);
     
 }catch(Exception $e){
     
