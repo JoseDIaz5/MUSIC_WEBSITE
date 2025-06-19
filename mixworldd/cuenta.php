@@ -13,7 +13,7 @@
     	   
     	   if (!isset($_SESSION["idusu"])) {
     	       
-    	       header("location:index.php");
+    	       header("location:iniciosesion.php");
     	       
     	   }
     	
@@ -327,6 +327,86 @@
 							?>
 					
 						</ul>
+					
+					</div>
+					
+					
+					
+					<?php 
+					
+					if (!isset($iduser)) {
+					
+					?>
+					
+					<div id="divshare">
+					
+						<span class="shareicon"><i class="fa-regular fa-share-from-square"></i></span>
+					
+					</div>
+					
+					<div id="shareicons">
+					
+						<span>
+						
+							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
+							
+							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
+							
+							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
+						
+						</span>
+					
+					</div>
+					
+					<?php 
+					
+					}elseif (isset($iduser) && $iduser==$_SESSION["idusu"]){
+					
+					?>
+					
+					<div id="divshare">
+					
+						<span class="shareicon"><i class="fa-regular fa-share-from-square"></i></span>
+					
+					</div>
+					
+					<div id="shareicons">
+					
+						<span>
+						
+							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
+							
+							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
+							
+							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
+						
+						</span>
+					
+					</div>
+					
+					<?php 
+					
+					}
+					
+					?>
+					
+					<div id="divshare" class="divshareprofile">
+					
+						<span class="shareicon"><i class="fa-regular fa-share-from-square"></i></span>
+					
+					</div>
+					
+					<div id="shareicons" class="shareprofileicons">
+					
+						<span>
+						
+							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
+							
+							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
+							
+							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
+						
+						</span>
 					
 					</div>
 					

@@ -176,6 +176,68 @@ a{
 	
 	color:#d40000;
 }
+.header_wrapper .cols_container .left_col .divshareprofile{
+	
+	display:none;
+}
+.header_wrapper .cols_container .left_col #divshare{
+	
+	margin-top:25px;
+}
+.header_wrapper .cols_container .left_col #divshare span i{
+	
+	font-size:1.3rem;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	cursor:pointer;
+}
+.header_wrapper .cols_container .left_col #divshare span i:hover{
+	
+	color:red;
+}
+.header_wrapper .cols_container .left_col .shareprofileicons{
+	
+	display:none;
+}
+.header_wrapper .cols_container .left_col #shareicons{
+	
+	margin:20px auto;
+	
+	padding:10px;
+	
+	background-color:black;
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	border-radius:12px;
+	
+	display:none;
+}
+.header_wrapper .cols_container .left_col #shareicons span a{
+	
+	color:white;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+.header_wrapper .cols_container .left_col #shareicons span a:hover{
+	
+	color:red;
+}
+.header_wrapper .cols_container .left_col #shareicons span a i{
+	
+	margin:8px;
+	
+	font-size:1.5rem;
+}
 .header_wrapper .cols_container .right_col nav{
 	
 	display:flex;

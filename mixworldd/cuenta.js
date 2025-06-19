@@ -262,4 +262,8 @@ $(document).ready(function(){
 		
 		$(this).val(valor.replace(/[^a-zA-ZÀ-ÿ\u00f1\u00d1 0-9@.:/]+/g,""));
 	});
+	$(".shareicon").click(function(){
+		
+		$(".shareprofileicons").toggle(350);
+	});
 });
