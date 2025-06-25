@@ -261,13 +261,7 @@
 		         		</div>
 		         		<div class="playercontainer">
 			         		
-		         			<div class="playicon">
 		         			
-		         				<i class="fa-solid fa-play play inicio<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>"></i>
-		         				
-		         				<i class="fa-solid fa-pause pause detener<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>"></i>
-		         			
-		         			</div>
 		         			
 		         			<audio src="../intranet/songs/<?php echo $fila["CANCION"]; ?>" class="audio" id="audios<?php echo $fila["ID"]; ?>"></audio>
 		         			
@@ -276,14 +270,33 @@
 		         				<div id="<?php echo $fila["ID"]; ?>" class="progress progreso<?php echo $fila["ID"]; ?>"></div>
 		         			
 		         			</div>
-		         			
-		         			<div class="downloadcontainer">
-		         			
-		         				<a href="../intranet/songs/<?php echo $fila["CANCION"] ?>" download><i class="fa-solid fa-download"></i></a>
-		         			
-		         			</div>
 		         		
 		         		</div>
+		         		
+		         		<div class="playicon">
+		         			
+		         			<div class="playi">
+		         			
+		         				<i class="fa-solid fa-play play inicio<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>"></i>
+	         				
+	         					<i class="fa-solid fa-pause pause detener<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>"></i>
+		         			
+		         			</div>
+		         			<div class="downloadcontainer">
+    		         			
+        	         				<a href="../intranet/songs/<?php echo $fila["CANCION"] ?>" download><i class="fa-solid fa-download"></i></a>
+        	         			
+    	         			</div>
+	         				
+	         			
+	         			</div>
+	         			
+	         			
+	         			
+	         				
+	         			
+	         			
+		         		
 		         		<div class="likescontainer">
 			         		
 			         			<span class="rep<?php echo $fila["ID"]; ?>"><i class="fa-solid fa-ear-listen"></i><?php echo $fila["REPRODUCCIONES"]; ?></span>

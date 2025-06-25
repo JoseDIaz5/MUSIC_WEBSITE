@@ -401,13 +401,25 @@ section .songtwocontainer{
 	
 	height:auto;
 	
-	width:70%;
+	width:45%;
 	
-	display:inline-flex;
+	display:flex;
+	
+	flex-direction:column;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	text-align:center;
 	
 	margin:auto;
 	
-	border-bottom:1px solid gray;
+	border:1px solid #8E8E8E;
+	
+	border-radius:15px;
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 section .songtwocontainer .imagecontainer{
 	
@@ -421,7 +433,7 @@ section .songtwocontainer .imagecontainer{
 }
 section .songtwocontainer .imagecontainer img{
 	
-	width:200px;
+	width:250px;
 	
 	border-radius:10px;
 }
@@ -517,9 +529,9 @@ section .songtwocontainer .titleplayercontainer .playercontainer{
 	
 	align-items:center;
 	
-	margin:10px 0 10px 0;
+	margin:10px 10px 10px 10px;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .playicon .play{
+section .songtwocontainer .titleplayercontainer .playicon .play{
 	
 	margin-right:8px;
 	
@@ -531,11 +543,11 @@ section .songtwocontainer .titleplayercontainer .playercontainer .playicon .play
 	
 	transition-duration:.5s;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .playicon .play:hover{
+section .songtwocontainer .titleplayercontainer .playicon .play:hover{
 	
 	color:#d40000;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .playicon .pause{
+section .songtwocontainer .titleplayercontainer .playicon .pause{
 	
 	margin-right:8px;
 	
@@ -549,10 +561,20 @@ section .songtwocontainer .titleplayercontainer .playercontainer .playicon .paus
 	
 	transition-duration:.5s;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .playicon .pause:hover{
+section .songtwocontainer .titleplayercontainer .playicon .pause:hover{
 	
 	color:#d40000;
 }
+section .songtwocontainer .titleplayercontainer .playicon{
+	
+	display:flex;
+	
+	justify-content:space-between;
+	
+	margin:1px 10px 1px 10px;
+}
+
+
 section .songtwocontainer .titleplayercontainer .playercontainer .bar{
 	
 	background-color:gray;
@@ -577,17 +599,17 @@ section .songtwocontainer .titleplayercontainer .playercontainer .bar .progress{
 	
 	border-radius:10px;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer{
+section .songtwocontainer .titleplayercontainer .playicon .downloadcontainer{
 	
 	margin:0 10px 0 10px;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer a{
+section .songtwocontainer .titleplayercontainer .playicon .downloadcontainer a{
 	
 	text-decoration:none;
 	
 	color:black;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer i{
+section .songtwocontainer .titleplayercontainer .playicon .downloadcontainer i{
 	
 	font-size:40px;
 	
@@ -597,7 +619,7 @@ section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontai
 	
 	transition-duration:.5s;
 }
-section .songtwocontainer .titleplayercontainer .playercontainer .downloadcontainer i:hover{
+section .songtwocontainer .titleplayercontainer .playicon .downloadcontainer i:hover{
 	
 	color:#d40000;
 }
@@ -609,7 +631,7 @@ section .songtwocontainer .titleplayercontainer .likescontainer{
 	
 	align-items:center;
 	
-	margin-top:10px;
+	margin:10px 10px 10px 10px;
 }
 section .songtwocontainer .titleplayercontainer .likescontainer span{
 	
@@ -647,7 +669,7 @@ section .songtwocontainer .titleplayercontainer .likescontainer i{
 	
 	margin-right:6px;
 }
-/*__________________________________________________________________________________________________________________________*/
+/*____________________________________________________________________________________________________________________*/
 section .songcontainer{
 	
 	display:flex;
@@ -660,9 +682,11 @@ section .songcontainer{
 	
 	margin:15px auto;
 	
-	border: 1px solid gray;
+	border: 1px solid #DDDDDD;
 	
 	border-radius:10px;
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 section .songcontainer .imagecontainer{
 	
@@ -954,17 +978,17 @@ section .divcomment::-webkit-scrollbar-thumb{
 }
 section .divcomment .commentmain{
 	
-	
-	
 	width:95%;
 	
-	border:1px solid gray;
+	border:1px solid #DDDDDD;
 	
 	border-radius:10px;
 	
 	padding:8px 8px 8px 8px;
 	
 	margin-bottom:10px;
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 section .divcomment .comment{
 	
