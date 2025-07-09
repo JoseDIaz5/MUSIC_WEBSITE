@@ -26,6 +26,8 @@ $(document).ready(function(){
 	
 	document.getElementById("deleteaccountbutton").addEventListener("click",eliminacuenta,false);
 	
+	document.getElementById("iform").addEventListener("submit",validaform,false);
+	
 	function comparte(){
 		
 		$("#uploadsongs").slideToggle(500);
@@ -66,16 +68,48 @@ $(document).ready(function(){
 		
 		var extension=archivo.type;
 		
-		if(extension!='audio/mpeg' && extension!='audio/flac' && extension!='audio/wav' && extension!='audio/x-m4a'){
+		var tamano=archivo.size;
+		
+		var tamanoconvertido=Math.ceil(tamano/1024);
+		
+		if(tamanoconvertido>20000){
 			
-			document.getElementById("filenameone").innerHTML="Seleccione un archivo de audio (mp3, flac, wav, m4a)";
+			document.getElementById("filenamethree").innerHTML="El tamaño excede el limite (20000 KB)";
+			
+			document.getElementById("filenameone").innerHTML="Ningún archivo seleccionado"
 			
 			$("#filenameone").css("color","black");
 			
 			$("#filenameone").css("font-weight","bolder");
+			
+			e.preventDefault();
+		}else{
+			
+			document.getElementById("filenamethree").innerHTML="";
+		}
+		if(extension!='audio/mpeg' && extension!='audio/x-m4a' && extension!='audio/wav'){
+			
+			document.getElementById("filenametwo").innerHTML="Seleccione un archivo de audio (mp3, m4a, wav)";
+			
+			document.getElementById("filenameone").innerHTML="Ningún archivo seleccionado";
+			
+			$("#filenameone").css("color","black");
+			
+			$("#filenameone").css("font-weight","bolder");
+			
+			e.preventDefault();
+		}else if(tamanoconvertido>20000){
+			
+			e.preventDefault();
+			
+			document.getElementById("filenameone").innerHTML="Ningún archivo seleccionado";
+			
+			document.getElementById("filenametwo").innerHTML="";
 		}else{
 			
 			document.getElementById("filenameone").innerHTML=archivo.name;
+			
+			document.getElementById("filenametwo").innerHTML="";
 			
 			$("#filenameone").css("color","#d40000");
 		
@@ -92,19 +126,39 @@ $(document).ready(function(){
 		
 		if(extension!="image/jpeg" && extension!="image/png" && extension!="image/jpg"){
 			
-			document.getElementById("filenametwo").innerHTML="Seleccione un archivo de tipo imagen (png, jpg)";
+			document.getElementById("filenamei").innerHTML="Seleccione un archivo de tipo imagen (png, jpg)";
 			
-			$("#filenametwo").css("color","black");
+			$("#filenamei").css("color","black");
 			
-			$("#filenametwo").css("font-weight","bolder");
+			$("#filenamei").css("font-weight","bolder");
 		}else{
 			
-			document.getElementById("filenametwo").innerHTML=archivo.name;
+			document.getElementById("filenamei").innerHTML=archivo.name;
 			
-			$("#filenametwo").css("color","#d40000");
+			$("#filenamei").css("color","#d40000");
 		
-			$("#filenametwo").css("font-weight","bolder");
+			$("#filenamei").css("font-weight","bolder");
 		}
+	}
+	function validaform(e){
+		
+		var fileInput = document.getElementById('songselect');
+		
+		var selectedFile = fileInput.files[0];
+		
+		var filesize = Math.ceil(selectedFile.size/1024);
+		
+		var filetype = selectedFile.type;
+		
+		if(filesize>15000){
+			
+			e.preventDefault();
+		}
+		if(filetype!='audio/mpeg' && filetype!='audio/x-m4a'){
+				
+			e.preventDefault();
+		}
+		
 	}
 	function subecancion(){
 		

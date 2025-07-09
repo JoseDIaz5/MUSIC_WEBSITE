@@ -19,7 +19,7 @@ try {
     
     $resultado=$conexion->prepare($consultaseguidores);
     
-    $resultado->execute(array(":idfollower"=>$_SESSION["idusu"]));
+    $resultado->execute(array(":idfollower"=>$_SESSION["iduser"]));
     
     $rows=$resultado->rowCount();
     
@@ -31,7 +31,7 @@ try {
         
         $resultados=$conexion->prepare($actualizaseguidores);
         
-        $resultados->execute(array(":idfollowed"=>$_SESSION["idusu"]));
+        $resultados->execute(array(":idfollowed"=>$_SESSION["iduser"]));
         
         $resultados->closeCursor();
     }
@@ -40,7 +40,7 @@ try {
     
     $resultado=$conexion->prepare($consultaseguidor);
     
-    $resultado->execute(array(":idfollowed"=>$_SESSION["idusu"]));
+    $resultado->execute(array(":idfollowed"=>$_SESSION["iduser"]));
     
     $rowst=$resultado->rowCount();
     
@@ -52,7 +52,7 @@ try {
         
         $resultados=$conexion->prepare($actualizasiguiendo);
         
-        $resultados->execute(array(":idfollowing"=>$_SESSION["idusu"]));
+        $resultados->execute(array(":idfollowing"=>$_SESSION["iduser"]));
         
         $resultados->closeCursor();
     }
@@ -61,7 +61,7 @@ try {
     
     $resultado=$conexion->prepare($consultalikes);
     
-    $resultado->execute(array(":iduser"=>$_SESSION["idusu"]));
+    $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
     
     $rowsl=$resultado->rowCount();
     
@@ -71,7 +71,7 @@ try {
         
         $actualizalikes="CALL UPDATE_LIKES_DELETE(:iduser)";
             
-        $userid=$_SESSION["idusu"];
+        $userid=$_SESSION["iduser"];
         
         $resultados=$conexion->prepare($actualizalikes);
         
@@ -84,7 +84,7 @@ try {
     
     $resultado=$conexion->prepare($consultadislikes);
     
-    $resultado->execute(array(":iduser"=>$_SESSION["idusu"]));
+    $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
     
     $rowsd=$resultado->rowCount();
     
@@ -94,7 +94,7 @@ try {
         
         $actualizadislikes="CALL UPDATE_DISLIKES_DELETE(:iduser)";
         
-        $userid=$_SESSION["idusu"];
+        $userid=$_SESSION["iduser"];
         
         $resultados=$conexion->prepare($actualizadislikes);
         
@@ -107,7 +107,7 @@ try {
     
     $resultado=$conexion->prepare($eliminaperfiles);
         
-    $resultado->execute(array(":iduser"=>$_SESSION["idusu"]));
+    $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
     
     if ($resultado->rowCount()!=0) {
         

@@ -475,7 +475,7 @@
 			     
 			     $resultado=$conexion->prepare($consulta);
 			     
-			     $resultado->execute(array(":buscador"=>$buscador,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registros_pagina,":iduser"=>$_SESSION["idusu"]));
+			     $resultado->execute(array(":buscador"=>$buscador,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registros_pagina,":iduser"=>$_SESSION["iduser"]));
 			     
 			     while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
 			         

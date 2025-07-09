@@ -18,7 +18,7 @@ if (isset($_SESSION["idusu"])) {
         
         $resultado=$conexion->prepare($consultacantidadcanciones);
         
-        $resultado->execute(array(":iduser"=>$_SESSION["idusu"]));
+        $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
         
         $consulta="CALL DELETE_SONG(:idsong)";
         

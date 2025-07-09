@@ -331,7 +331,6 @@
 					</div>
 					
 					
-					
 					<?php 
 					
 					if (!isset($iduser)) {
@@ -798,7 +797,7 @@
 					
 					<div id="uploadsongs">
 					
-						<form action="subecancion.php" enctype="multipart/form-data" method="post">
+						<form action="subecancion.php" enctype="multipart/form-data" method="post" id="iform">
 						
 							<div class="uploadsongstwo">
 							
@@ -806,13 +805,17 @@
 								
 								<div class="chosefile">
 								
-									<input type="file" id="songselect" hidden="hidden" name="song">
+									<input type="file" id="songselect" hidden="hidden" name="song" required>
 								
 									<div id="uploadsongbutton">Seleccionar canción</div>
 									
 									<br>
-								
-									<span id="filenameone">Ningún archivo seleccionado</span>
+									
+									<div><span id="filenameone">Ningún archivo seleccionado</span></div>
+									
+									<span id="filenametwo"></span>
+									
+									<span id="filenamethree"></span>
 								
 								</div>
 								
@@ -826,7 +829,7 @@
 									
 									<br>	
 								
-									<span id="filenametwo">Ningún archivo seleccionado</span>
+									<span id="filenamei">Ningún archivo seleccionado</span>
 								
 								</div>
 								
