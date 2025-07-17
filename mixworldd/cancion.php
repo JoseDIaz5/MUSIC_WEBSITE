@@ -290,12 +290,6 @@
 	         				
 	         			
 	         			</div>
-	         			
-	         			
-	         			
-	         				
-	         			
-	         			
 		         		
 		         		<div class="likescontainer">
 			         		
@@ -430,13 +424,12 @@
                 		        	
                 		        	?>
             		        	
-            		        		<div><?php echo htmlspecialchars($fila["USUARIO"]); ?></div>
+            		        		<div class="username"><?php echo htmlspecialchars($fila["USUARIO"]); ?></div>
+            		        		
+            		        		<span>|</span>
+            		        		
+            		        		<span class="commentdate"><?php echo $fila["FECHA_COMENTARIO"]; ?></span>
         		        
-            		        	</div>
-            		        	<div class="date">
-            		        
-            		        		<span><?php echo $fila["FECHA_COMENTARIO"]; ?></span>
-            		        
             		        	</div>
             		        	<div class="commentcontent">
             		        	
@@ -514,11 +507,13 @@
         		        			
         		        				<div class="textareaeditdiv">
         		        				
-        		        					<textarea class="tarea" maxlength="900"><?php echo htmlspecialchars($fila["COMENTARIO"]); ?></textarea>
+        		        					<textarea class="tarea" id="<?php echo $fila["ID"]; ?>" maxlength="900"><?php echo htmlspecialchars($fila["COMENTARIO"]); ?></textarea>
         		        				
         		        					<span class="focus-border"><i></i></span>
         		        				
         		        				</div>
+        		        				
+        		        				<p><span class="sizetwo<?php echo $fila["ID"]; ?>"><?php echo $fila["LONGITUD"]; ?></span>/900</p>
         		        				
         		        				<input type="submit" name="editarcomentario" hidden="hidden">
         		        				
@@ -795,7 +790,7 @@
 		        
 		        die("Error: " . $e->getMessage());
 		    }
-		    
+		    $resultado->closeCursor();
 		    ?> 
 		     <div class="formcommentstwo">
     				

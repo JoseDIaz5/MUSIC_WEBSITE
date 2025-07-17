@@ -27,11 +27,11 @@ try{
     
     $fechacomentario=date("d/m/Y");
     
-    $consulta="CALL INSERT_COMMENTS(:idsong,:iduser,:comment,:date)";
+    $consulta="CALL INSERT_COMMENTS(:idsong,:iduser,:comment)";
     
     $resultado=$conexion->prepare($consulta);
     
-    $resultado->execute(array(":idsong"=>$idcancion,":iduser"=>$idusuario,":comment"=>$comenta,":date"=>$fechacomentario));
+    $resultado->execute(array(":idsong"=>$idcancion,":iduser"=>$idusuario,":comment"=>$comenta));
     
     header("location:cancion.php?song=" . $idsong);
     

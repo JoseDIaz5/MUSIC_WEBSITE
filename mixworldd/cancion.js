@@ -108,6 +108,12 @@ $(document).ready(function(){
 		
 		$(".size").text($(this).val().length);
 	});
+	$(".tarea").keyup(function(){
+		
+		var id=this.id;
+		
+		$(".sizetwo"+id).text($(this).val().length);
+	});
 	$(".optionlink").click(function(){
 		
 		var id=this.id;
