@@ -1582,3 +1582,37 @@ section .commentscontainer .formcomments .mainform #botoncomenta:focus::before{
 	
 	color:#d40000;
 }
+.pie{
+	
+	height:100px;
+	
+	background-color:black;
+	
+	color:white;
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.pie span{
+	
+	margin:0 10px;
+}
+.pie a{
+	
+	text-decoration:none;
+	
+	color:white;
+	
+	transition-property:border-bottom;
+	
+	transition-duration:.5s;
+}
+.pie a:hover{
+	
+	border-bottom:1px solid white;
+}

@@ -675,6 +675,23 @@
     				        				<div id="<?php echo $filas["ID"]; ?>" class="progress progreso<?php echo $filas["ID"]; ?>"></div>
     				        			
     				        			</div>
+    				        			<div class="downloadcontainer">
+    				        			
+    				        				<?php 
+    				        				
+    				        				if(isset($iduser) && !$validaid){
+    				        				    
+    				        				
+    				        				?>
+    				        				
+    				        				<a href="../intranet/songs/<?php echo $filas["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
+    				        				
+    				        				<?php 
+    				        				
+    				        				}
+    				        				?>
+    				        			
+    				        			</div>
     				        		
     				        		</div>
     				        		<div class="viewscontainer">
@@ -896,6 +913,26 @@
 		</div>
 	
 	</body>
+	<footer class="pie">
 	
+		<div>
+		
+			<a href="derechosautor.php">Política de derechos de autor</a>
+		
+		</div>
+		<span>|</span>
+		<div>
+		
+			<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
+		
+		</div>
+		<span>|</span>
+		<div>
+		
+			<a href="politicadeprivacidad.php">Política de privacidad</a>
+		
+		</div>
+	
+	</footer>
 
 </html>

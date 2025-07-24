@@ -149,7 +149,7 @@ $(document).ready(function(){
 		
 		var id=this.id;
 		
-		var areavalue=$(".tarea").val();
+		var areavalue=$(".starea"+id).val();
 		
 		$.ajax({
 			

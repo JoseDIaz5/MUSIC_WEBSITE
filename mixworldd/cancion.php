@@ -357,13 +357,13 @@
     					
     						<div class="areacontainer" id="divarea">
     						
-    							<textarea cols="66" rows="3" placeholder="Comenta aquí..." id="textarea" name="comenta" maxlength="900" minlength="1"></textarea>
+    							<textarea cols="66" rows="3" placeholder="Comenta aquí..." id="textarea" name="comenta" maxlength="400" minlength="1"></textarea>
     							
     							<span class="focus-border"><i></i></span>
     						
     						</div>
     						
-    						<p><span class="size">0</span>/900</p>
+    						<p><span class="size">0</span>/400</p>
         					
         					<input type="submit" id="botoncomentar" value="Comentar">
         					
@@ -507,13 +507,13 @@
         		        			
         		        				<div class="textareaeditdiv">
         		        				
-        		        					<textarea class="tarea" id="<?php echo $fila["ID"]; ?>" maxlength="900"><?php echo htmlspecialchars($fila["COMENTARIO"]); ?></textarea>
+        		        					<textarea class="tarea starea<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>" maxlength="400"><?php echo htmlspecialchars($fila["COMENTARIO"]); ?></textarea>
         		        				
         		        					<span class="focus-border"><i></i></span>
         		        				
         		        				</div>
         		        				
-        		        				<p><span class="sizetwo<?php echo $fila["ID"]; ?>"><?php echo $fila["LONGITUD"]; ?></span>/900</p>
+        		        				<p><span class="sizetwo<?php echo $fila["ID"]; ?>"><?php echo $fila["LONGITUD"]; ?></span>/400</p>
         		        				
         		        				<input type="submit" name="editarcomentario" hidden="hidden">
         		        				
@@ -819,5 +819,25 @@
 		?>
 	
 	</body>
-
+	<footer class="pie">
+	
+		<div>
+		
+			<a href="derechosautor.php">Política de derechos de autor</a>
+		
+		</div>
+		<span>|</span>
+		<div>
+		
+			<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
+		
+		</div>
+		<span>|</span>
+		<div>
+		
+			<a href="politicadeprivacidad.php">Política de privacidad</a>
+		
+		</div>
+	
+	</footer>
 </html>

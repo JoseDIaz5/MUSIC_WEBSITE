@@ -5,9 +5,15 @@
 	
 		<meta charset="utf-8">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>MIXWORLD | Descarga música remix</title>
 
-        <title>MIXWORLD</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        
+        <meta name="description" content="Descubre la mejor música remix, electrónica, reggaetón, pop y más. Escucha en línea o descarga gratis.">
+        
+        <meta name="keywords" content="descargar música remix gratis, remixes gratis, descargar extended, descargar remixes">
+        
+        <meta name="robots" content="index">
 
         <link rel="stylesheet" href="principal.css?v=<?php echo time(); ?>">
 
@@ -347,6 +353,11 @@
     						<div class="bar barra<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>">
     						
     							<div id="<?php echo $fila['ID']; ?>" class="progress progreso<?php echo $fila['ID']; ?>"></div>
+    						
+    						</div>
+    						<div class="downloadcontainer">
+    						
+    							<a href="../intranet/songs/<?php echo $fila["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
     						
     						</div>
     					
@@ -699,5 +710,26 @@
 		?>
 	
 	</body>
+	<footer class="pie">
+	
+		<div>
+		
+			<a href="derechosautor.php">Política de derechos de autor</a>
+		
+		</div>
+		<span>|</span>
+		<div>
+		
+			<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
+		
+		</div>
+		<span>|</span>
+		<div>
+		
+			<a href="politicadeprivacidad.php">Política de privacidad</a>
+		
+		</div>
+	
+	</footer>
 
 </html>
