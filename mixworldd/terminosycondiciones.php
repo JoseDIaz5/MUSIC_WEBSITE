@@ -31,7 +31,7 @@
     		
     		<div>
     		
-                <span>Última actualización: 23/7/2025</span>
+                <span>Última actualización: 4/8/2025</span>
                 <br>
                 Bienvenido a Mixworld. Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte de los mismos, por favor no utilice este Sitio.
                 <br>
@@ -60,8 +60,7 @@
                 <span>Está prohibido subir:</span>
                 <br>
                 •	Material con derechos de autor sin permiso.<br>
-                •	Contenido ilegal, ofensivo, violento o que incite al odio.<br>
-                •	Enlaces a sitios externos con fines comerciales sin autorización.
+                •	Contenido ilegal, ofensivo, violento o que incite al odio.
                 <br>
                 <br>
                 <span>Eliminación de contenido</span>

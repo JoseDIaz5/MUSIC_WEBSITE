@@ -9,11 +9,7 @@ try{
         header("location:index.php");
     }
     
-    $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-    
-    $conexion->exec("SET CHARACTER SET utf8");
-    
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
     
     $comenta=$_POST["comenta"];
     

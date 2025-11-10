@@ -9,15 +9,13 @@
     
     try{
         
-        $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-        
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $conexion->exec("SET CHARACTER SET utf8");
+        include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
         
         $title=$_POST["titulo"];
         
         $desc=$_POST["area"];
+        
+        $derechos=intval($_POST["confirmacionderechos"]);
         
         $nombrec=$_FILES['song']['name'];
         
@@ -31,15 +29,15 @@
         
         $token_hash=hash("sha256", $token);
         
-        $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/songs/";
+        $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
         
         move_uploaded_file($_FILES['song']['tmp_name'], $carpeta.$nombrec);
         
-        $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/songsimages/";
+        $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
         
         move_uploaded_file($_FILES['imagesong']['tmp_name'], $carpeta.$imagencan);
         
-        $consulta="CALL INSERT_SONG(:id_usu,:h,:title,:cancion,:desc,:imgcan)";
+        $consulta="CALL INSERT_SONG(:id_usu,:h,:title,:cancion,:desc,:imgcan,:permission)";
         
         $consultados="CALL SEARCH_ID_PROFILE(:idusuario)";
         
@@ -60,7 +58,7 @@
                 
                 $resultado=$conexion->prepare($consulta);
                 
-                $resultado->execute(array(":id_usu"=>$idusu,":h"=>$token_hash,":title"=>$title,":cancion"=>$nombrec,":desc"=>$desc,":imgcan"=>$imagencan));
+                $resultado->execute(array(":id_usu"=>$idusu,":h"=>$token_hash,":title"=>$title,":cancion"=>$nombrec,":desc"=>$desc,":imgcan"=>$imagencan,":permission"=>$derechos));
                 
                 $registro=$resultado->rowCount();
                 

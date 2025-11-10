@@ -4,11 +4,7 @@
     
         try {
             
-            $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-            
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            $conexion->exec("SET CHARACTER SET utf8");
+            include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
             
             $correo=$_POST["correo"];
             

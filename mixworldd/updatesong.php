@@ -32,11 +32,7 @@
     		  
     		  try {
     		      
-    		      $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-    		      
-    		      $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    		      
-    		      $conexion->exec("SET CHARACTER SET utf8");
+    		      include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
     		      
     		      $consulta="CALL GET_SONG_INFO(:idsong)";
     		      
@@ -104,7 +100,7 @@
     							
     							?>
     							
-    							<img width='100%' height='100%' src="../intranet/songsimages/default.png">
+    							<img width='100%' height='100%' src="./intranet/songsimages/default.png">
     							
     							<?php 
     							
@@ -112,7 +108,7 @@
     							
     							?>
     							
-    							<img id='perf' width='100%' height='100%' src='../intranet/songs/<?php echo $imagen; ?>'>
+    							<img id='perf' width='100%' height='100%' src='./intranet/songs/<?php echo $imagen; ?>'>
     								
     							<?php 
     							
@@ -154,7 +150,7 @@
     						
     						<div class="inputWithIcon" id="divdescripcion">
     						
-    							<textarea cols="66" rows="3" placeholder="Comentario..." id="textarea" name="comenta" maxlength="900" minlength="1"><?php echo $descripcion; ?></textarea>
+    							<textarea cols="66" rows="3" placeholder="Descripción..." id="textarea" name="comenta" maxlength="900" minlength="1"><?php echo $descripcion; ?></textarea>
     							
     							<span class="focus-border"><i></i></span>
     						

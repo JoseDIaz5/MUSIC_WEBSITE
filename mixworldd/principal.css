@@ -3,7 +3,14 @@
 body{
 	
 	margin:0;
+	
+	display:flex;
+	
+	flex-direction:column;
+	
+	min-height:100vh;
 }
+
 .background{
 	
 	background-color: white;
@@ -398,6 +405,8 @@ section{
 	justify-content:center;
 	
 	flex-wrap:wrap;
+	
+	
 }
 section .songcontainer{
 	
@@ -718,7 +727,7 @@ section .songcontainer .titleplayercontainer .likescontainer i{
 }
 .pie{
 	
-	height:100px;
+	height:80px;
 	
 	background-color:black;
 	
@@ -731,6 +740,8 @@ section .songcontainer .titleplayercontainer .likescontainer i{
 	align-items:center;
 	
 	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	
+	margin-top:auto;
 }
 .pie span{
 	

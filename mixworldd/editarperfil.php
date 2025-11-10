@@ -39,11 +39,7 @@
 		    
 		    try {
 		        
-		        $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-		        
-		        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		        
-		        $conexion->exec("SET CHARACTER SET utf8");
+		        include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
 		        
 		        $consulta="CALL GET_USER_INFO_EDIT(:id)";
 		        
@@ -147,7 +143,7 @@
 							
 							?>
 							
-							<img width='100%' height='100%' src="../intranet/songsimages/defaultuser.png">
+							<img width='100%' height='100%' src="./intranet/songsimages/defaultuser.png">
 							
 							<?php 
 							
@@ -155,7 +151,7 @@
 							
 							?>
 							
-							<img id='perf' width='100%' height='100%' src='../intranet/perfiles/<?php echo $perfil; ?>'>
+							<img id='perf' width='100%' height='100%' src='./intranet/perfiles/<?php echo $perfil; ?>'>
 							
 							<?php 
 							
@@ -193,7 +189,7 @@
 							
 							?>
 							
-							<img width='100%' height='100%' src="../intranet/songsimages/default.png">
+							<img width='100%' height='100%' src="./intranet/songsimages/default.png">
 							
 							<?php 
 							
@@ -201,7 +197,7 @@
 							
 							?>
 							
-							<img id='perf' width='100%' height='100%' src='../intranet/perfiles/<?php echo $portada; ?>'>
+							<img id='perf' width='100%' height='100%' src='./intranet/perfiles/<?php echo $portada; ?>'>
 							
 							<?php 
 							

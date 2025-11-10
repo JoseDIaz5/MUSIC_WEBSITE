@@ -11,11 +11,7 @@
         
         try {
             
-            $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-            
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            $conexion->exec("SET CHARACTER SET utf8");
+            include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
             
             if ($_FILES["imagenperfil"]["name"]=='' && $_FILES["contportada"]["name"]=='') {
                 
@@ -31,7 +27,7 @@
                 
                 $perfiltipo=$_FILES["imagenperfil"]["type"];
                 
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/perfiles/";
+                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
             }
             elseif ($_FILES["imagenperfil"]["name"]=='' && $_FILES["contportada"]["name"]!=''){
                 
@@ -41,7 +37,7 @@
                 
                 $portadatipo=$_FILES["contportada"]["type"];
                 
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/perfiles/";
+                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
             }else {
                 
                 $perfil=$_FILES["imagenperfil"]["name"];
@@ -52,7 +48,7 @@
                 
                 $portadatipo=$_FILES["contportada"]["type"];
                 
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/perfiles/";
+                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
             }
             
             if ($_POST["facebook"]=='') {

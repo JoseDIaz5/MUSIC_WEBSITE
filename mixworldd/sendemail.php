@@ -13,11 +13,7 @@ $token=bin2hex(random_bytes(16));
 
 $token_hash=hash("sha256", $token);
 
-$conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-
-$conexion->exec("SET CHARACTER SET utf8");
-
-$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
 
 $sql="CALL RESET_TOKEN(:rth,:email)";
 
@@ -44,7 +40,7 @@ if ($mailfound>0) {
         $mail->isHTML(true);
         
         //Recipients
-        $mail->setFrom('', 'Jose');
+        $mail->setFrom('', 'MIXWORLD');
         $mail->addAddress($correo, 'MIXWORLD User'); 
         
         

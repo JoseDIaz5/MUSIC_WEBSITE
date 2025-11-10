@@ -46,11 +46,7 @@
 						
 		  try {
 		      
-		      $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-		      
-		      $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		      
-		      $conexion->exec("SET CHARACTER SET utf8");
+		      include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
 		      
 		      $validaid=false;
 		      
@@ -161,7 +157,7 @@
 			
 			?>
 		
-			<header style="background: url('../intranet/perfiles/<?php echo $portada; ?>'); background-size: 100% 100%"></header>
+			<header style="background: url('./intranet/perfiles/<?php echo $portada; ?>'); background-size: 100% 100%"></header>
 			
 			<?php 
 			
@@ -189,7 +185,7 @@
 						
 						?>
 					
-						<img src="../intranet/perfiles/<?php echo $perfil; ?>">
+						<img src="./intranet/perfiles/<?php echo $perfil; ?>">
 						
 						<a href="editarperfil.php?id=<?php echo $_SESSION["idusu"]; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
 						
@@ -199,7 +195,7 @@
 						
 						?>
 						
-						<img src="../intranet/perfiles/<?php echo $perfil; ?>">
+						<img src="./intranet/perfiles/<?php echo $perfil; ?>">
 						
 						<a href="editarperfil.php?id=<?php echo $_SESSION["idusu"]; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
 						
@@ -209,7 +205,7 @@
 						
 						?>
 						
-						<img src="../intranet/songsimages/defaultuser.png"></img>
+						<img src="./intranet/songsimages/defaultuser.png"></img>
 						
 						<a href="editarperfil.php?id=<?php echo $_SESSION["idusu"]; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
 						
@@ -219,7 +215,7 @@
 						
 						?>
 						
-						<img src="../intranet/songsimages/defaultuser.png"></img>
+						<img src="./intranet/songsimages/defaultuser.png"></img>
 						
 						<a href="editarperfil.php?id=<?php echo $iduser; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
 						
@@ -229,7 +225,7 @@
 						
 						?>
 						
-						<img src="../intranet/perfiles/<?php echo $perfil; ?>">
+						<img src="./intranet/perfiles/<?php echo $perfil; ?>">
 						
 						<?php 
 						
@@ -237,7 +233,7 @@
 						
 						?>
 						
-						<img src="../intranet/songsimages/defaultuser.png"></img>
+						<img src="./intranet/songsimages/defaultuser.png"></img>
 						
 						<?php 
 						
@@ -455,11 +451,11 @@
 						    
 						    if ($seguido==0) {
 						
-						?>
-						
-						<div class="seguir divseguir<?php echo $idu; ?>" id="<?php echo $idu; ?>">Seguir</div>
-						
-						<?php 
+        						?>
+        						
+        						<div class="seguir divseguir<?php echo $idu; ?>" id="<?php echo $idu; ?>">Seguir</div>
+        						
+        						<?php 
 						
 						    }else {
 						     
@@ -556,7 +552,7 @@
 					        	
 					        	?>
 					        	
-					        		<img src="../intranet/songsimages/default.png">
+					        		<img src="./intranet/songsimages/default.png">
 					        		
 					        	<?php 
 					        	
@@ -564,7 +560,7 @@
 					        	
 					        	?>
 					        	
-					        		<img src="../intranet/songs/<?php echo $filas["IMAGEN_CANCION"]; ?>">
+					        		<img src="./intranet/songs/<?php echo $filas["IMAGEN_CANCION"]; ?>">
 					        	
 					        	<?php 
 					        	
@@ -581,8 +577,7 @@
     					        		
     					        			<div class="titlecontainer">
     					        		
-        					        			<div><?php echo htmlspecialchars($filas["TITULO"]); ?></div>
-        					        			
+        					        			<a href='cancion.php?song=<?php echo $filas["IDHASH"];?>' class='link'><span><?php echo htmlspecialchars($filas["TITULO"]); ?></span></a>
         					        		
         					        		</div>
         					        		
@@ -594,7 +589,7 @@
         					        		
         					        		?>
         					        		
-        					        			<img src="../intranet/songsimages/defaultuser.png">
+        					        			<img src="./intranet/songsimages/defaultuser.png">
         					        			
         					        		<?php 
         					        		
@@ -602,7 +597,7 @@
         					        		
         					        		?>
         					        		
-        					        			<img src="../intranet/perfiles/<?php echo $filas["IMAGEN_PERFIL"]; ?>">
+        					        			<img src="./intranet/perfiles/<?php echo $filas["IMAGEN_PERFIL"]; ?>">
         					        		
         					        		<?php 
         					        		
@@ -668,30 +663,29 @@
     				        			
     				        			</div>
     				        			
-    				        			<audio src="../intranet/songs/<?php echo $filas["CANCION"]; ?>" class="audio" id="audios<?php echo $filas["ID"]; ?>"></audio>
+    				        			<audio src="./intranet/songs/<?php echo $filas["CANCION"]; ?>" class="audio" id="audios<?php echo $filas["ID"]; ?>"></audio>
     				        			
     				        			<div class="bar barra<?php echo $filas["ID"]; ?>" id="<?php echo $filas["ID"]; ?>">
     				        			
     				        				<div id="<?php echo $filas["ID"]; ?>" class="progress progreso<?php echo $filas["ID"]; ?>"></div>
     				        			
     				        			</div>
+    				        			<?php 
+    				        				
+			        				    if(isset($iduser) && !$validaid){
+				        				    
+				        				
+				        				?>
     				        			<div class="downloadcontainer">
-    				        			
-    				        				<?php 
     				        				
-    				        				if(isset($iduser) && !$validaid){
-    				        				    
-    				        				
-    				        				?>
-    				        				
-    				        				<a href="../intranet/songs/<?php echo $filas["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
-    				        				
-    				        				<?php 
-    				        				
-    				        				}
-    				        				?>
+    				        				<a href="./intranet/songs/<?php echo $filas["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>	
     				        			
     				        			</div>
+    				        			
+    				        			<?php 
+    				        				
+				        				}
+				        				?>
     				        		
     				        		</div>
     				        		<div class="viewscontainer">
@@ -740,9 +734,6 @@
     				        		</div>
 					        	
 					        	</div>
-					        	
-					        	
-					        	
 					        
 					        </div>
 					        
@@ -876,6 +867,14 @@
 								
 								<p><span class="counter">0</span>/900</p>
 								
+								<div class="divconfirmacion">
+								
+									<input type="checkbox" id="confirmacionderechos" name="confirmacionderechos" value="1" required>
+									
+									<label for="confirmacionderechos" class="confirmacionderechos">Confirmo que poseo los derechos de esta canción</label>
+								
+								</div>
+								
 								<input type="submit" id="botonregistrados" value="Subir" name="subecancion" hidden="hidden">
 								
 								<div id="botonregistra">Subir</div>
@@ -911,28 +910,30 @@
 			</div>
 		
 		</div>
+		
+		<footer class="pie">
+	
+    		<div>
+    		
+    			<a href="derechosautor.php">Política de derechos de autor</a>
+    		
+    		</div>
+    		<span>|</span>
+    		<div>
+    		
+    			<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
+    		
+    		</div>
+    		<span>|</span>
+    		<div>
+    		
+    			<a href="politicadeprivacidad.php">Política de privacidad</a>
+    		
+    		</div>
+    	
+    	</footer>
 	
 	</body>
-	<footer class="pie">
 	
-		<div>
-		
-			<a href="derechosautor.php">Política de derechos de autor</a>
-		
-		</div>
-		<span>|</span>
-		<div>
-		
-			<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
-		
-		</div>
-		<span>|</span>
-		<div>
-		
-			<a href="politicadeprivacidad.php">Política de privacidad</a>
-		
-		</div>
-	
-	</footer>
 
 </html>

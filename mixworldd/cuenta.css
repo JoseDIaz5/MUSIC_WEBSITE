@@ -11,6 +11,10 @@ body{
 	
 	box-sizing:border-box;
 	
+	display:flex;
+	
+	flex-direction:column;
+	
 	min-height:100vh;
 	
 	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -433,9 +437,23 @@ a{
 	
 	font-size:20px;
 	
+	justify-content:space-between;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .titlecontainer a{
+	
 	color:black;
 	
-	justify-content:space-between;
+	text-decoration:none;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .titlecontainer a span{
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+.header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .titlecontainer a span:hover{
+	
+	color:#d40000;
 }
 .header_wrapper .cols_container .right_col #songs .songcontainer .songinfo .songtitleuser .usercontainer{
 	
@@ -833,6 +851,35 @@ a{
 	
 	transform:scale(0);
 }
+.header_wrapper .cols_container .right_col #uploadsongs .uploadsongstwo .divconfirmacion{
+	
+	display:flex;
+	
+	justify-content:center;
+	
+	align-items:center;
+	
+	width:46%;
+	
+	margin:auto;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+}
+.header_wrapper .cols_container .right_col #uploadsongs .uploadsongstwo .divconfirmacion:hover{
+	
+	color:#DC143C;
+}
+.header_wrapper .cols_container .right_col #uploadsongs .uploadsongstwo .divconfirmacion .confirmacionderechos{
+	
+	cursor:pointer;
+}
+.header_wrapper .cols_container .right_col #uploadsongs .uploadsongstwo .divconfirmacion #confirmacionderechos{
+	
+	cursor:pointer;
+}
+
 .inputWithIcon{
 	
 	width:35%;
@@ -1179,7 +1226,9 @@ a{
 }
 .pie{
 	
-	height:100px;
+	margin-top:auto;
+	
+	height:80px;
 	
 	background-color:black;
 	

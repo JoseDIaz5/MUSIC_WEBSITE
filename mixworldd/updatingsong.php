@@ -11,11 +11,7 @@
         
         try {
             
-            $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-            
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            
-            $conexion->exec("SET CHARACTER SET utf8");
+            include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
             
             if ($_FILES["imagencancion"]["name"]=='') {
                 
@@ -26,7 +22,7 @@
                 
                 $imagentipo=$_FILES["imagencancion"]["type"];
                 
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/songs/";
+                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
                 
                 move_uploaded_file($_FILES['imagencancion']['tmp_name'], $carpetaimg.$imagen);
             }

@@ -9,11 +9,7 @@ if (!isset($_SESSION["iduser"])) {
 
 try {
     
-    $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-    
-    $conexion->exec("SET CHARACTER SET utf8");
-    
-    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
     
     $idusuarioseguido=$_POST["id"];
     
@@ -48,6 +44,7 @@ try {
         $resultado->execute(array(":idfollower"=>$idusuarioseguidor));
         
         $valorseguir="Seguir";
+        
     }else {
         
         $insertaseguidor="CALL INSERT_FOLLOWERS(:idfollower,:idfollowed)";

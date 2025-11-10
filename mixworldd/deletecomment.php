@@ -6,11 +6,7 @@ if (isset($_SESSION["idusu"])) {
     
     try {
         
-        $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-        
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $conexion->exec("SET CHARACTER SET utf8");
+        include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
         
         $id=$_GET["id"];
         

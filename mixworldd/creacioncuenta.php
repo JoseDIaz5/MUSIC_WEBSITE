@@ -6,15 +6,11 @@
         
         $contrasenados=$_POST["confirmar"];
         
-        if($contrasena==$contrasenados && preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,12}$/", $contrasena) && preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,12}$/", $contrasenados)){
+        if($contrasena==$contrasenados && preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,64}$/", $contrasena) && preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,64}$/", $contrasenados)){
             
             try{
                 
-                $conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-                
-                $conexion->exec("SET CHARACTER SET utf8");
-                
-                $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
                 
                 if (empty($_FILES["imagenperfil"]["name"])) {
                     
@@ -31,7 +27,7 @@
                     $imgportada=$_FILES["contportada"]["name"];
                 }
                 
-                $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/intranet/perfiles/";
+                $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
                 
                 $usuario=addslashes($_POST["usuario"]);
                 

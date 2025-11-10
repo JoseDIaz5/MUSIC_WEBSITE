@@ -59,11 +59,7 @@
 	
 	<?php 
 	
-	$conexion=new PDO("mysql:host=localhost; port=3306; dbname=mixworld","root","");
-	
-	$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	
-	$conexion->exec("SET CHARACTER SET utf8");
+	include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
 	
 	if (isset($_SESSION["idusu"])) {
 	    
@@ -175,7 +171,7 @@
 							
 							?>
 							
-							<img src="../intranet/songsimages/defaultuser.png" class="imguser"></img>
+							<img src="./intranet/songsimages/defaultuser.png" class="imguser"></img>
 							
 							<?php 
 							
@@ -183,7 +179,7 @@
 							
 							?>
 							
-							<img src="../intranet/perfiles/<?php echo $profileimage; ?>" class="imguser"></img>
+							<img src="./intranet/perfiles/<?php echo $profileimage; ?>" class="imguser"></img>
 							
 							<?php 
 							
@@ -282,7 +278,7 @@
     				
     				?>
     					
-    					<img src="../intranet/songsimages/default.png">
+    					<img src="./intranet/songsimages/default.png">
     					
     				<?php 
     				
@@ -290,7 +286,7 @@
     				
     				?>
     				
-    					<img src="../intranet/songs/<?php echo $fila["IMAGEN_CANCION"]; ?>">
+    					<img src="./intranet/songs/<?php echo $fila["IMAGEN_CANCION"]; ?>">
     					
     				<?php 
     				
@@ -314,7 +310,7 @@
     						
     						?>
     						
-    						<img src="../intranet/songsimages/defaultuser.png">
+    						<img src="./intranet/songsimages/defaultuser.png">
     						
     						<?php 
     						
@@ -322,7 +318,7 @@
     						
     						?>
     					
-    						<img src="../intranet/perfiles/<?php echo $fila["IMAGEN_PERFIL"]; ?>">
+    						<img src="./intranet/perfiles/<?php echo $fila["IMAGEN_PERFIL"]; ?>">
     						
     						<?php 
     						
@@ -347,7 +343,7 @@
     							<i class="fa-solid fa-pause pause detener<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>"></i>
     						
     						</div>
-    						<audio src="../intranet/songs/<?php echo $fila["CANCION"]; ?>" class="audio" id="audios<?php echo $fila["ID"]; ?>"></audio>
+    						<audio src="./intranet/songs/<?php echo $fila["CANCION"]; ?>" class="audio" id="audios<?php echo $fila["ID"]; ?>"></audio>
 
 							
     						<div class="bar barra<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>">
@@ -357,7 +353,7 @@
     						</div>
     						<div class="downloadcontainer">
     						
-    							<a href="../intranet/songs/<?php echo $fila["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
+    							<a href="./intranet/songs/<?php echo $fila["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
     						
     						</div>
     					
@@ -510,7 +506,7 @@
 			         	
 			         	?>
 			         	
-			         		<img src="../intranet/songsimages/default.png">
+			         		<img src="./intranet/songsimages/default.png">
 			         	
 			         	<?php 
 			         	
@@ -518,7 +514,7 @@
 			         	
 			         	?>
 			         	
-			         		<img src="../intranet/songs/<?php echo $fila["IMAGEN_CANCION"]; ?>">
+			         		<img src="./intranet/songs/<?php echo $fila["IMAGEN_CANCION"]; ?>">
 			         		
 			         	<?php 
 			         	
@@ -542,7 +538,7 @@
         						
         						?>
 			         		
-			         			<img src="../intranet/songsimages/defaultuser.png">
+			         			<img src="./intranet/songsimages/defaultuser.png">
 			         			
 			         			<?php 
 			         			
@@ -550,7 +546,7 @@
 			         			
 			         			?>
 			         			
-			         			<img src="../intranet/perfiles/<?php echo $fila["IMAGEN_PERFIL"]; ?>">
+			         			<img src="./intranet/perfiles/<?php echo $fila["IMAGEN_PERFIL"]; ?>">
 			         			
 			         			<?php 
 			         			
@@ -576,7 +572,7 @@
 			         			
 			         			</div>
 			         			
-			         			<audio src="../intranet/songs/<?php echo $fila["CANCION"]; ?>" class="audio" id="audios<?php echo $fila["ID"]; ?>"></audio>
+			         			<audio src="./intranet/songs/<?php echo $fila["CANCION"]; ?>" class="audio" id="audios<?php echo $fila["ID"]; ?>"></audio>
 			         			
 			         			<div class="bar barra<?php echo $fila["ID"]; ?>" id="<?php echo $fila["ID"]; ?>">
 			         			
@@ -586,7 +582,7 @@
 			         			
 			         			<div class="downloadcontainer">
 			         			
-			         				<a href="../intranet/songs/<?php echo $fila["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
+			         				<a href="./intranet/songs/<?php echo $fila["CANCION"]; ?>" download><i class="fa-solid  fa-download"></i></a>
 			         			
 			         			</div>
 			         		
@@ -708,28 +704,29 @@
 		}
 		
 		?>
+		
+		<footer class="pie">
 	
+        	<div>
+        	
+        		<a href="derechosautor.php">Política de derechos de autor</a>
+        	
+        	</div>
+        	<span>|</span>
+        	<div>
+        	
+        		<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
+        	
+        	</div>
+        	<span>|</span>
+        	<div>
+        	
+        		<a href="politicadeprivacidad.php">Política de privacidad</a>
+        	
+        	</div>
+        
+        </footer>
 	</body>
-	<footer class="pie">
 	
-		<div>
-		
-			<a href="derechosautor.php">Política de derechos de autor</a>
-		
-		</div>
-		<span>|</span>
-		<div>
-		
-			<a href="terminosycondiciones.php">Términos y condiciones de uso</a>
-		
-		</div>
-		<span>|</span>
-		<div>
-		
-			<a href="politicadeprivacidad.php">Política de privacidad</a>
-		
-		</div>
-	
-	</footer>
 
 </html>
