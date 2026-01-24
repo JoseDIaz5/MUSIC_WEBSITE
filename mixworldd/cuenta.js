@@ -180,14 +180,14 @@ $(document).ready(function(){
 		
 		$("#titleicon").css("transition","0.4s");
 	});
-	$("#desc").focus(function(){
+	/*$("#desc").focus(function(){
 		
 		$(this).animate({"height":"100px"},"slow");
 	});
 	$("#desc").blur(function(){
 		
 		$(this).animate({"height":"20px"},"slow");
-	});
+	});*/
 	
 	var currentAudio=null;
 	

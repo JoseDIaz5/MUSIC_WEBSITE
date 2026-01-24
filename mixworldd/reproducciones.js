@@ -1,8 +1,17 @@
 $(document).ready(function(){
 	
+	let cancionesreproducidas={};
+	
 	$(".play").click(function(){
 		
 		var id=this.id;
+		
+		if(cancionesreproducidas[id]){
+			
+			return;
+		}
+		
+		cancionesreproducidas[id]=true;
 		
 		$.ajax({
 			

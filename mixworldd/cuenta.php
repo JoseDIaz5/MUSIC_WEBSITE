@@ -857,9 +857,9 @@
 								
 								<br>
 								
-								<div class="contarea">
+								<div class="inputWithIcon" id="divarea">
 							
-									<textarea name="area" id="desc" placeholder="Descripción de canción" maxlength="900" required></textarea>
+									<textarea cols="66" rows="3" name="area" id="desc" placeholder="Descripción de canción" maxlength="900" required></textarea>
 							
 									<span class="focus-border"><i></i></span>
 							

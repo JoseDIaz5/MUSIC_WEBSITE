@@ -31,16 +31,16 @@ if ($mailfound>0) {
         //Server settings
         $mail->SMTPDebug = 0;                      
         $mail->isSMTP();                                            
-        $mail->Host       = '';                     
+        $mail->Host       = 'smtp.gmail.com';                     
         $mail->SMTPAuth   = true;                                   
-        $mail->Username   = '';                     
-        $mail->Password   = '';                               
+        $mail->Username   = 'josediazjose9@gmail.com';                     
+        $mail->Password   = 'qrdmgbpubyvjmbml';                               
         $mail->SMTPSecure = 'tls';            
         $mail->Port       = 587;
         $mail->isHTML(true);
         
         //Recipients
-        $mail->setFrom('', 'MIXWORLD');
+        $mail->setFrom('josediazjose9@gmail.com', 'MIXWORLD');
         $mail->addAddress($correo, 'MIXWORLD User'); 
         
         
