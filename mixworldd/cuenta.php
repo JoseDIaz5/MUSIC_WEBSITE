@@ -517,6 +517,26 @@
 					    
 					    $limitepaginas=ceil($totalresultados/$registrospagina);
 					    
+					    $limitapaginas=3;
+					    
+					    if ($inicio_registros>$limitapaginas) {
+					        
+					        $numero_inicio=$inicio_registros-$limitapaginas;
+					        
+					    }else {
+					        
+					        $numero_inicio=1;
+					    }
+					    
+					    if ($inicio_registros<($limitepaginas-$limitapaginas)) {
+					        
+					        $numero_final=$inicio_registros+$limitapaginas;
+					        
+					    }else {
+					        
+					        $numero_final=$limitepaginas;
+					    }
+					    
 					    $resultado->closeCursor();
 					    
 					    $consultasongs="CALL GET_USER_SONGS(:iduser,:idusertwo,:iniciopaginacion,:registrospagina)";
@@ -756,16 +776,111 @@
 					    	
 					    	if (isset($iduser)) {
 					    	    
-					    	    for ($i = 1; $i <= $limitepaginas; $i++) {
+					    	?>
+					    	<?php 
+		
+                    		if ($inicio_registros>1) {
+                    		    
+                    		    echo "<a href='?numeropagina=" . ($inicio_registros-1) . "'>";
+                    		    
+                    		?>
+                    		    
+                    		    &laquo;
+                    		    
+                    		<?php	
+                    		
+                    		    echo "</a>";
+                    		
+                    		}
+                    
+                    		?>
+					    	<?php 
+					    	    
+					    	    for ($i = $numero_inicio; $i <= $numero_final; $i++) {
 					    	        
-					    	        echo "<a href='?user=". $iduser ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	        if($i==$inicio_registros){
+					    	            
+					    	            echo "<span><i class='fa-solid fa-music'></i><br>" . $i . "</span>";
+					    	        }else {
+					    	            
+					    	            echo "<a href='?user=". $iduser ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	            
+					    	        }
+					    	        
+					    	        
 					    	    }
+					    	    ?>
+					    	    <?php 
+		
+                        		if ($inicio_registros<$limitepaginas) {
+                        		    
+                        		    echo "<a href='?numeropagina=" . ($inicio_registros+1) . "'>";
+                        		    
+                        		?>
+                        		    
+                        		    &raquo;
+                        		    
+                        		<?php	
+                        		
+                        		    echo "</a>";
+                        		
+                        		}
+                        
+                        		?>
+					    	    <?php
+					    	    
 					    	}else {
-					    	 
-					    	    for ($i = 1; $i <= $limitepaginas; $i++) {
+					    	    ?>
+					    	    <?php 
+		
+                        		if ($inicio_registros>1) {
+                        		    
+                        		    echo "<a href='?numeropagina=" . ($inicio_registros-1) . "'>";
+                        		    
+                        		?>
+                        		    
+                        		    &laquo;
+                        		    
+                        		<?php	
+                        		
+                        		    echo "</a>";
+                        		
+                        		}
+                        
+                        		?>
+					    	    <?php
+					    	    for ($i = $numero_inicio; $i <= $numero_final; $i++) {
 					    	        
-					    	        echo "<a href='?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	        if($i==$inicio_registros){
+					    	            
+					    	            echo "<span><i class='fa-solid fa-music'></i><br>" . $i . "</span>";
+					    	        }else {
+					    	            
+					    	            echo "<a href='?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	            
+					    	        }
+					    	        
+					    	        
 					    	    }
+					    	    ?>
+					    	    <?php 
+		
+                        		if ($inicio_registros<$limitepaginas) {
+                        		    
+                        		    echo "<a href='?numeropagina=" . ($inicio_registros+1) . "'>";
+                        		    
+                        		?>
+                        		    
+                        		    &raquo;
+                        		    
+                        		<?php	
+                        		
+                        		    echo "</a>";
+                        		
+                        		}
+                        
+                        		?>
+					    	<?php 
 					    	}
 					    	
 					    	?>

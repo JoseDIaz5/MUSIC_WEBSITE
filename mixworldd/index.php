@@ -404,7 +404,14 @@
 		
 		  for ($i = $numero_inicio; $i <= $numero_final; $i++) {
 		      
-		      echo "<a href='?numeropagina=". $i ."'><i class='fa-solid fa-music'></i><br>". $i ."</a>";
+		      if($i==$inicio_registros){
+		          
+		          echo "<span><i class='fa-solid fa-music'></i><br>". $i ."</span>";
+		      }else {
+		          
+		          echo "<a href='?numeropagina=". $i ."'><i class='fa-solid fa-music'></i><br>". $i ."</a>";
+		          
+		      }
 		  }
 		
 		  if ($inicio_registros < $limitepaginas) {
@@ -674,7 +681,14 @@
 		
 		  for ($i = $numero_inicio; $i <= $numero_final; $i++) {
 		      
-		      echo "<a href='?numeropagina=". $i ."'><i class='fa-solid fa-music'></i><br>". $i ."</a>";
+		      if($i==$inicio_registros){
+		       
+		          echo "<span><i class='fa-solid fa-music'></i><br>". $i ."</span>";
+		      }else {
+		      
+		          echo "<a href='?numeropagina=". $i ."'><i class='fa-solid fa-music'></i><br>". $i ."</a>";
+		      
+		      }
 		  }
 		
 		?>

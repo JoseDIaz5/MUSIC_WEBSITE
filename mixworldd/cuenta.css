@@ -699,6 +699,26 @@ a{
 	
 	width:0;
 }
+.header_wrapper .cols_container .right_col #songs .contenedor_paginacion span{
+	
+	line-height:30px;
+	
+	font-size:25px;
+	
+	text-decoration:none;
+	
+	color:black;
+	
+	font-family:Arial, Helvetica, sans-serif;
+	
+	text-align:center;
+	
+	transition-property:color;
+	
+	transition-duration:.5s;
+	
+	margin-right:10px;
+}
 .header_wrapper .cols_container .right_col #songs .contenedor_paginacion a{
 	
 	line-height:30px;
