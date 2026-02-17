@@ -11,6 +11,32 @@ try {
     
     include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
     
+    $consultaarchivos="CALL GET_PROFILE_FILES_NAME(:idu)";
+    
+    $resultado=$conexion->prepare($consultaarchivos);
+    
+    $resultado->execute(array(":idu"=>$_SESSION["iduser"]));
+    
+    $fila=$resultado->fetch(PDO::FETCH_ASSOC);
+    
+    $userimage=$fila["IMAGEN_PERFIL"];
+    
+    $userimagetwo=$fila["IMAGEN_PORTADA"];
+    
+    $rutaarchivo=$_SERVER['DOCUMENT_ROOT'] . "/mixworld/mixworldd/intranet/perfiles/";
+    
+    $archivos=[$userimage,$userimagetwo];
+    
+    foreach ($archivos as $archivo){
+        
+        $ruta=$rutaarchivo.$archivo;
+        
+        if (!empty($archivo) && file_exists($ruta)) {
+            
+            unlink($ruta);
+        }
+    }
+    
     $consultaseguidores="CALL SEARCH_FOLLOWERS(:idfollower)";
     
     $resultado=$conexion->prepare($consultaseguidores);
