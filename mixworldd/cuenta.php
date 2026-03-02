@@ -6,18 +6,19 @@
 		<?php 
         
             session_start();
+            
+            $id_user=isset($_SESSION["iduser"]) ? $_SESSION["iduser"] : null;
         
+            $id_visitado=isset($_GET["user"]) ? $_GET["user"] : '';
+            
+            $id_sesion=isset($_SESSION["idusu"]) ? $_SESSION["idusu"] : null;
+            
+            $es_dueño=($id_sesion!=null && $id_sesion==$id_visitado);
+            
+            $es_otro_usuario=($id_sesion!=null && $id_sesion!=$id_visitado);
+            
+            $es_visitante_externo=($id_sesion==null);
         ?>
-        <?php
-    	
-    	   
-    	   if (!isset($_SESSION["idusu"])) {
-    	       
-    	       header("location:iniciosesion.php");
-    	       
-    	   }
-    	
-    	?>
 	
 		<meta charset="utf-8">
 
@@ -48,99 +49,55 @@
 		      
 		      include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
 		      
-		      $validaid=false;
-		      
-		      if (isset($_GET["user"])) {
-		          
-		          $iduser=$_GET["user"];
-		          
-		          if($iduser==$_SESSION["idusu"]){
-		              
-		              $validaid=true;
-		          }
-		      }
-		      
 		      $consultaperfil="CALL GET_USER_INFO(:id)";
 		      
 		      $consultaseguidores="CALL GET_FOLLOWERS(:iduserfollower,:iduserfollowed)";
 		      
-		      if (isset($iduser)) {
+		      
 		          
-		          $resultado=$conexion->prepare($consultaperfil);
-		          
-		          $resultado->execute(array(":id"=>$iduser));
-		          
-		          while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
-		              
-		              $idu=$fila["ID"];
-		              
-		              $idusuario=$fila["IDHASH"];
-		              
-		              $portada=$fila["IMAGEN_PORTADA"];
-		              
-		              $perfil=$fila["IMAGEN_PERFIL"];
-		              
-		              $usuario=$fila["USUARIO"];
-		              
-		              $cantidadcanciones=$fila["CANCIONES"];
-		              
-		              $seguidores=$fila["SEGUIDORES"];
-		              
-		              $siguiendo=$fila["SIGUIENDO"];
-		              
-		              $facebookuser=$fila["USUARIO_FACEBOOK"];
-		              
-		              $instagramuser=$fila["USUARIO_INSTAGRAM"];
-		              
-		              $xuser=$fila["USUARIO_X"];
-		          }
-		          
-		          $resultado->closeCursor();
-		          
-		          $resultadof=$conexion->prepare($consultaseguidores);
-		          
-		          $resultadof->execute(array(":iduserfollower"=>$_SESSION["iduser"],":iduserfollowed"=>$idu));
-		          
-		          $row=$resultadof->rowCount();
-		          
-		          if ($row<1) {
-		              $seguido=0;
-		          }else{
-		              $seguido=1;
-		          }
-		          $resultadof->closeCursor();
-		      }else {
-		          
-		          $resultado=$conexion->prepare($consultaperfil);
-		          
-		          $resultado->execute(array(":id"=>$_SESSION["idusu"]));
-		          
-		          while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
-		              
-		              $idu=$fila["ID"];
-		              
-		              $idusuario=$fila["IDHASH"];
-		              
-		              $usuario=$fila["USUARIO"];
-		              
-		              $perfil=$fila["IMAGEN_PERFIL"];
-		              
-		              $portada=$fila["IMAGEN_PORTADA"];
-		              
-		              $cantidadcanciones=$fila["CANCIONES"];
-		              
-		              $seguidores=$fila["SEGUIDORES"];
-		              
-		              $siguiendo=$fila["SIGUIENDO"];
-		              
-		              $facebookuser=$fila["USUARIO_FACEBOOK"];
-		              
-		              $instagramuser=$fila["USUARIO_INSTAGRAM"];
-		              
-		              $xuser=$fila["USUARIO_X"];
-		          }
-		          $resultado->closeCursor();
-		      }
+	          $resultado=$conexion->prepare($consultaperfil);
+	          
+	          $resultado->execute(array(":id"=>$id_visitado));
+	          
+	          while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
+	              
+	              $idu=$fila["ID"];
+	              
+	              $idusuario=$fila["IDHASH"];
+	              
+	              $portada=$fila["IMAGEN_PORTADA"];
+	              
+	              $perfil=$fila["IMAGEN_PERFIL"];
+	              
+	              $usuario=$fila["USUARIO"];
+	              
+	              $cantidadcanciones=$fila["CANCIONES"];
+	              
+	              $seguidores=$fila["SEGUIDORES"];
+	              
+	              $siguiendo=$fila["SIGUIENDO"];
+	              
+	              $facebookuser=$fila["USUARIO_FACEBOOK"];
+	              
+	              $instagramuser=$fila["USUARIO_INSTAGRAM"];
+	              
+	              $xuser=$fila["USUARIO_X"];
+	          }
+	          
+	          $resultado->closeCursor();
+	          
+	          $resultadof=$conexion->prepare($consultaseguidores);
+	          
+	          $resultadof->execute(array(":iduserfollower"=>$id_user,":iduserfollowed"=>$idu));
+	          
+	          $row=$resultadof->rowCount();
+	          
+	          if ($row<1) {
+	              $seguido=0;
+	          }else{
+	              $seguido=1;
+	          }
+	          $resultadof->closeCursor();
 		      
 		  } catch (Exception $e) {
 		  
@@ -181,47 +138,27 @@
 					
 						<?php 
 						
-						if (!isset($iduser) && isset($_SESSION["idusu"]) && $idusuario==$_SESSION["idusu"] && $perfil!=null) {   
+						if ($es_dueño && $perfil!=null) {   
 						
 						?>
 					
 						<img src="./intranet/perfiles/<?php echo $perfil; ?>">
 						
-						<a href="editarperfil.php?id=<?php echo $_SESSION["idusu"]; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
+						<a href="editarperfil.php?id=<?php echo $id_visitado; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
 						
-						<?php 
+						<?php  
 						
-						}elseif(isset($iduser) && $iduser==$_SESSION["idusu"] && $idusuario==$_SESSION["idusu"] && $perfil!=null){
-						
-						?>
-						
-						<img src="./intranet/perfiles/<?php echo $perfil; ?>">
-						
-						<a href="editarperfil.php?id=<?php echo $_SESSION["idusu"]; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
-						
-						<?php 
-						
-						  }elseif(!isset($iduser) && isset($_SESSION["idusu"]) && $idusuario==$_SESSION["idusu"] && $perfil==null){
+						  }elseif($es_dueño && $perfil==null){
 						
 						?>
 						
 						<img src="./intranet/songsimages/defaultuser.png"></img>
 						
-						<a href="editarperfil.php?id=<?php echo $_SESSION["idusu"]; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
+						<a href="editarperfil.php?id=<?php echo $id_visitado; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
 						
 						<?php 
 						
-						  }elseif(isset($iduser) && $iduser==$_SESSION["idusu"] && $idusuario==$_SESSION["idusu"] && $perfil==null){
-						
-						?>
-						
-						<img src="./intranet/songsimages/defaultuser.png"></img>
-						
-						<a href="editarperfil.php?id=<?php echo $iduser; ?>"><span><i class="fa-solid fa-pen editicon"></i></span></a>
-						
-						<?php 
-						
-						  }elseif(isset($iduser) && $iduser!=$_SESSION["idusu"] && $idusuario!=$_SESSION["idusu"] && $perfil!=null){
+						  }elseif($es_otro_usuario && $perfil!=null){
 						
 						?>
 						
@@ -229,7 +166,23 @@
 						
 						<?php 
 						
-						 }elseif(isset($iduser) && $iduser!=$_SESSION["idusu"] && $idusuario!=$_SESSION["idusu"] && $perfil==null){
+						 }elseif($es_otro_usuario && $perfil==null){
+						
+						?>
+						
+						<img src="./intranet/songsimages/defaultuser.png"></img>
+						
+						<?php 
+						
+						 }elseif ($es_visitante_externo && $perfil!=null){
+						
+						?>
+						
+						<img src="./intranet/perfiles/<?php echo $perfil; ?>">
+						
+						<?php 
+						
+						 }elseif ($es_visitante_externo && $perfil==null){
 						
 						?>
 						
@@ -329,7 +282,7 @@
 					
 					<?php 
 					
-					if (!isset($iduser)) {
+					if ($es_dueño) {
 					
 					?>
 					
@@ -343,41 +296,17 @@
 					
 						<span>
 						
-							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
+							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $id_visitado; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
 							
-							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
+							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $id_visitado; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
 							
-							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
+							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $id_visitado; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
 						
 						</span>
 					
 					</div>
 					
-					<?php 
 					
-					}elseif (isset($iduser) && $iduser==$_SESSION["idusu"]){
-					
-					?>
-					
-					<div id="divshare">
-					
-						<span class="shareicon"><i class="fa-regular fa-share-from-square"></i></span>
-					
-					</div>
-					
-					<div id="shareicons">
-					
-						<span>
-						
-							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
-							
-							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
-							
-							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
-						
-						</span>
-					
-					</div>
 					
 					<?php 
 					
@@ -395,11 +324,11 @@
 					
 						<span>
 						
-							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
+							<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $id_visitado; ?>" target="\_blank\"><i class="fa-brands fa-square-facebook"></i></a>
 							
-							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
+							<a href="https://api.whatsapp.com/send?text=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $id_visitado; ?>" target="_blank"><i class="fa-brands fa-square-whatsapp"></i></a>
 							
-							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $idusuario; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
+							<a href="https://twitter.com/intent/tweet?url=http://localhost/mixworld/mixworldd/cuenta.php?user=<?php echo $id_visitado; ?>" target="\_blank\"><i class="fa-brands fa-square-x-twitter"></i></a>
 						
 						</span>
 					
@@ -417,7 +346,7 @@
 							
 							<?php 
 							
-							 if (!isset($iduser)) {
+							 if ($es_dueño) {
 							
 							?>
 						
@@ -425,15 +354,7 @@
 							
 							<li id="delete">Eliminar cuenta</li>
 							
-							<?php 
 							
-							 }elseif (isset($iduser) && $iduser==$_SESSION["idusu"]){
-							
-							?>
-							
-							<li id="comp">Subir canciones</li>
-							
-							<li id="delete">Eliminar cuenta</li>
 							
 							<?php 
 							
@@ -447,7 +368,7 @@
 						
 						<?php 
 						
-						if (isset($iduser) && !$validaid) {
+						if ($es_otro_usuario) {
 						    
 						    if ($seguido==0) {
 						
@@ -467,7 +388,7 @@
 						        
 						    }
 						
-						}else {
+						}elseif($es_dueño) {
 						
 						?>
 						
@@ -504,13 +425,13 @@
 					    
 					    $resultado=$conexion->prepare($consulta_cantidad);
 					    
-					    if (isset($iduser)) {
+					    if ($es_otro_usuario || $es_visitante_externo) {
 					        
 					        $resultado->execute(array(":iduser"=>$idu));
 					    }
 					    else {
 					        
-					        $resultado->execute(array(":iduser"=>$_SESSION["iduser"]));
+					        $resultado->execute(array(":iduser"=>$id_user));
 					    }
 					    
 					    $totalresultados=$resultado->rowCount();
@@ -543,13 +464,13 @@
 					    
 					    $resultado=$conexion->prepare($consultasongs);
 					    
-					    if (isset($iduser)) {
+					    if ($es_otro_usuario || $es_visitante_externo) {
 					        
-					        $resultado->execute(array(":iduser"=>$_SESSION["iduser"],":idusertwo"=>$idu,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
+					        $resultado->execute(array(":iduser"=>$id_user,":idusertwo"=>$idu,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
 					    }
 					    else {
 					        
-					        $resultado->execute(array(":iduser"=>$_SESSION["iduser"],":idusertwo"=>$_SESSION["iduser"],":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
+					        $resultado->execute(array(":iduser"=>$id_user,":idusertwo"=>$idu,":iniciopaginacion"=>$inicio_paginacion,":registrospagina"=>$registrospagina));
 					    }
 					    
 					    $rows=$resultado->rowCount();
@@ -641,7 +562,7 @@
         					        			
     					        			<?php 
     					        			
-    					        			if ($validaid || !isset($iduser)) {
+    					        			if ($es_dueño) {
     					        			
     					        			?>
     					        			
@@ -692,7 +613,7 @@
     				        			</div>
     				        			<?php 
     				        				
-			        				    if(isset($iduser) && !$validaid){
+			        				    if($es_visitante_externo || $es_otro_usuario){
 				        				    
 				        				
 				        				?>
@@ -714,7 +635,7 @@
     				        			
     				        			<?php 
     				        			
-    				        			if ($cantidadlikescancion<1) {
+    				        			if ($cantidadlikescancion<1 && ($es_dueño || $es_otro_usuario)) {
     				        			  
     				        			?>
     				        			
@@ -722,7 +643,7 @@
     				        			
     				        			<?php 
     				        			
-    				        			}else {
+    				        			}elseif($cantidadlikescancion>0 && ($es_dueño || $es_otro_usuario)) {
     				        			
     				        			?>
     				        			
@@ -731,7 +652,7 @@
     				        			<?php 
     				        			
     				        			}
-    				        			if ($cantidaddislikescancion<1) {
+    				        			if ($cantidaddislikescancion<1 && ($es_dueño || $es_otro_usuario)) {
     				        			    
     				        			?>
     				        			
@@ -739,7 +660,7 @@
     				        			
     				        			<?php
     				        			
-    				        			}else {
+    				        			}elseif($cantidaddislikescancion>0 && ($es_dueño || $es_otro_usuario)) {
     				        			
     				        			?>
     				        			
@@ -747,6 +668,15 @@
     				        			
     				        			<?php 
     				        			
+    				        			}
+    				        			if($es_visitante_externo){
+    				        			?>
+    				        			
+    				        			<span class="spanlike"><i class="fa-regular fa-face-smile-wink"></i><?php echo $filas["LIKES"]; ?></span>
+    				        			
+    				        			<span class="spandislike"><i class="fa-regular fa-face-sad-tear"></i><?php echo $filas["DISLIKES"]; ?></span>
+    				        			
+    				        			<?php
     				        			}
     				        			
     				        			?>
@@ -772,11 +702,7 @@
 					    
 					    <div class="contenedor_paginacion">
 					    
-					    	<?php 
 					    	
-					    	if (isset($iduser)) {
-					    	    
-					    	?>
 					    	<?php 
 		
                     		if ($inicio_registros>1) {
@@ -803,7 +729,7 @@
 					    	            echo "<span><i class='fa-solid fa-music'></i><br>" . $i . "</span>";
 					    	        }else {
 					    	            
-					    	            echo "<a href='?user=". $iduser ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	            echo "<a href='?user=". $id_visitado ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
 					    	            
 					    	        }
 					    	        
@@ -827,63 +753,8 @@
                         		}
                         
                         		?>
-					    	    <?php
 					    	    
-					    	}else {
-					    	    ?>
-					    	    <?php 
-		
-                        		if ($inicio_registros>1) {
-                        		    
-                        		    echo "<a href='?numeropagina=" . ($inicio_registros-1) . "'>";
-                        		    
-                        		?>
-                        		    
-                        		    &laquo;
-                        		    
-                        		<?php	
-                        		
-                        		    echo "</a>";
-                        		
-                        		}
-                        
-                        		?>
-					    	    <?php
-					    	    for ($i = $numero_inicio; $i <= $numero_final; $i++) {
-					    	        
-					    	        if($i==$inicio_registros){
-					    	            
-					    	            echo "<span><i class='fa-solid fa-music'></i><br>" . $i . "</span>";
-					    	        }else {
-					    	            
-					    	            echo "<a href='?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
-					    	            
-					    	        }
-					    	        
-					    	        
-					    	    }
-					    	    ?>
-					    	    <?php 
-		
-                        		if ($inicio_registros<$limitepaginas) {
-                        		    
-                        		    echo "<a href='?numeropagina=" . ($inicio_registros+1) . "'>";
-                        		    
-                        		?>
-                        		    
-                        		    &raquo;
-                        		    
-                        		<?php	
-                        		
-                        		    echo "</a>";
-                        		
-                        		}
-                        
-                        		?>
-					    	<?php 
-					    	}
 					    	
-					    	?>
 					    
 					    </div>
 					    
@@ -897,7 +768,6 @@
 					}
 					
 					?>
-				
 									
 		        		<div class="playercontainers">
 		        		

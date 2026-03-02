@@ -57,6 +57,12 @@
 						
 						</div>
 						
+						<div>
+               			
+               				<span class="correomessage" id="cmessage"></span>
+               			
+               			</div>
+						
 						<br>
 						
 						<div class="inputWithIcon" id="divcontrasena">

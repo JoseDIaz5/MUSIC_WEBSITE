@@ -30,10 +30,29 @@ $(document).ready(function(){
 		
 		$("#sesion").click();
 	}
-	$("#correo").keyup(function(){
+	$("#correo").on("input", function() {
+	    
+	    const limpio = $(this).val().replace(/[ "'\\()]/g, "");
+	    $(this).val(limpio);
+	});
+	$("#correo").on("blur",function(){
 		
-		const valor=$(this).val();
-		
-		$(this).val(valor.replace(/[\\'" ]/g,""));
+		const email = $(this).val().trim();
+	    const regexOrden = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	
+	    if (email === "") {
+	        $("#cmessage").hide();
+	        return;
+	    }
+	    
+	    if (!regexOrden.test(email)) {
+	        
+	        $("#cmessage").text("Formato inválido (ej: usuario@dominio.com)").show();
+	        
+	    } else {
+	        
+	        $("#cmessage").hide();
+	        
+	    }
 	});
 });
