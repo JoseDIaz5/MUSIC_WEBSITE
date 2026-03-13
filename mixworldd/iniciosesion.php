@@ -23,7 +23,7 @@
 	
 		<section>
 		
-			<form action="validasesion.php" enctype="multipart/form-data" method="post">
+			<form id="login-form">
 			
 				<div id="formulario">
 				
@@ -82,6 +82,10 @@
 						<input type="submit" id="sesion" value="Iniciar sesión" name="envia" hidden="hidden">
 						
 						<div id="botonsesion">Iniciar sesión</div>
+						
+						<br>
+						
+						<div id="mensaje-servidor" style="color: red; display: none; margin-top: 10px;"></div>
 						
 						<br>
 						

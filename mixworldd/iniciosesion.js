@@ -28,7 +28,25 @@ $(document).ready(function(){
 	});
 	function iniciasesion(){
 		
-		$("#sesion").click();
+		var correo=$("#correo").val();
+		
+		var contrasena=$("#contrasena").val();
+		
+		$.ajax({
+			
+			url:'validasesion.php',type:'POST',data:{correo:correo,contrasena:contrasena},dataType:'json',
+			
+			success:function(data){
+				
+				if(data.exito){
+					
+					window.location.href=data.redireccion;
+				}else{
+					
+					$("#mensaje-servidor").text(data.mensaje).fadeIn();
+				}
+			}
+		});
 	}
 	$("#correo").on("input", function() {
 	    
@@ -44,7 +62,6 @@ $(document).ready(function(){
 	        $("#cmessage").hide();
 	        return;
 	    }
-	    
 	    if (!regexOrden.test(email)) {
 	        
 	        $("#cmessage").text("Formato inválido (ej: usuario@dominio.com)").show();

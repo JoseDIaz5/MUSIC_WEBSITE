@@ -52,8 +52,6 @@
 		      $consultaperfil="CALL GET_USER_INFO(:id)";
 		      
 		      $consultaseguidores="CALL GET_FOLLOWERS(:iduserfollower,:iduserfollowed)";
-		      
-		      
 		          
 	          $resultado=$conexion->prepare($consultaperfil);
 	          
