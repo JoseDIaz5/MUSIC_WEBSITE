@@ -77,6 +77,8 @@
             
             $id=$_POST["id"];
             
+            $idh=$_POST["idh"];
+            
             $consulta="CALL UPDATE_USER(:id,:user,:perfil,:portada,:face,:insta,:xuser)";
             
             if (isset($perfiltipo) && isset($portadatipo)) {
@@ -97,7 +99,7 @@
                         
                         if ($cantidad!=0) {
                             
-                            header("location:cuenta.php");
+                            header("location:cuenta.php?user=$idh");
                         }else {
                             
                             echo "<body>";
@@ -106,7 +108,7 @@
                             
                             echo "Error al actualizar la información, intentelo de nuevo";
                             
-                            echo "<a href='editarperfil.php?id=$id'>Volver</a>";
+                            echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
                             
                             echo "</div>";
                             
@@ -114,11 +116,11 @@
                         }
                     }else {
                         
-                        header("location:editarperfil.php?id=$id");
+                        header("location:editarperfil.php?id=$idh");
                     }
                 }else {
                     
-                    header("location:editarperfil.php?id=$id");
+                    header("location:editarperfil.php?id=$idh");
                 }
             }
             elseif (!isset($perfiltipo) && isset($portadatipo)){
@@ -135,7 +137,7 @@
                     
                     if ($cantidad!=0) {
                         
-                        header("location:cuenta.php");
+                        header("location:cuenta.php?user=$idh");
                     }else {
                         
                         echo "<body>";
@@ -144,7 +146,7 @@
                         
                         echo "Error al actualizar la información, intentelo de nuevo";
                         
-                        echo "<a href='editarperfil.php?id=$id'>Volver</a>";
+                        echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
                         
                         echo "</div>";
                         
@@ -152,7 +154,7 @@
                     }
                 }else {
                     
-                    header("location:editarperfil.php?id=$id");
+                    header("location:editarperfil.php?id=$idh");
                 }
             }
             elseif (isset($perfiltipo) && !isset($portadatipo)){
@@ -169,7 +171,7 @@
                     
                     if ($cantidad!=0) {
                         
-                        header("location:cuenta.php");
+                        header("location:cuenta.php?user=$idh");
                     }else {
                         
                         echo "<body>";
@@ -178,7 +180,7 @@
                         
                         echo "Error al actualizar la información, intentelo de nuevo";
                         
-                        echo "<a href='editarperfil.php?id=$id'>Volver</a>";
+                        echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
                         
                         echo "</div>";
                         
@@ -195,7 +197,7 @@
                 
                 if ($cantidad!=0) {
                     
-                    header("location:cuenta.php");
+                    header("location:cuenta.php?user=$idh");
                 }else {
                     
                     echo "<body>";
@@ -204,7 +206,7 @@
                     
                     echo "Error al actualizar la información, intentelo de nuevo";
                     
-                    echo "<a href='editarperfil.php?id=$id'>Volver</a>";
+                    echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
                     
                     echo "</div>";
                     

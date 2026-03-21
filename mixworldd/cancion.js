@@ -20,59 +20,59 @@ $(document).ready(function(){
 	}
 	var currentAudio=null;
 	
+	var currentId = null;
+	
 	$(".play").on("click",function(){
 
 		var id=this.id;
 		
 		var audio=document.getElementById("audios"+id);
 		
-		if(currentAudio && currentAudio!=audio){
-
-			currentAudio.pause();
-
-			$(".inicio"+id).css("display","block");
-		
-			$(".detener"+id).css("display","none");
-		}
-		if($(".pause").css("display","block")){
-					
-			$(".pause").css("display","none");
+		if (currentAudio && currentAudio !== audio) {
+	        
+	        currentAudio.pause();
+	        
+	        clearInterval(myinterval);
+	        
+	        
+	        $(".inicio" + currentId).show();
+	        
+	        $(".detener" + currentId).hide();
+	        
+	    }
+	    
+	    audio.play();
+	    
+	    currentAudio = audio;
+	    
+	    currentId = id;
+	
+	    $(".inicio" + id).hide();
+	    
+	    $(".detener" + id).show();
+    	
+    	myinterval = setInterval(function() {
 			
-			$(".play").css("display","block");
-		}
-		
-		currentAudio=audio;
-
-		audio.play();
-
-		$(".inicio"+id).css("display","none");
-		
-		$(".detener"+id).css("display","block");
-
-		myinterval=setInterval(function(){
-			
-			total=parseInt(audio.currentTime*maximo/audio.duration);
-			
-			var tamanoavance=$(".progreso"+id).width();
-			
-			var tamanoavancedos=$(".bar").width();
-			
-			if(tamanoavance<=tamanoavancedos){
-				
-				$(".progreso"+id).css("width",total+"px");
-			}
-			
-			if(audio.ended){
-			
-				clearInterval(myinterval);
-				
-				$(".pause").css("display","none");
-					
-				$(".play").css("display","block");
-				
-				$(".progreso"+id).width(0);
-			}
-		});
+	        if (!audio.paused) {
+	        
+	            let barraContenedora = $(".barra" + id).width();
+	        
+	            let avance = (audio.currentTime / audio.duration) * barraContenedora;
+	        
+	            $(".progreso" + id).css("width", avance + "px");
+	        }
+	
+	        if (audio.ended) {
+	        
+	            clearInterval(myinterval);
+	        
+	            $(".inicio" + id).show();
+	        
+	            $(".detener" + id).hide();
+	        
+	            $(".progreso" + id).css("width", "0px");
+	        }
+	    }, 500);
 	});
 	$(".pause").on("click",function(){
 

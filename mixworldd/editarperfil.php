@@ -51,6 +51,8 @@
 		            
 		            $uid=$fila["ID"];
 		            
+		            $uidhash=$fila["IDHASH"];
+		            
 		            $user=$fila["USUARIO"];
 		            
 		            if ($fila["IMAGEN_PERFIL"]=='') {
@@ -102,6 +104,8 @@
 			<form action="edicionperfil.php" enctype="multipart/form-data" method='post'>
 			
 				<input type="text" value="<?php echo $uid; ?>" name="id" hidden="hidden">
+				
+				<input type="text" value="<?php echo $uidhash; ?>" name="idh" hidden="hidden">
 				
 				<input type="text" value="<?php echo $perfil; ?>" name="profileimg" hidden="hidden">
 				

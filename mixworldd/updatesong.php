@@ -44,6 +44,8 @@
     		          
     		          $idsong=$fila["ID"];
     		          
+    		          $idsongg=$fila["IDHASH"];
+    		          
     		          $titulo=$fila["TITULO"];
     		          
     		          $imagen=$fila["IMAGEN_CANCION"];
@@ -63,6 +65,8 @@
     			<form action="updatingsong.php" enctype="multipart/form-data" method="post">
     			
     				<input type=text value="<?php echo $idsong; ?>" name="id" hidden="hidden">
+    				
+    				<input type=text value="<?php echo $idsongg; ?>" name="idsongh" hidden="hidden">
     				
     				<input type=text value="<?php echo $imagen; ?>" name="imagesong" hidden="hidden">
     			

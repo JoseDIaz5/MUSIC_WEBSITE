@@ -9,7 +9,7 @@
         
         header("location:index.php");
     }
-    
+    $id=$_SESSION["idusu"];
 ?>
 
 <head>
@@ -37,7 +37,7 @@
         
         <br>
 	
-		<a href="cuenta.php">Volver a la cuenta</a>
+		<a href="cuenta.php?user=<?php echo $id; ?>">Volver a la cuenta</a>
 	
 	</div>
 

@@ -27,11 +27,15 @@
                 move_uploaded_file($_FILES['imagencancion']['tmp_name'], $carpetaimg.$imagen);
             }
             
+            $iduser=$_SESSION["idusu"];
+            
             $titulo=$_POST["titulo"];
             
             $descripcion=$_POST["comenta"];
             
             $id=$_POST["id"];
+            
+            $ids=$_POST["idsongh"];
             
             $consulta="CALL UPDATE_SONG(:songimage,:title,:description,:idsong)";
             
@@ -47,7 +51,7 @@
                     
                     if ($cantidad!=0) {
                         
-                        header("location:cuenta.php");
+                        header("location:cuenta.php?user=$iduser");
                     }else {
                         
                         echo "<body>";
@@ -65,7 +69,7 @@
                 }
                 else {
                     
-                    header("location:updatesong.php?idsong=$id");
+                    header("location:updatesong.php?song=$ids");
                 }
             }
             else {
@@ -78,7 +82,7 @@
                 
                 if ($cantidad!=0) {
                     
-                    header("location:cuenta.php");
+                    header("location:cuenta.php?user=$iduser");
                 }else {
                     
                     echo "<body>";
@@ -89,7 +93,7 @@
                     
                     echo "<br>";
                     
-                    echo "<a href='updatesong.php?idsong=$id'>Volver</a>";
+                    echo "<a href='updatesong.php?song=$ids'>Volver</a>";
                     
                     echo "</div>";
                     

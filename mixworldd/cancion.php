@@ -71,6 +71,8 @@
         while ($fila=$resultado->fetch(PDO::FETCH_ASSOC)) {
             
             $profileimage=$fila["IMAGEN_PERFIL"];
+            
+            $idh=$fila["IDHASH"];
         }
         
         ?>
@@ -124,7 +126,7 @@
 				
 					<label for="check">
 					
-						<a href="cuenta.php">
+						<a href="cuenta.php?user=<?php echo $idh; ?>">
 				
     						<span class="imagediv">
     						

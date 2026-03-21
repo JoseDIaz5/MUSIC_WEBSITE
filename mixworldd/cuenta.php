@@ -19,31 +19,11 @@
             
             $es_visitante_externo=($id_sesion==null);
         ?>
-	
-		<meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-        <title>MIXWORLD | Cuenta</title>
-
-        <link rel="stylesheet" href="cuenta.css?v=<?php echo time(); ?>">
-
-        <script src="https://kit.fontawesome.com/f221aee085.js"></script>
-        
-        <script src="jquery-3.7.1.min.js"></script>
-        
-        <script src="cuenta.js?v=<?php echo time(); ?>"></script>
-        
-        <script src="manejareproduccionescuenta.js?v=<?php echo time(); ?>"></script>
-        
-        <script src="manejalikescanciones.js?v=<?php echo time(); ?>"></script>
-        
-        <script src="manejadislikescanciones.js?v=<?php echo time(); ?>"></script>
-	
-	</head>
-	<body>
-	
 		<?php 
+		
+		$url_actual = "https://mixworld.com/cuenta.php?user=" . $id_visitado;
+		
+		$descripcion="Visita mi perfil en MIXWORLD";
 						
 		  try {
 		      
@@ -81,6 +61,7 @@
 	              
 	              $xuser=$fila["USUARIO_X"];
 	          }
+	          //https://mixworld.com/img/default-avatar.png
 	          
 	          $resultado->closeCursor();
 	          
@@ -103,6 +84,50 @@
 		  }
 		
 		?>
+		<meta charset="utf-8">
+		
+		<meta property="og:type" content="profile">
+		
+		<meta property="og:url" content="<?php echo $url_actual; ?>">
+		
+        <meta property="og:title" content="<?php echo $usuario; ?>">
+        
+        <meta property="og:description" content="<?php echo $descripcion; ?>">
+        
+        <meta property="og:image" content="<?php echo "https://mixworld.com/intranet/songs/".$perfil; ?>">
+        
+        <meta property="twitter:card" content="summary_large_image">
+    
+        <meta property="twitter:url" content="<?php echo $url_actual; ?>">
+        
+        <meta property="twitter:title" content="<?php echo $usuario; ?>">
+        
+        <meta property="twitter:description" content="<?php echo $descripcion; ?>">
+        
+        <meta property="twitter:image" content="<?php echo "https://mixworld.com/intranet/songs/".$perfil; ?>">
+
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+        <title>MIXWORLD | Cuenta</title>
+
+        <link rel="stylesheet" href="cuenta.css?v=<?php echo time(); ?>">
+
+        <script src="https://kit.fontawesome.com/f221aee085.js"></script>
+        
+        <script src="jquery-3.7.1.min.js"></script>
+        
+        <script src="cuenta.js?v=<?php echo time(); ?>"></script>
+        
+        <script src="reproducciones.js?v=<?php echo time(); ?>"></script>
+        
+        <script src="manejalikescanciones.js?v=<?php echo time(); ?>"></script>
+        
+        <script src="manejadislikescanciones.js?v=<?php echo time(); ?>"></script>
+	
+	</head>
+	<body>
+	
+		
 	
 		<div class="header_wrapper">
 		
@@ -859,6 +884,14 @@
 								</div>
 								
 								<input type="submit" id="botonregistrados" value="Subir" name="subecancion" hidden="hidden">
+								
+								<div id="progress-container" style="display:none; margin-top: 20px;">
+								
+                                    <progress id="progressBar" value="0" max="100" style="width:100%; height:20px;"></progress>
+                                    
+                                    <p id="statusText">0%</p>
+                                    
+                                </div>
 								
 								<div id="botonregistra">Subir</div>
 							

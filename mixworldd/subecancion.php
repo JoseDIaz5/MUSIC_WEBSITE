@@ -11,6 +11,8 @@
         
         include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
         
+        $iduser=$_SESSION["idusu"];
+        
         $title=$_POST["titulo"];
         
         $desc=$_POST["area"];
@@ -32,8 +34,6 @@
         $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
         
         move_uploaded_file($_FILES['song']['tmp_name'], $carpeta.$nombrec);
-        
-        $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
         
         move_uploaded_file($_FILES['imagesong']['tmp_name'], $carpeta.$imagencan);
         
@@ -71,16 +71,16 @@
                     header("location:confirmacioncancion.php");
                 }else{
                     
-                    header("location:cuenta.php");
+                    header("location:cuenta.php?user=$iduser");
                 }
                 
             }else{
                 
-                header("location:cuenta.php");
+                header("location:cuenta.php?user=$iduser");
             }
         }else{
             
-            header("location:cuenta.php");
+            header("location:cuenta.php?user=$iduser");
         }
         
     }catch(Exception $e){

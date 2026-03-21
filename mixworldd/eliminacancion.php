@@ -10,6 +10,8 @@ if (isset($_SESSION["idusu"])) {
         
         $id=$_GET["id"];
         
+        $iduser=$_SESSION["idusu"];
+        
         $consultaarchivocancion="CALL GET_SONG_FILES_NAME(:idsong)";
         
         $resultado=$conexion->prepare($consultaarchivocancion);
@@ -52,7 +54,7 @@ if (isset($_SESSION["idusu"])) {
         
         if ($cantidad!=0) {
             
-            header("location:cuenta.php");
+            header("location:cuenta.php?user=".$iduser);
         }
         
     } catch (Exception $e) {

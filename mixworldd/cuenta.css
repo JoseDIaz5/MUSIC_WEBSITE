@@ -1368,3 +1368,38 @@ a{
 	
 	border-bottom:1px solid white;
 }
+
+progress {
+    appearance: none; 
+    -webkit-appearance: none;
+    border: none;
+    height: 20px;
+    width: 100%;
+    background-color: #eee; 
+    border-radius: 10px;
+    overflow: hidden;
+}
+progress::-webkit-progress-value {
+    background-color: red; 
+    transition: width 0.3s ease; 
+}
+progress::-webkit-progress-bar {
+    background-color: #eee;
+}
+progress::-moz-progress-bar {
+    background-color: red; 
+}
+#progress-container {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#statusText {
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    text-align: center;
+}

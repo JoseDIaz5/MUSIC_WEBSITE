@@ -853,6 +853,10 @@ section .songcontainer .titleplayercontainer .playercontainer .bar .progress{
 	background-color:#d40000;
 	
 	border-radius:5px;
+	
+	/*
+	
+	*/
 }
 section .songcontainer .titleplayercontainer .playercontainer .downloadcontainer{
 	
