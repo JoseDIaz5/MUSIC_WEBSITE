@@ -82,9 +82,11 @@ $(document).ready(function(){
 
 		audio.pause();
 
-		$(".inicio"+id).css("display","block");
+		$(".inicio"+id).show();
 		
-		$(".detener"+id).css("display","none");
+		$(".detener"+id).hide();
+		
+		clearInterval(myinterval);
 	});
 	$(".bar").on("click",function(event){
 
@@ -92,17 +94,20 @@ $(document).ready(function(){
 
 		var audio=document.getElementById("audios"+id);
 
-		if((audio.paused==false) && (audio.ended==false)){
+		if(audio && !audio.ended){
 
-			var ratonx=event.pageX-this.offsetLeft;
+			var rect = this.getBoundingClientRect();
 			
-			var nuevotiempo=ratonx*audio.duration/maximo;
+			var ratonx = event.clientX - rect.left;
 			
-			audio.currentTime=nuevotiempo;
+			var anchoTotal = $(this).width();
+			
+			var nuevotiempo = (ratonx * audio.duration) / anchoTotal;
+			
+			audio.currentTime = nuevotiempo;
 			
 			$(".progreso"+id).css("width",ratonx+"px");
 		}
-		
 	});
 	$("#textarea").keyup(function(){
 		

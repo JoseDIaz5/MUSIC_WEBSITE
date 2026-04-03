@@ -730,7 +730,7 @@
 		
                     		if ($inicio_registros>1) {
                     		    
-                    		    echo "<a href='?numeropagina=" . ($inicio_registros-1) . "'>";
+                    		    echo "<a href='?user=". $id_visitado ."&numeropagina=" . ($inicio_registros-1) . "'>";
                     		    
                     		?>
                     		    
@@ -752,7 +752,7 @@
 					    	            echo "<span><i class='fa-solid fa-music'></i><br>" . $i . "</span>";
 					    	        }else {
 					    	            
-					    	            echo "<a href='?user=". $id_visitado ."?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+					    	            echo "<a href='?user=". $id_visitado ."&numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
 					    	            
 					    	        }
 					    	        
@@ -763,7 +763,7 @@
 		
                         		if ($inicio_registros<$limitepaginas) {
                         		    
-                        		    echo "<a href='?numeropagina=" . ($inicio_registros+1) . "'>";
+                        		    echo "<a href='?user=". $id_visitado ."&numeropagina=" . ($inicio_registros+1) . "'>";
                         		    
                         		?>
                         		    
@@ -776,8 +776,6 @@
                         		}
                         
                         		?>
-					    	    
-					    	
 					    
 					    </div>
 					    

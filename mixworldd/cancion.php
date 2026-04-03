@@ -7,6 +7,7 @@
         
             session_start();
         
+            $id_visitado=isset($_GET["song"]) ? $_GET["song"] : '';
         ?>
         
         <meta charset="utf-8">
@@ -535,7 +536,6 @@
     		        	</div>
 		        	
 		        	</div>
-		        
     		        
 		        
 		        <?php
@@ -557,7 +557,7 @@
 		    
 		    try {
 		        
-		        $registros_pagina=14;
+		        $registros_pagina=1;
 		        
 		        if (isset($_GET["numeropagina"])) {
 		            
@@ -656,6 +656,10 @@
 			         			<img src="./intranet/perfiles/<?php echo $fila["IMAGEN_PERFIL"]; ?>">
 			         			
 			         			<span><a href="cuenta.php?user=<?php echo $fila["IDH"]; ?>"><?php echo htmlspecialchars($fila["USUARIO"]); ?></a></span>
+			         			
+			         			<span>|</span>
+			         			
+			         			<span><?php echo $fila["FECHA_HORA_DE_SUBIDA"]; ?></span>
 			         		
 			         		</div>
 			         		<div class="playercontainer">
@@ -746,7 +750,7 @@
 		        
 		        if ($inicio_registros>1) {
 	            
-		           echo "<a href='?numeropagina=" . ($inicio_registros-1) . "'>";
+		           echo "<a href='?song=". $id_visitado ."&numeropagina=" . ($inicio_registros-1) . "'>";
 		            
 	            ?>
 	            
@@ -763,7 +767,15 @@
 		        
 		        for ($i = $numero_inicio; $i <= $numero_final; $i++) {
 		            
-		            echo "<a href='?numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+		            if($i==$inicio_registros){
+		             
+		                echo "<span><i class='fa-solid fa-music'></i><br>" . $i . "</span>";
+		            }else {
+		            
+		                echo "<a href='?song=". $id_visitado ."&numeropagina=" . $i . "'><i class='fa-solid fa-music'></i><br>" . $i . "</a>";
+		            }
+		            
+		            
 		        }
 		        
 		        ?>
@@ -772,7 +784,7 @@
 		        
 		        if ($inicio_registros<$limitepaginas) {
 		            
-		            echo "<a href='?numeropagina=" . ($inicio_registros+1) . "'>";
+		            echo "<a href='?song=". $id_visitado ."&numeropagina=" . ($inicio_registros+1) . "'>";
 		            
 	            ?>
 	            

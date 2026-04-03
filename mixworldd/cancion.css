@@ -771,6 +771,8 @@ section .songcontainer .titleplayercontainer .usercontainer img{
 section .songcontainer .titleplayercontainer .usercontainer span{
 	
 	margin-left:6px;
+	
+	color:#A9A9A9;
 }
 section .songcontainer .titleplayercontainer .usercontainer span a{
 	
@@ -1590,7 +1592,7 @@ section .commentscontainer .formcomments .mainform #botoncomenta:focus::before{
 	
 	width:0;
 }
-.contenedor_paginacion a{
+.contenedor_paginacion a, .contenedor_paginacion span{
 	
 	min-width:25px;
 	
