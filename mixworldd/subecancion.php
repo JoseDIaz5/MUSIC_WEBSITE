@@ -11,6 +11,8 @@
         
         include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
         
+        $formatos=['audio/mpeg','audio/wav','audio/flac','audio/mp4','audio/x-m4a','audio/m4a'];
+        
         $iduser=$_SESSION["idusu"];
         
         $title=$_POST["titulo"];
@@ -25,6 +27,17 @@
         
         $tipocancion=$_FILES['song']['type'];
         
+        $real_mime= mime_content_type($_FILES["song"]["tmp_name"]);
+        
+        if (!in_array($real_mime, $formatos)) {
+            
+            http_response_code(400);
+            
+            echo "FORMATO NO SOPORTADO";
+            
+            exit;
+        }
+        
         $tipoimg=$_FILES['imagesong']['type'];
         
         $token=bin2hex(random_bytes(16));
@@ -33,19 +46,20 @@
         
         $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
         
-        move_uploaded_file($_FILES['song']['tmp_name'], $carpeta.$nombrec);
-        
-        move_uploaded_file($_FILES['imagesong']['tmp_name'], $carpeta.$imagencan);
-        
         $consulta="CALL INSERT_SONG(:id_usu,:h,:title,:cancion,:desc,:imgcan,:permission)";
         
         $consultados="CALL SEARCH_ID_PROFILE(:idusuario)";
         
         $consultatres="CALL UPDATE_SONGS_COUNT_ADDITION(:iduser)";
         
-        if($tipocancion=="audio/mpeg" || $tipocancion=="audio/flac"  || $tipocancion=="audio/wav"  || $tipocancion=="audio/x-m4a"){
+        if($tipocancion=="audio/mpeg" || $tipocancion=="audio/flac"  || $tipocancion=="audio/wav"  || $tipocancion=="audio/mp4"
+            || $tipocancion=="audio/x-m4a" || $tipocancion=="audio/m4a" || $tipocancion=="video/mp4"){
             
             if($tipoimg=="image/jpg" || $tipoimg=="image/jpeg" || $tipoimg=="image/png" || $tipoimg==""){
+                
+                move_uploaded_file($_FILES['song']['tmp_name'], $carpeta.$nombrec);
+                
+                move_uploaded_file($_FILES['imagesong']['tmp_name'], $carpeta.$imagencan);
                 
                 $resultado=$conexion->prepare($consultados);
                 

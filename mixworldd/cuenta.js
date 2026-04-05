@@ -154,7 +154,8 @@ $(document).ready(function(){
 			
 			e.preventDefault();
 		}
-		if(filetype!='audio/mpeg' && filetype!='audio/x-m4a'){
+		if(filetype!='audio/mpeg' && filetype!='audio/mp4' && filetype!='audio/flac' && filetype!='audio/wav'
+			&& filetype!='audio/m4a' && filetype!='audio/x-m4a'){
 				
 			e.preventDefault();
 		}
@@ -199,7 +200,9 @@ $(document).ready(function(){
 	            window.location.href = "confirmacioncancion.php";
 	        } else {
 				
-	            alert("Error al subir el archivo.");
+	            alert("Error al subir el archivo. Formato invalido");
+	            
+	            progressContainer.style.display = 'none';
 	        }
 	    };
 	
