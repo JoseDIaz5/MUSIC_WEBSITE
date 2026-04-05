@@ -13,6 +13,8 @@
         
         $formatos=['audio/mpeg','audio/wav','audio/flac','audio/mp4','audio/x-m4a','audio/m4a'];
         
+        $formatosimg=['image/png','image/jpeg','image/jpg',''];
+        
         $iduser=$_SESSION["idusu"];
         
         $title=$_POST["titulo"];
@@ -30,6 +32,17 @@
         $real_mime= mime_content_type($_FILES["song"]["tmp_name"]);
         
         if (!in_array($real_mime, $formatos)) {
+            
+            http_response_code(400);
+            
+            echo "FORMATO NO SOPORTADO";
+            
+            exit;
+        }
+        
+        $real_mime_img= mime_content_type($_FILES["imagesong"]["tmp_name"]);
+        
+        if (!in_array($real_mime_img, $formatosimg)) {
             
             http_response_code(400);
             
