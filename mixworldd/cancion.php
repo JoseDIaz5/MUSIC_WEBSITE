@@ -259,8 +259,6 @@
 		         		
 		         		</div>
 		         		<div class="playercontainer">
-			         		
-		         			
 		         			
 		         			<audio src="./intranet/songs/<?php echo $fila["CANCION"]; ?>" class="audio" id="audios<?php echo $fila["ID"]; ?>"></audio>
 		         			
@@ -557,7 +555,7 @@
 		    
 		    try {
 		        
-		        $registros_pagina=1;
+		        $registros_pagina=14;
 		        
 		        if (isset($_GET["numeropagina"])) {
 		            

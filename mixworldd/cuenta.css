@@ -604,18 +604,53 @@ a{
 	border-radius:5px;
 	
 	cursor:pointer;
+	
+	position:relative;
+	
+	overflow:hidden;
 }
 .header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .playercontainer .bar .progress{
 	
 	position:absolute;
 	
+	top:0;
+	
+	left:0;
+	
 	width:0px;
 	
-	height:5px;
-	
-	background-color:#d40000;
+	height:100%;
 	
 	border-radius:5px;
+	
+	background: linear-gradient(
+	
+        90deg, 
+        #800020, 
+        #ff0000, 
+        #ff4500, 
+        #ff0000, 
+        #800020
+        
+    );
+    
+    background-size: 200% 100%;
+    
+    animation:flujoDerecha 4s linear infinite;
+    
+    transition: width 0.1s linear; 
+    
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
+}
+@keyframes flujoDerecha{
+	
+	0%{
+		background-position:0% 0%;
+	}
+	100%{
+	
+		background-position:-200% 0%;
+	}
 }
 .header_wrapper .cols_container .right_col #songs .songcontainer .titleplayercontainer .playercontainer .downloadcontainer{
 	
