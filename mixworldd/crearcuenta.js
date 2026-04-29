@@ -181,9 +181,62 @@ $(document).ready(function(){
 		
 		document.getElementById("contportadatres").innerHTML="<img id='port' width='100%' height='100%' src='" + resultado + "'>";
 	}
+	document.addEventListener("DOMContentLoaded", function() {
+    	// Escuchamos el click en tu div de "Crear"
+	    document.getElementById("botonregistra").addEventListener("click", function(e) {
+	        e.preventDefault(); // Evita cualquier envío automático
+	        creacuenta();
+	    });
+	});
+	
 	function creacuenta(){
 		
-		$("#botonregistrados").click();
+		const form = document.getElementById('iform');
+	    
+	    const errorPerfil = document.getElementById("imageerror");
+	    
+	    const errorPortada = document.getElementById("imageerrortwo");
+	    
+	    
+    	
+    	errorPerfil.textContent = "";
+    	
+    	errorPortada.textContent = "";
+		
+		const formData = new FormData(form);
+		
+		formData.append("subedatos",true);
+		
+	    const xhr = new XMLHttpRequest();
+	
+	    
+	
+	    xhr.onload = function() {
+	        if (xhr.status === 200) {
+	            
+	            window.location.href = "index.php"; 
+	            
+	        } else {
+				
+	            const respuesta = xhr.responseText;
+	
+	            if (respuesta.includes("IMAGEN DE PERFIL")) {
+	            
+	                errorPerfil.textContent = "error del servidor: " + respuesta;
+	            
+	                errorPerfil.style.color = "red";
+	            } 
+	            else if (respuesta.includes("IMAGEN DE PORTADA")) {
+	            
+	                errorPortada.textContent = "error del servidor: " + respuesta;
+	            
+	                errorPortada.style.color = "red";
+	            }       
+	        }
+	    };
+	    
+	    xhr.open('POST', 'creacioncuenta.php', true);
+	    xhr.send(formData);
 	}
 	$("#usuario").keyup(function(){
 		

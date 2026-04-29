@@ -35,7 +35,7 @@
             
             http_response_code(400);
             
-            echo "FORMATO NO SOPORTADO";
+            echo "FORMATO DE AUDIO NO SOPORTADO";
             
             exit;
         }
@@ -46,7 +46,7 @@
             
             http_response_code(400);
             
-            echo "FORMATO NO SOPORTADO";
+            echo "FORMATO DE IMAGEN NO SOPORTADO";
             
             exit;
         }

@@ -12,6 +12,30 @@
                 
                 include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
                 
+                $formatosimg=['image/png','image/jpeg','image/jpg',''];
+                
+                $real_mime=mime_content_type($_FILES["imagenperfil"]["tmp_name"]);
+                
+                if (!in_array($real_mime, $formatosimg)) {
+                    
+                    http_response_code(400);
+                    
+                    echo "FORMATO DE IMAGEN DE PERFIL NO SOPORTADO";
+                    
+                    exit;
+                }
+                
+                $real_mime_portada=mime_content_type($_FILES["contportada"]["tmp_name"]);
+                
+                if (!in_array($real_mime_portada, $formatosimg)) {
+                    
+                    http_response_code(400);
+                    
+                    echo "FORMATO DE IMAGEN DE PORTADA NO SOPORTADO";
+                    
+                    exit;
+                }
+                
                 if (empty($_FILES["imagenperfil"]["name"])) {
                     
                     $imgperfil=NULL;
@@ -104,7 +128,8 @@
                     
                     $_SESSION["portada"]=$_FILES["contportada"]["name"];
                     
-                    header("location:index.php");
+                    http_response_code(200);
+                    exit;
                 }
                 
                 $resultado->closeCursor();

@@ -164,6 +164,18 @@ $(document).ready(function(){
 	function subecancion(){
 		
 		const form = document.getElementById('iform');
+		
+		const formatosPermitidos = ['image/png', 'image/jpeg', 'image/jpg'];
+		
+		const formatosAudio = ['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a'];
+		
+		const inputImagen=document.getElementById('songselect');
+		
+		const inputCancion=document.getElementById('imageselect');
+		
+		let hayError = false;
+		
+		
     
 	    if (!form.checkValidity()) {
 			
@@ -199,10 +211,26 @@ $(document).ready(function(){
 	            
 	            window.location.href = "confirmacioncancion.php";
 	        } else {
-				
-	            alert("Error al subir el archivo. Formato invalido");
 	            
 	            progressContainer.style.display = 'none';
+	            
+	            const mensajeErrorServidor=xhr.responseText;
+	            
+	            const mensajeCancion=document.getElementById('filenameone');
+	            
+	            const mensajeImagen=document.getElementById('filenamei');
+	            
+	            if(mensajeErrorServidor.includes("AUDIO")){
+					
+					mensajeCancion.textContent="Error del servidor: " + mensajeErrorServidor;
+	            
+	            	mensajeCancion.style.color="red";
+				}else if(mensajeErrorServidor.includes("IMAGEN")){
+					
+					mensajeImagen.textContent="Error del servidor: " + mensajeErrorServidor;
+					
+					mensajeImagen.style.color="red";
+				}
 	        }
 	    };
 	
