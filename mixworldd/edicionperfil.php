@@ -1,8 +1,4 @@
-<head>
 
-	<link rel="stylesheet" href="updatingsong.css?v=<?php echo time(); ?>">
-
-</head>
 <?php
 
     session_start();
@@ -13,210 +9,81 @@
             
             include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
             
-            if ($_FILES["imagenperfil"]["name"]=='' && $_FILES["contportada"]["name"]=='') {
+            $formatosimg=['image/png','image/jpeg','image/jpg',''];
+            
+            $carpetaimg = $_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
+            
+            if (!empty($_FILES["imagenperfil"]["tmp_name"])) {
                 
-                $perfildefecto=$_POST["profileimg"];
+                $real_mime=mime_content_type($_FILES["imagenperfil"]["tmp_name"]);
                 
-                $portadadefecto=$_POST["portadaimg"];
-            }
-            elseif ($_FILES["imagenperfil"]["name"]!='' && $_FILES["contportada"]["name"]==''){
-                
-                $portadadefecto=$_POST["portadaimg"];
-                
-                $perfil=$_FILES["imagenperfil"]["name"];
-                
-                $perfiltipo=$_FILES["imagenperfil"]["type"];
-                
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
-            }
-            elseif ($_FILES["imagenperfil"]["name"]=='' && $_FILES["contportada"]["name"]!=''){
-                
-                $perfildefecto=$_POST["profileimg"];
-                
-                $portada=$_FILES["contportada"]["name"];
-                
-                $portadatipo=$_FILES["contportada"]["type"];
-                
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
-            }else {
-                
-                $perfil=$_FILES["imagenperfil"]["name"];
-                
-                $perfiltipo=$_FILES["imagenperfil"]["type"];
-                
-                $portada=$_FILES["contportada"]["name"];
-                
-                $portadatipo=$_FILES["contportada"]["type"];
-                
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
+                if (!in_array($real_mime, $formatosimg)) {
+                    
+                    http_response_code(400);
+                    
+                    echo "FORMATO DE IMAGEN DE PERFIL NO SOPORTADO";
+                    
+                    exit;
+                }
             }
             
-            if ($_POST["facebook"]=='') {
+            if (!empty($_FILES["contportada"]["tmp_name"])) {
                 
-                $facebook=null;
-            }else {
+                $real_mime_portada=mime_content_type($_FILES["contportada"]["tmp_name"]);
                 
-                $facebook=$_POST["facebook"];
+                if (!in_array($real_mime_portada, $formatosimg)) {
+                    
+                    http_response_code(400);
+                    
+                    echo "FORMATO DE IMAGEN DE PORTADA NO SOPORTADO";
+                    
+                    exit;
+                }
             }
-            if ($_POST["instagram"]=='') {
                 
-                $instagram=null;
-            }else {
+            $perfil = ($_FILES["imagenperfil"]["name"] != '') ? $_FILES["imagenperfil"]["name"] : $_POST["profileimg"];
                 
-                $instagram=$_POST["instagram"];
+            $portada = ($_FILES["contportada"]["name"] != '') ? $_FILES["contportada"]["name"] : $_POST["portadaimg"];
+            
+            $facebook = !empty($_POST["facebook"]) ? $_POST["facebook"] : null;
+            
+            $instagram = !empty($_POST["instagram"]) ? $_POST["instagram"] : null;
+            
+            $x = !empty($_POST["twitter"]) ? $_POST["twitter"] : null;
+            
+            $usuario = $_POST["usuario"];
+            
+            $id = $_POST["id"];
+            
+            if (!empty($_FILES["imagenperfil"]["tmp_name"])) {
+                
+                move_uploaded_file($_FILES["imagenperfil"]["tmp_name"], $carpetaimg . $perfil);
             }
-            if ($_POST["twitter"]=='') {
+            if (!empty($_FILES["contportada"]["tmp_name"])) {
                 
-                $x=null;
-            }else {
-                
-                $x=$_POST["twitter"];
+                move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpetaimg . $portada);
             }
             
-            $usuario=$_POST["usuario"];
-            
-            $id=$_POST["id"];
             
             $idh=$_POST["idh"];
             
             $consulta="CALL UPDATE_USER(:id,:user,:perfil,:portada,:face,:insta,:xuser)";
             
-            if (isset($perfiltipo) && isset($portadatipo)) {
-                
-                if ($perfiltipo=="image/jpg" || $perfiltipo=="image/png" || $perfiltipo=="image/jpeg" || $perfiltipo=="image/gif") {
-                    
-                    if ($portadatipo=="image/jpg" || $portadatipo=="image/png" || $portadatipo=="image/jpeg" || $portadatipo=="image/gif") {
-                        
-                        move_uploaded_file($_FILES["imagenperfil"]["tmp_name"], $carpetaimg.$perfil);
-                        
-                        move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpetaimg.$portada);
-                        
-                        $resultado=$conexion->prepare($consulta);
-                        
-                        $resultado->execute(array(":user"=>$usuario,":perfil"=>$perfil,":portada"=>$portada,":face"=>$facebook,":insta"=>$instagram,":xuser"=>$x,":id"=>$id));
-                        
-                        $cantidad=$resultado->rowCount();
-                        
-                        if ($cantidad!=0) {
-                            
-                            header("location:cuenta.php?user=$idh");
-                        }else {
-                            
-                            echo "<body>";
-                            
-                            echo "<div class='diverror'>";
-                            
-                            echo "Error al actualizar la información, intentelo de nuevo";
-                            
-                            echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
-                            
-                            echo "</div>";
-                            
-                            echo "</body>";
-                        }
-                    }else {
-                        
-                        header("location:editarperfil.php?id=$idh");
-                    }
-                }else {
-                    
-                    header("location:editarperfil.php?id=$idh");
-                }
-            }
-            elseif (!isset($perfiltipo) && isset($portadatipo)){
-                
-                if ($portadatipo=="image/jpg" || $portadatipo=="image/png" || $portadatipo=="image/jpeg" || $portadatipo=="image/gif") {
-                    
-                    move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpetaimg.$portada);
-                    
-                    $resultado=$conexion->prepare($consulta);
-                    
-                    $resultado->execute(array(":user"=>$usuario,":perfil"=>$perfildefecto,":portada"=>$portada,":face"=>$facebook,":insta"=>$instagram,":xuser"=>$x,":id"=>$id));
-                    
-                    $cantidad=$resultado->rowCount();
-                    
-                    if ($cantidad!=0) {
-                        
-                        header("location:cuenta.php?user=$idh");
-                    }else {
-                        
-                        echo "<body>";
-                        
-                        echo "<div class='diverror'>";
-                        
-                        echo "Error al actualizar la información, intentelo de nuevo";
-                        
-                        echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
-                        
-                        echo "</div>";
-                        
-                        echo "</body>";
-                    }
-                }else {
-                    
-                    header("location:editarperfil.php?id=$idh");
-                }
-            }
-            elseif (isset($perfiltipo) && !isset($portadatipo)){
-                
-                if ($perfiltipo=="image/jpg" || $perfiltipo=="image/png" || $perfiltipo=="image/jpeg" || $perfiltipo=="image/gif") {
-                    
-                    move_uploaded_file($_FILES["imagenperfil"]["tmp_name"], $carpetaimg.$perfil);
-                    
-                    $resultado=$conexion->prepare($consulta);
-                    
-                    $resultado->execute(array(":user"=>$usuario,":perfil"=>$perfil,":portada"=>$portadadefecto,":face"=>$facebook,":insta"=>$instagram,":xuser"=>$x,":id"=>$id));
-                    
-                    $cantidad=$resultado->rowCount();
-                    
-                    if ($cantidad!=0) {
-                        
-                        header("location:cuenta.php?user=$idh");
-                    }else {
-                        
-                        echo "<body>";
-                        
-                        echo "<div class='diverror'>";
-                        
-                        echo "Error al actualizar la información, intentelo de nuevo";
-                        
-                        echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
-                        
-                        echo "</div>";
-                        
-                        echo "</body>";
-                    }
-                }
-            }else {
-                
-                $resultado=$conexion->prepare($consulta);
-                
-                $resultado->execute(array(":user"=>$usuario,":perfil"=>$perfildefecto,":portada"=>$portadadefecto,":face"=>$facebook,":insta"=>$instagram,":xuser"=>$x,":id"=>$id));
-                
-                $cantidad=$resultado->rowCount();
-                
-                if ($cantidad!=0) {
-                    
-                    header("location:cuenta.php?user=$idh");
-                }else {
-                    
-                    echo "<body>";
-                    
-                    echo "<div class='diverror'>";
-                    
-                    echo "Error al actualizar la información, intentelo de nuevo";
-                    
-                    echo "<a href='editarperfil.php?id=$idh'>Volver</a>";
-                    
-                    echo "</div>";
-                    
-                    echo "</body>";
-                }
-            }
+            $resultado=$conexion->prepare($consulta);
+            
+            $resultado->execute(array(":user"=>$usuario,":perfil"=>$perfil,":portada"=>$portada,":face"=>$facebook,":insta"=>$instagram,":xuser"=>$x,":id"=>$id));
+            
+            http_response_code(200);
+            
+            exit;
             
         } catch (Exception $e) {
             
+            http_response_code(500);
+            
             die("Error: " . $e->getMessage());
+            
+            exit;
         }
         
     }else {

@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	document.getElementById("imageselect").addEventListener("change",procesa,false);
 	
-	document.getElementById("botonactualiza").addEventListener("click",actualizacancion,false);
+	
 	
 	$("#titulo").focus(function(){
 		
@@ -50,11 +50,50 @@ $(document).ready(function(){
 		
 		document.getElementById("imagencanciontres").innerHTML="<img width='100%' height='100%' src='" + resultado + "'>";
 	}
+		
+	$("#botonactualiza").click(function(e){
+		
+		e.preventDefault();
+		
+		actualizacancion();
+	});
 	
 	function actualizacancion(){
 		
-		$("#botonactualizados").click();
+		const form=document.querySelector('form[action="updatingsong.php"]');
+		
+		const errorImagen=document.getElementById("imageerror");
+		
+		const inputImagen=document.getElementById("imageselect");
+		
+		errorImagen.textContent="";
+		
+		const formData=new FormData(form);
+		
+		const xhr=new XMLHttpRequest();
+		
+		xhr.onload=function(){
+			
+			if(xhr.status===200){
+				
+				const iduserh=document.getElementsByName("iduserh")[0].value;
+				
+				window.location.href="cuenta.php?user="+iduserh;
+			}else{
+				
+				const respuesta=xhr.responseText;
+				
+				errorImagen.textContent=respuesta;
+				
+				errorImagen.style.color="red";
+			}
+		};
+		
+		xhr.open('POST', 'updatingsong.php',true);
+		
+		xhr.send(formData);
 	}
+	
 	$("#titulo").keyup(function(){
 		
 		const valor=$(this).val();

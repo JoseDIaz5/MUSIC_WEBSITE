@@ -44,6 +44,8 @@
     		          
     		          $idsong=$fila["ID"];
     		          
+    		          $iduser=$fila["ID_USUARIO"];
+    		          
     		          $idsongg=$fila["IDHASH"];
     		          
     		          $titulo=$fila["TITULO"];
@@ -69,6 +71,8 @@
     				<input type=text value="<?php echo $idsongg; ?>" name="idsongh" hidden="hidden">
     				
     				<input type=text value="<?php echo $imagen; ?>" name="imagesong" hidden="hidden">
+    				
+    				<input type=text value="<?php echo $iduser; ?>" name="iduserh" hidden="hidden">
     			
     				<div id="formulariodos">
     				

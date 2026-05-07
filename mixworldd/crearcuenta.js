@@ -182,9 +182,11 @@ $(document).ready(function(){
 		document.getElementById("contportadatres").innerHTML="<img id='port' width='100%' height='100%' src='" + resultado + "'>";
 	}
 	document.addEventListener("DOMContentLoaded", function() {
-    	// Escuchamos el click en tu div de "Crear"
+    	
 	    document.getElementById("botonregistra").addEventListener("click", function(e) {
-	        e.preventDefault(); // Evita cualquier envío automático
+	        
+	        e.preventDefault(); 
+	        
 	        creacuenta();
 	    });
 	});

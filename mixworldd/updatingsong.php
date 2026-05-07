@@ -1,8 +1,4 @@
-<head>
 
-	<link rel="stylesheet" href="updatingsong.css?v=<?php echo time(); ?>">
-
-</head>
 <?php
 
     session_start();
@@ -13,18 +9,22 @@
             
             include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
             
-            if ($_FILES["imagencancion"]["name"]=='') {
+            $formatosimg=['image/png','image/jpeg','image/jpg'];
+            
+            $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
+            
+            if(!empty($_FILES["imagencancion"]["tmp_name"])){
                 
-                $imagendefecto=$_POST["imagesong"];
-            }else {
+                $real_mime=mime_content_type($_FILES["imagencancion"]["tmp_name"]);
                 
-                $imagen=$_FILES["imagencancion"]["name"];
-                
-                $imagentipo=$_FILES["imagencancion"]["type"];
-                
-                $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
-                
-                move_uploaded_file($_FILES['imagencancion']['tmp_name'], $carpetaimg.$imagen);
+                if (!in_array($real_mime, $formatosimg)) {
+                    
+                    http_response_code(400);
+                    
+                    echo "FORMATO DE IMAGEN DE CANCION NO SOPORTADO";
+                    
+                    exit;
+                }
             }
             
             $iduser=$_SESSION["idusu"];
@@ -35,75 +35,39 @@
             
             $id=$_POST["id"];
             
+            if ($_FILES["imagencancion"]["name"]=='') {
+                
+                $imagenfinal=$_POST["imagesong"];
+            }else {
+                
+                $imagenfinal=$_FILES["imagencancion"]["name"];
+                
+                
+                
+                move_uploaded_file($_FILES['imagencancion']['tmp_name'], $carpetaimg.$imagenfinal);
+            }
+            
+            
+            
             $ids=$_POST["idsongh"];
             
             $consulta="CALL UPDATE_SONG(:songimage,:title,:description,:idsong)";
             
-            if (isset($imagentipo)) {
-                
-                if ($imagentipo=="image/jpg" || $imagentipo=="image/jpeg" || $imagentipo=="image/png") {
-                    
-                    $resultado=$conexion->prepare($consulta);
-                    
-                    $resultado->execute(array(":songimage"=>$imagen,":title"=>$titulo,":description"=>$descripcion,":idsong"=>$id));
-                    
-                    $cantidad=$resultado->rowCount();
-                    
-                    if ($cantidad!=0) {
-                        
-                        header("location:cuenta.php?user=$iduser");
-                    }else {
-                        
-                        echo "<body>";
-                        
-                        echo "<div class='diverror'>";
-                        
-                        echo "Error al actualizar la información, intentelo de nuevo";
-                        
-                        echo "<a href='updatesong.php?idsong=$id'>Volver</a>";
-                        
-                        echo "</div>";
-                        
-                        echo "</body>";
-                    }
-                }
-                else {
-                    
-                    header("location:updatesong.php?song=$ids");
-                }
-            }
-            else {
-                
-                $resultado=$conexion->prepare($consulta);
-                
-                $resultado->execute(array(":songimage"=>$imagendefecto,":title"=>$titulo,":description"=>$descripcion,":idsong"=>$id));
-                
-                $cantidad=$resultado->rowCount();
-                
-                if ($cantidad!=0) {
-                    
-                    header("location:cuenta.php?user=$iduser");
-                }else {
-                    
-                    echo "<body>";
-                    
-                    echo "<div class='diverror'>";
-                    
-                    echo "No se actualizó ninguna información, intentelo de nuevo";
-                    
-                    echo "<br>";
-                    
-                    echo "<a href='updatesong.php?song=$ids'>Volver</a>";
-                    
-                    echo "</div>";
-                    
-                    echo "</body>";
-                }
-            }
+            $resultado=$conexion->prepare($consulta);
+            
+            $resultado->execute(array(":songimage"=>$imagenfinal,":title"=>$titulo,":description"=>$descripcion,":idsong"=>$id));
+            
+            http_response_code(200);
+            
+            exit;
             
         } catch (Exception $e) {
             
+            http_response_code(500);
+            
             die("Error: " . $e->getMessage());
+            
+            exit;
         }
     }else {
         

@@ -145,8 +145,57 @@ $(document).ready(function(){
 		
 		$(this).val(valor.replace(/[^a-zA-ZÀ-ÿ\u00f1\u00d10-9_]+/g,""));
 	});
-	$("#botonregistra").click(function(){
+	$("#botonregistra").click(function(e){
 		
-		$("#botonregistrados").click();
+		e.preventDefault();
+		
+		editaperfil();
 	});
+	
+	function editaperfil(){
+		
+		const form=document.querySelector('form[action="edicionperfil.php"]');
+		
+		const errorPerfil=document.getElementById("imageerror");
+		
+		const errorPortada=document.getElementById("imageerrortwo");
+		
+		errorPerfil.textContent = "";
+		
+    	errorPortada.textContent = "";
+    	
+    	const formData=new FormData(form);
+    	
+    	const xhr=new XMLHttpRequest();
+    	
+    	xhr.onload = function(){
+			
+			if(xhr.status===200){
+				
+				const idh=document.getElementsByName("idh")[0].value;
+				
+				window.location.href="cuenta.php?user="+idh;
+				
+			}else{
+				
+				const respuesta=xhr.responseText;
+				
+				if(respuesta.includes("IMAGEN DE PERFIL")){
+					
+					errorPerfil.textContent=respuesta;
+					
+					errorPerfil.style.color="red";
+				}else if(respuesta.includes("IMAGEN DE PORTADA")){
+					
+					errorPortada.textContent=respuesta;
+					
+					errorPortada.style.color="red";
+				}
+			}
+		};
+		
+		xhr.open('POST','edicionperfil.php',true);
+		
+		xhr.send(formData);
+	}
 });
