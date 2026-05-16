@@ -12,48 +12,60 @@
                 
                 include $_SERVER["DOCUMENT_ROOT"] . '/mixworld/mixworldd/conexion.php';
                 
-                $formatosimg=['image/png','image/jpeg','image/jpg',''];
-                
-                $real_mime=mime_content_type($_FILES["imagenperfil"]["tmp_name"]);
-                
-                if (!in_array($real_mime, $formatosimg)) {
-                    
-                    http_response_code(400);
-                    
-                    echo "FORMATO DE IMAGEN DE PERFIL NO SOPORTADO";
-                    
-                    exit;
-                }
-                
-                $real_mime_portada=mime_content_type($_FILES["contportada"]["tmp_name"]);
-                
-                if (!in_array($real_mime_portada, $formatosimg)) {
-                    
-                    http_response_code(400);
-                    
-                    echo "FORMATO DE IMAGEN DE PORTADA NO SOPORTADO";
-                    
-                    exit;
-                }
-                
-                if (empty($_FILES["imagenperfil"]["name"])) {
-                    
-                    $imgperfil=NULL;
-                }else {
-                    
-                    $imgperfil=$_FILES["imagenperfil"]["name"];
-                }
-                if (empty($_FILES["contportada"]["name"])) {
-                    
-                    $imgportada=NULL;
-                }else {
-                    
-                    $imgportada=$_FILES["contportada"]["name"];
-                }
-                
                 $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/perfiles/";
                 
-                $usuario=addslashes($_POST["usuario"]);
+                $formatosimg=['image/png','image/jpeg','image/jpg'];
+                
+                $nombre_final_perfil=null;
+                
+                if (!empty($_FILES["imagenperfil"]["name"])) {
+                    
+                    $real_mime=mime_content_type($_FILES["imagenperfil"]["tmp_name"]);
+                    
+                    if (!in_array($real_mime, $formatosimg)) {
+                        
+                        http_response_code(400);
+                        
+                        echo "FORMATO DE IMAGEN DE PERFIL NO SOPORTADO";
+                        
+                        exit;
+                    }
+                    
+                    $extension=pathinfo($_FILES["imagenperfil"]["name"],PATHINFO_EXTENSION);
+                    
+                    $nombre_limpio=preg_replace("/[^a-zA-Z0-9]/","_", pathinfo($_FILES['imagenperfil']['name'],PATHINFO_FILENAME));
+                    
+                    $nombre_final_perfil=uniqid($nombre_limpio . "_",true) . "." . $extension;
+                    
+                    move_uploaded_file($_FILES["imagenperfil"]["tmp_name"], $carpeta.$nombre_final_perfil);
+                }
+                
+                $nombre_final_portada=NULL;
+                
+                if (!empty($_FILES["contportada"]["name"])) {
+                    
+                    $real_mime_portada=mime_content_type($_FILES["contportada"]["tmp_name"]);
+                    
+                    if (!in_array($real_mime_portada, $formatosimg)) {
+                        
+                        http_response_code(400);
+                        
+                        echo "FORMATO DE IMAGEN DE PORTADA NO SOPORTADO";
+                        
+                        exit;
+                    }
+                    
+                    $extension=pathinfo($_FILES["contportada"]["name"],PATHINFO_EXTENSION);
+                    
+                    $nombre_limpio=preg_replace("/[^a-zA-Z0-9]/","_", pathinfo($_FILES['contportada']['name'],PATHINFO_FILENAME));
+                    
+                    $nombre_final_portada=uniqid($nombre_limpio . "_",true) . "." . $extension;
+                    
+                    move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpeta.$nombre_final_portada);
+                    
+                }
+                
+                $usuario=$_POST["usuario"];
                 
                 $correo=$_POST["correo"];
                 
@@ -89,17 +101,12 @@
                 $token=bin2hex(random_bytes(16));
                 
                 $token_hash=hash("sha256", $token);
-                
-                move_uploaded_file($_FILES["imagenperfil"]["tmp_name"], $carpeta.$imgperfil);
-                
-                move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpeta.$imgportada);
-                
                     
                 $consulta="CALL CREATE_USER(:h,:usuario,:correo,:contra,:perfil,:portada,:fuser,:iuser,:xuser)";
                 
                 $resultado=$conexion->prepare($consulta);
                 
-                $resultado->execute(array("h"=>$token_hash,":usuario"=>$usuario, ":correo"=>$correo, ":contra"=>$pass_c, ":perfil"=>$imgperfil, ":portada"=>$imgportada,":fuser"=>$facebook,":iuser"=>$instagram,":xuser"=>$twitter));
+                $resultado->execute(array("h"=>$token_hash,":usuario"=>$usuario, ":correo"=>$correo, ":contra"=>$pass_c, ":perfil"=>$nombre_final_perfil, ":portada"=>$nombre_final_portada,":fuser"=>$facebook,":iuser"=>$instagram,":xuser"=>$twitter));
                 
                 $consultados="CALL GET_ID_USER()";
                 
@@ -124,9 +131,9 @@
                     
                     $_SESSION["usuario"]=$_POST["usuario"];
                     
-                    $_SESSION["picture"]=$_FILES["imagenperfil"]["name"];
+                    $_SESSION["picture"]=$nombre_final_perfil;
                     
-                    $_SESSION["portada"]=$_FILES["contportada"]["name"];
+                    $_SESSION["portada"]=$nombre_final_portada;
                     
                     http_response_code(200);
                     exit;

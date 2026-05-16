@@ -169,13 +169,11 @@ $(document).ready(function(){
 		
 		const formatosAudio = ['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a'];
 		
-		const inputImagen=document.getElementById('songselect');
+		const inputImagen=document.getElementById('imageselect');
 		
-		const inputCancion=document.getElementById('imageselect');
+		const inputCancion=document.getElementById('songselect');
 		
 		let hayError = false;
-		
-		
     
 	    if (!form.checkValidity()) {
 			
@@ -207,7 +205,7 @@ $(document).ready(function(){
 	    
 	    xhr.onload = function() {
 	        
-	        if (xhr.status === 200) {
+	        if (xhr.status === 200 && xhr.responseText.trim() === "EXITO") {
 	            
 	            window.location.href = "confirmacioncancion.php";
 	        } else {
@@ -220,7 +218,7 @@ $(document).ready(function(){
 	            
 	            const mensajeImagen=document.getElementById('filenamei');
 	            
-	            if(mensajeErrorServidor.includes("AUDIO")){
+	            if(mensajeErrorServidor.includes("AUDIO") || mensajeErrorServidor.includes("ARCHIVOS")){
 					
 					mensajeCancion.textContent="Error del servidor: " + mensajeErrorServidor;
 	            
@@ -231,6 +229,12 @@ $(document).ready(function(){
 					
 					mensajeImagen.style.color="red";
 				}
+				else {
+                
+                	
+                
+	                alert("Error en la subida: " + mensajeErrorServidor);
+	            }
 	        }
 	    };
 	
