@@ -231,8 +231,6 @@ $(document).ready(function(){
 				}
 				else {
                 
-                	
-                
 	                alert("Error en la subida: " + mensajeErrorServidor);
 	            }
 	        }

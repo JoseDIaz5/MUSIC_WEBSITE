@@ -149,7 +149,6 @@ try{
             echo "ERROR_BD: No se pudo registrar la canción.";
             
             exit;
-            
         }
     }else {
         
