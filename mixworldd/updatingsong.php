@@ -13,6 +13,8 @@
             
             $carpetaimg=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
             
+            $imagenfinal=$_POST["imagesong"];
+            
             if(!empty($_FILES["imagencancion"]["tmp_name"])){
                 
                 $real_mime=mime_content_type($_FILES["imagencancion"]["tmp_name"]);
@@ -25,6 +27,26 @@
                     
                     exit;
                 }
+                
+                $extensionimagen=pathinfo($_FILES["imagencancion"]["name"],PATHINFO_EXTENSION);
+                
+                $nombre_imagen_limpio=preg_replace("/[^a-zA-Z0-9]/", "_", pathinfo($_FILES["imagencancion"]["name"]));
+                
+                $imagenvieja=$_POST["imagesong"];
+                
+                $imagenfinal=uniqid($nombre_imagen_limpio . "_",true) . "." . $extensionimagen;
+                
+                if (!empty($imagenvieja) && $imagenvieja!="default.png") {
+                    
+                    $ruta_imagen_vieja=$carpetaimg.$imagenvieja;
+                    
+                    if (file_exists($ruta_imagen_vieja)) {
+                        
+                        unlink($ruta_imagen_vieja);
+                    }
+                }
+                
+                move_uploaded_file($_FILES['imagencancion']['tmp_name'], $carpetaimg.$imagenfinal);
             }
             
             $iduser=$_SESSION["idusu"];
@@ -34,20 +56,6 @@
             $descripcion=$_POST["comenta"];
             
             $id=$_POST["id"];
-            
-            if ($_FILES["imagencancion"]["name"]=='') {
-                
-                $imagenfinal=$_POST["imagesong"];
-            }else {
-                
-                $imagenfinal=$_FILES["imagencancion"]["name"];
-                
-                
-                
-                move_uploaded_file($_FILES['imagencancion']['tmp_name'], $carpetaimg.$imagenfinal);
-            }
-            
-            
             
             $ids=$_POST["idsongh"];
             

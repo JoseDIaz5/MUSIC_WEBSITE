@@ -84,7 +84,7 @@
                 
                 move_uploaded_file($_FILES["contportada"]["tmp_name"], $carpetaimg . $portada);
             }
-                
+               
             $facebook = !empty($_POST["facebook"]) ? $_POST["facebook"] : null;
             
             $instagram = !empty($_POST["instagram"]) ? $_POST["instagram"] : null;
