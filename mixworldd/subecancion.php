@@ -81,9 +81,9 @@ try{
         $tipoimg=$_FILES['imagesong']['type'];
     }
     
-    $token=bin2hex(random_bytes(16));
+    $token_hash=bin2hex(random_bytes(16));
     
-    $token_hash=hash("sha256", $token);
+    
     
     $carpeta=$_SERVER["DOCUMENT_ROOT"] . "/mixworld/mixworldd/intranet/songs/";
     

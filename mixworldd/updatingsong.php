@@ -30,7 +30,7 @@
                 
                 $extensionimagen=pathinfo($_FILES["imagencancion"]["name"],PATHINFO_EXTENSION);
                 
-                $nombre_imagen_limpio=preg_replace("/[^a-zA-Z0-9]/", "_", pathinfo($_FILES["imagencancion"]["name"]));
+                $nombre_imagen_limpio=preg_replace("/[^a-zA-Z0-9]/", "_", pathinfo($_FILES["imagencancion"]["name"],PATHINFO_FILENAME));
                 
                 $imagenvieja=$_POST["imagesong"];
                 
